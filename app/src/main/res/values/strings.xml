@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Skywalker</string>
+    <string name="wt_one">The eSIM helps you go where you want to go, do what you want to do.</string>
+    <string name="wt_two">The convenience of the eSIM opens up a world of possibilities to travelers.</string>
+    <string name="wt_three">The cost-savings from the eSIM is valuable to both the business traveler and well as the tourist.</string>
+    <string name="wt_four">Technology making your life better is what we bring you - this is easy to use</string>
+    <string name="skywalker">Skywalker</string>
+    <string name="skip">Skip</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="welcome_to_skywalker_please_signup_with_your_personal_account_information">Welcome to Skywalker . Please signup with your personal account information</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="or_signup_with">Or Signup With</string>
+    <string name="or_signin_with">Or Login With</string>
+    <string name="don_t_have_an_account_create_account">Don’t have an account? Create Account</string>
+    <string name="forgot_password">Forgot Password?</string>
+</resources>

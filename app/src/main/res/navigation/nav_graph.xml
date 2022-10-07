@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.skywalker.ui.main.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_walkthroughFragment"
+            app:destination="@id/walkthroughFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/walkthroughFragment"
+        android:name="com.skywalker.ui.main.WalkthroughFragment"
+        android:label="WalkthroughFragment"
+        tools:layout="@layout/fragment_walkthrough" >
+        <action
+            android:id="@+id/action_walkthroughFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment"
+            app:popUpTo="@id/walkthroughFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/authenticationFragment"
+        android:name="com.skywalker.ui.main.AuthenticationFragment"
+        android:label="AuthenticationFragment" />
+</navigation>

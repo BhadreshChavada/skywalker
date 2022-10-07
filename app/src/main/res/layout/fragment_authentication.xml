@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="-20dp"
+            app:cardCornerRadius="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_green_logo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/semiMedium_black_28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/create_new_account"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescription"
+                    style="@style/regularText_black_13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/welcome_to_skywalker_please_signup_with_your_personal_account_information"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+                <View
+                    android:id="@+id/viewTabBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/bg_rectangle_rounded_corner"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLogin"
+                    style="@style/semiBoldText_black_14"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/login"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewTabBg"
+                    app:layout_constraintEnd_toStartOf="@+id/tvSignUp"
+                    app:layout_constraintStart_toStartOf="@+id/viewTabBg"
+                    app:layout_constraintTop_toTopOf="@+id/viewTabBg" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSignUp"
+                    style="@style/semiBoldText_black_14"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/bg_rectangle_rounded_corner_green"
+                    android:gravity="center"
+                    android:text="@string/signup"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewTabBg"
+                    app:layout_constraintEnd_toEndOf="@+id/viewTabBg"
+                    app:layout_constraintStart_toEndOf="@+id/tvLogin"
+                    app:layout_constraintTop_toTopOf="@+id/viewTabBg" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_signup"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewTabBg">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardSignup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="40dp"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="2dp">
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#44EEEEEE">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/edtUserName"
+                                    style="@style/editText_black_15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="25sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:drawableStart="@drawable/ic_username_drawable"
+                                    android:hint="@string/username"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/edtEmail"
+                                    style="@style/editText_black_15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="15sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:drawableStart="@drawable/ic_email_drawable"
+                                    android:hint="@string/email"
+                                    app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/edtPassword"
+                                    style="@style/editText_black_15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="15sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:drawableStart="@drawable/ic_password_drawable"
+                                    android:hint="@string/password"
+                                    app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/edtConfirmPassword"
+                                    style="@style/editText_black_15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="15sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:drawableStart="@drawable/ic_password_drawable"
+                                    android:hint="@string/confirm_password"
+                                    app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_register"
+                                    style="@style/button_green_bg"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="15sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:text="@string/register"
+                                    app:layout_constraintTop_toBottomOf="@+id/edtConfirmPassword" />
+
+                                <View
+                                    android:id="@+id/viewDivider"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_marginEnd="20dp"
+                                    android:background="#898989"
+                                    app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/regularText_black_13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="#F8F8F8"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="20dp"
+                                    android:text="@string/or_signup_with"
+                                    app:layout_constraintBottom_toBottomOf="@+id/viewDivider"
+                                    app:layout_constraintEnd_toEndOf="@+id/viewDivider"
+                                    app:layout_constraintStart_toStartOf="@+id/viewDivider"
+                                    app:layout_constraintTop_toTopOf="@+id/viewDivider" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/btnFbSignup"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginStart="50dp"
+                                    android:layout_marginTop="20dp"
+                                    android:src="@drawable/ic_fb_icon"
+                                    app:layout_constraintEnd_toStartOf="@+id/btnGoogleSignUp"
+                                    app:layout_constraintStart_toStartOf="@id/btn_register"
+                                    app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/btnGoogleSignUp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginEnd="50dp"
+                                    android:src="@drawable/ic_google_icon"
+                                    app:layout_constraintEnd_toEndOf="@id/btn_register"
+                                    app:layout_constraintStart_toEndOf="@+id/btnFbSignup"
+                                    app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/regularText_black_13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="50dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:background="#F8F8F8"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="20dp"
+                                    android:text="Have an account? Login"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/viewDivider"
+                                    app:layout_constraintStart_toStartOf="@+id/viewDivider"
+                                    app:layout_constraintTop_toBottomOf="@+id/btnGoogleSignUp" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </ScrollView>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardSignin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="40dp"
+                        android:visibility="gone"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="2dp">
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#44EEEEEE">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/edtEmailSignIn"
+                                    style="@style/editText_black_15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="25sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:drawableStart="@drawable/ic_email_drawable"
+                                    android:hint="@string/email"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/edtPasswordSignIn"
+                                    style="@style/editText_black_15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="15sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:drawableStart="@drawable/ic_password_drawable"
+                                    android:hint="@string/password"
+                                    app:layout_constraintTop_toBottomOf="@+id/edtEmailSignIn" />
+
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_signIn"
+                                    style="@style/button_green_bg"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="15sp"
+                                    android:layout_marginEnd="15dp"
+                                    android:text="@string/login"
+                                    app:layout_constraintTop_toBottomOf="@+id/edtPasswordSignIn" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvForgotPassword"
+                                    style="@style/regularText_black_13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="20dp"
+                                    android:background="#F8F8F8"
+                                    android:paddingStart="20dp"
+                                    android:text="@string/forgot_password"
+                                    app:layout_constraintEnd_toEndOf="@+id/viewDividerSignIn"
+                                    app:layout_constraintTop_toBottomOf="@+id/btn_signIn" />
+
+
+                                <View
+                                    android:id="@+id/viewDividerSignIn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_marginEnd="20dp"
+                                    android:background="#898989"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/regularText_black_13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="#F8F8F8"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="20dp"
+                                    android:text="@string/or_signin_with"
+                                    app:layout_constraintBottom_toBottomOf="@+id/viewDividerSignIn"
+                                    app:layout_constraintEnd_toEndOf="@+id/viewDividerSignIn"
+                                    app:layout_constraintStart_toStartOf="@+id/viewDividerSignIn"
+                                    app:layout_constraintTop_toTopOf="@+id/viewDividerSignIn" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/btnFbSignin"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginStart="50dp"
+                                    android:layout_marginTop="20dp"
+                                    android:src="@drawable/ic_fb_icon"
+                                    app:layout_constraintEnd_toStartOf="@+id/btnGoogleSignin"
+                                    app:layout_constraintStart_toStartOf="@id/btn_signIn"
+                                    app:layout_constraintTop_toBottomOf="@+id/viewDividerSignIn" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/btnGoogleSignin"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginEnd="50dp"
+                                    android:src="@drawable/ic_google_icon"
+                                    app:layout_constraintEnd_toEndOf="@id/btn_signIn"
+                                    app:layout_constraintStart_toEndOf="@+id/btnFbSignin"
+                                    app:layout_constraintTop_toBottomOf="@+id/viewDividerSignIn" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/regularText_black_13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="50dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:background="#F8F8F8"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="20dp"
+                                    android:text="@string/don_t_have_an_account_create_account"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/viewDividerSignIn"
+                                    app:layout_constraintStart_toStartOf="@+id/viewDividerSignIn"
+                                    app:layout_constraintTop_toBottomOf="@+id/btnGoogleSignin" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </ScrollView>
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

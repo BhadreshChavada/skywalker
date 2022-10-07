@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_divider_gradiant.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_green.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_white.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_signup.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_signup_two.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/default_dot.xml" value="0.25" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/default_square.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_green_logo.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_wt_right_side.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/selected_dot.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/selected_square.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/tab_selector.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/activity_main.xml" value="0.25625" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_walkthrough.xml" value="0.25625" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_signup.xml" value="0.24722222222222223" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_splash.xml" value="0.22" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_walkthrough.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="true" project-jdk-name="14" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
