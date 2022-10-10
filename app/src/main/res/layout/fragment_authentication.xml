@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.skywalker.ui.authentication.AuthenticationViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main"
@@ -17,7 +24,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_auth_bg">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivLogo"
@@ -89,7 +97,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="@drawable/bg_signup"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewTabBg">
 
@@ -123,6 +130,7 @@
                                     android:layout_marginEnd="15dp"
                                     android:drawableStart="@drawable/ic_username_drawable"
                                     android:hint="@string/username"
+                                    android:text="@={viewModel.signupRequest.userName}"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <androidx.appcompat.widget.AppCompatEditText
@@ -135,6 +143,7 @@
                                     android:layout_marginEnd="15dp"
                                     android:drawableStart="@drawable/ic_email_drawable"
                                     android:hint="@string/email"
+                                    android:text="@={viewModel.signupRequest.email}"
                                     app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
 
                                 <androidx.appcompat.widget.AppCompatEditText
@@ -147,6 +156,8 @@
                                     android:layout_marginEnd="15dp"
                                     android:drawableStart="@drawable/ic_password_drawable"
                                     android:hint="@string/password"
+                                    android:inputType="textPassword"
+                                    android:text="@={viewModel.signupRequest.password}"
                                     app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
                                 <androidx.appcompat.widget.AppCompatEditText
@@ -159,6 +170,8 @@
                                     android:layout_marginEnd="15dp"
                                     android:drawableStart="@drawable/ic_password_drawable"
                                     android:hint="@string/confirm_password"
+                                    android:inputType="textPassword"
+                                    android:text="@={viewModel.signupRequest.confirmPassword}"
                                     app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 
                                 <androidx.appcompat.widget.AppCompatButton
@@ -270,6 +283,7 @@
                                     android:layout_marginEnd="15dp"
                                     android:drawableStart="@drawable/ic_email_drawable"
                                     android:hint="@string/email"
+                                    android:text="@={viewModel.loginRequest.email}"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <androidx.appcompat.widget.AppCompatEditText
@@ -282,6 +296,8 @@
                                     android:layout_marginEnd="15dp"
                                     android:drawableStart="@drawable/ic_password_drawable"
                                     android:hint="@string/password"
+                                    android:inputType="textPassword"
+                                    android:text="@={viewModel.loginRequest.password}"
                                     app:layout_constraintTop_toBottomOf="@+id/edtEmailSignIn" />
 
 

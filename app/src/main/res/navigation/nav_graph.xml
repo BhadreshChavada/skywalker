@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.skywalker.ui.main.SplashFragment"
+        android:name="com.skywalker.ui.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/walkthroughFragment"
-        android:name="com.skywalker.ui.main.WalkthroughFragment"
+        android:name="com.skywalker.ui.walkthrough.WalkthroughFragment"
         android:label="WalkthroughFragment"
         tools:layout="@layout/fragment_walkthrough" >
         <action
@@ -29,6 +29,6 @@
     </fragment>
     <fragment
         android:id="@+id/authenticationFragment"
-        android:name="com.skywalker.ui.main.AuthenticationFragment"
+        android:name="com.skywalker.ui.authentication.AuthenticationFragment"
         android:label="AuthenticationFragment" />
 </navigation>

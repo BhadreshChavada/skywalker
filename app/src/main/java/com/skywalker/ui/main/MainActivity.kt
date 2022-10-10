@@ -1,9 +1,11 @@
-package com.skywalker
+package com.skywalker.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.skywalker.ui.main.SplashFragment
+import com.skywalker.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

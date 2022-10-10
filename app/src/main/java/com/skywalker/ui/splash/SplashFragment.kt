@@ -1,4 +1,4 @@
-package com.skywalker.ui.main
+package com.skywalker.ui.splash
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

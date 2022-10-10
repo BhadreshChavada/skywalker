@@ -1,10 +1,9 @@
-package com.skywalker.ui.main.adapter
+package com.skywalker.ui.walkthrough
 
 import android.content.Context
 import androidx.viewpager.widget.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
