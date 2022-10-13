@@ -1,19 +1,22 @@
 package com.skywalker.connection
 
 import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.skywalker.helper.DataStoreManager
 import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.SignupRequest
-import com.skywalker.model.respone.ErrorResponse
-import com.skywalker.model.respone.LoginResponse
-import com.skywalker.model.respone.SuccessResponse
+import com.skywalker.model.respone.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
-    private val remoteApiService: RemoteApiService
+    private val remoteApiService: RemoteApiService,
+    private val dataStoreManager: DataStoreManager
 ) {
 
     private suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): ResultWrapper<T> =
@@ -25,10 +28,13 @@ class RemoteDataSource @Inject constructor(
 
                 val gson = Gson()
                 val type = object : TypeToken<ErrorResponse>() {}.type
-                var errorResponse: ErrorResponse? =
+                val errorResponse: ErrorResponse? =
                     gson.fromJson(response.errorBody()!!.charStream(), type)
                 Log.d("errorResponse", errorResponse?.message!!)
-                ResultWrapper.Error(exception = HttpException(response), errorResponse = errorResponse)
+                ResultWrapper.Error(
+                    exception = HttpException(response),
+                    errorResponse = errorResponse
+                )
             }
         } catch (httpException: HttpException) {
             ResultWrapper.Error(exception = httpException)
@@ -50,6 +56,27 @@ class RemoteDataSource @Inject constructor(
         return safeApiCall {
             remoteApiService.doLoginWithEmail(loginRequestModel)
         }
+    }
+
+    suspend fun getCountries(
+        authToken: String, page: Int, perPage: Int
+    ): ResultWrapper<CountryData> {
+        return safeApiCall {
+            remoteApiService.getCountries(createToken(authToken), page, perPage)
+        }
+
+    }
+
+    suspend fun getRegions(
+        authToken: String, page: Int, perPage: Int
+    ): ResultWrapper<RegionResponse> {
+        return safeApiCall {
+            remoteApiService.getRegions(createToken(authToken), page, perPage)
+        }
+    }
+
+    private fun createToken(token: String): String {
+        return "Bearer $token"
     }
 
 }

@@ -1,5 +1,6 @@
 package com.skywalker.ui.authentication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.skywalker.databinding.FragmentAuthenticationBinding
 import com.skywalker.helper.ApiProgressDialog
 import com.skywalker.helper.Utils
 import com.skywalker.model.request.SignupRequest
+import com.skywalker.ui.homeTab.MainTabActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,12 +79,14 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
                 is ResultWrapper.Success -> if (result.value != null) {
                     // Success code go here
                     mProgressDialog.dismiss()
+                    authenticationViewModel.saveUserData(result.value.data)
                     result.value?.message?.let {
                         Utils.showSnackBar(
                             binding.root,
                             it, false, requireActivity()
                         )
                     }
+                    redirectToHomeScreen()
                 }
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
@@ -100,6 +104,13 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
                 }
             }
         }
+    }
+
+    private fun redirectToHomeScreen() {
+        val intent = Intent(requireActivity(), MainTabActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        requireActivity().finish()
     }
 
 

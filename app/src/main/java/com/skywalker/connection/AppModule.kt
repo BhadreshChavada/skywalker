@@ -1,6 +1,9 @@
 package com.skywalker.connection
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.preferencesDataStoreFile
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -51,5 +54,14 @@ object AppModule {
         })
         return okHttpClientBuilder.build()
     }
+
+    @Provides
+    @Singleton
+    fun providePreferencesDataStore(@ApplicationContext appContext: Context): DataStore<androidx.datastore.preferences.core.Preferences> =
+        PreferenceDataStoreFactory.create(
+            produceFile = {
+                appContext.preferencesDataStoreFile("APP_DATA_STORE")
+            }
+        )
 
 }

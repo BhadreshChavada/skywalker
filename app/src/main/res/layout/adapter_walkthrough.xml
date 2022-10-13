@@ -11,8 +11,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivWtImage"
-            android:layout_width="300dp"
-            android:layout_height="320dp"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_220sdp"
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_wt_one"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,9 +25,9 @@
             style="@style/regularText_black_19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_60sdp"
+            android:layout_marginBottom="@dimen/_60sdp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,12 @@
 package com.skywalker.ui.authentication
 
+import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skywalker.connection.ResultWrapper
+import com.skywalker.helper.DataStoreManager
 import com.skywalker.helper.SingleLiveEvent
 import com.skywalker.helper.ValidationUtils.isValidConfirmPassword
 import com.skywalker.helper.ValidationUtils.isValidEmail
@@ -13,6 +16,7 @@ import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.SignupRequest
 import com.skywalker.model.respone.LoginResponse
 import com.skywalker.model.respone.SuccessResponse
+import com.skywalker.model.respone.UserData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,7 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthenticationViewModel
 @Inject constructor(
-    private val loginApiRepository: AuthenticationApiRepository
+    private val loginApiRepository: AuthenticationApiRepository,
+    private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
     var loginRequest = LoginRequest()
@@ -32,6 +37,7 @@ class AuthenticationViewModel
         loginApiRepository.signUpLiveData
 
     val showErrorLiveData = SingleLiveEvent<String>()
+
 
     fun doSignUp() {
         viewModelScope.launch {
@@ -67,4 +73,10 @@ class AuthenticationViewModel
         }
     }
 
+    fun saveUserData(userData: UserData) {
+        viewModelScope.launch {
+            dataStoreManager.storeUserData(userData)
+            dataStoreManager.storeAuthToken(userData.authentication.accessToken)
+        }
+    }
 }

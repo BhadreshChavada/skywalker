@@ -2,7 +2,9 @@ package com.skywalker.connection
 
 import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.SignupRequest
+import com.skywalker.model.respone.CountryData
 import com.skywalker.model.respone.LoginResponse
+import com.skywalker.model.respone.RegionResponse
 import com.skywalker.model.respone.SuccessResponse
 import javax.inject.Inject
 
@@ -36,4 +38,22 @@ class DefaultDataSource
             remoteDataSource.doLoginWithEmail(requestModel)
         }
     }
+
+    suspend fun getCountries(
+        authToken: String, page: Int, perPage: Int
+    ): ResultWrapper<CountryData> {
+        return requestRemoteDataSource {
+            remoteDataSource.getCountries(authToken, page, perPage)
+        }
+    }
+
+    suspend fun getRegions(
+        authToken: String, page: Int, perPage: Int
+    ): ResultWrapper<RegionResponse> {
+        return requestRemoteDataSource {
+            remoteDataSource.getRegions(authToken, page, perPage)
+        }
+    }
+
+
 }
