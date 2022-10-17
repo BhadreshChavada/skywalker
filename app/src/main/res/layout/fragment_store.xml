@@ -34,7 +34,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:text="Shahin Alam"
                     android:textSize="@dimen/_15sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
@@ -103,6 +102,20 @@
                     app:layout_constraintStart_toEndOf="@+id/tvRegionalSim"
                     app:layout_constraintTop_toTopOf="@+id/viewTabBg" />
 
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/localESim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="rvCountry" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/regionalESim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="rvRegion,ivMessage" />
+
+
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vpBanner"
                     android:layout_width="match_parent"
@@ -146,6 +159,30 @@
                     app:layout_constraintTop_toBottomOf="@id/rvPopularCountry"
                     tools:itemCount="10"
                     tools:listitem="@layout/adapter_country" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:nestedScrollingEnabled="false"
+                    android:numColumns="auto_fit"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvPopularCountry"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/adapter_country" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivMessage"
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:src="@drawable/ic_message"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

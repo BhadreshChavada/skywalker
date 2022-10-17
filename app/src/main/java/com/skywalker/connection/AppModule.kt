@@ -33,7 +33,7 @@ object AppModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://18.235.75.7:5000/api/v1/")
+            .baseUrl("https://darkwolve.xyz/api/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

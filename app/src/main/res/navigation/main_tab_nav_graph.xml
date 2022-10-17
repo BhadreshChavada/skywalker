@@ -12,6 +12,20 @@
         tools:layout="@layout/fragment_main_tab_pager">
 
 
+        <action
+            android:id="@+id/action_homeMainFragment_to_planFragment"
+            app:destination="@id/planFragment">
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/planFragment"
+        android:name="com.skywalker.ui.plan.PlanFragment"
+        android:label="planFragment"
+        tools:layout="@layout/fragment_country_wise_sim_provider">
+
+
     </fragment>
 
 

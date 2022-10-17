@@ -75,6 +75,37 @@ class RemoteDataSource @Inject constructor(
         }
     }
 
+    suspend fun getPlans(
+        authToken: String, type: Int, countryId: Int, page: Int, perPage: Int
+    ): ResultWrapper<PlanResponse> {
+        if (type == 1) {
+            return safeApiCall {
+                remoteApiService.getPlans(createToken(authToken), type, countryId, page, perPage)
+            }
+        } else if (type == 2) {
+            return safeApiCall {
+                remoteApiService.getRegionWisePlans(
+                    createToken(authToken),
+                    type,
+                    countryId,
+                    page,
+                    perPage
+                )
+            }
+        } else {
+            return safeApiCall {
+                remoteApiService.getGlobalPlans(
+                    createToken(authToken),
+                    type,
+                    page,
+                    perPage
+                )
+            }
+        }
+
+    }
+
+
     private fun createToken(token: String): String {
         return "Bearer $token"
     }

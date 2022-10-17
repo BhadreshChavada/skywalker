@@ -19,4 +19,9 @@ object Utils {
         }
 
     }
+
+    object PaginationConstants {
+        const val INITIAL_PAGE_NUMBER = 1
+        const val TOTAL_RECORDS_PER_PAGE = 25
+    }
 }

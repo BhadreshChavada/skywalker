@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.skywalker.model.respone.PlanDataItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_220sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/bgCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_220sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bg_card_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCard"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/bg_rectangle_rounded_corner_white"
+                    android:padding="2dp"
+                    android:src="@drawable/iv_card_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvServiceProvider"
+                    style="@style/regularText_black_19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@{data.title}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/bgCard"
+                    tools:text="Indicomm" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCountryr"
+                    style="@style/regularText_black_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@{data.country.name}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvServiceProvider"
+                    tools:text="India" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDataTitle"
+                    style="@style/regularText_black_19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:drawableStart="@drawable/ic_data_icon"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/data"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCountryr" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvData"
+                    style="@style/regularText_black_19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@{data.data.toString()}"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCountryr" />
+
+                <View
+                    android:id="@+id/viewDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="@id/bgCard"
+                    app:layout_constraintStart_toStartOf="@id/bgCard"
+                    app:layout_constraintTop_toBottomOf="@+id/tvData" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvValidityTitle"
+                    style="@style/regularText_black_19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_validity_icon"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/validity"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvValidity"
+                    style="@style/regularText_black_19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@{data.validity.toString()}"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register"
+                    style="@style/button_green_bg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:backgroundTint="#F3F3F3"
+                    android:text="@{`$`+data.price.toString()+` Buy Now`}"
+                    android:textColor="#1A1A1A"
+                    app:layout_constraintBottom_toBottomOf="@id/bgCard"
+                    app:layout_constraintEnd_toEndOf="@id/bgCard"
+                    app:layout_constraintStart_toStartOf="@id/bgCard"
+                    app:layout_constraintTop_toBottomOf="@+id/tvValidity" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

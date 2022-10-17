@@ -2,10 +2,7 @@ package com.skywalker.connection
 
 import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.SignupRequest
-import com.skywalker.model.respone.CountryData
-import com.skywalker.model.respone.LoginResponse
-import com.skywalker.model.respone.RegionResponse
-import com.skywalker.model.respone.SuccessResponse
+import com.skywalker.model.respone.*
 import javax.inject.Inject
 
 class DefaultDataSource
@@ -52,6 +49,14 @@ class DefaultDataSource
     ): ResultWrapper<RegionResponse> {
         return requestRemoteDataSource {
             remoteDataSource.getRegions(authToken, page, perPage)
+        }
+    }
+
+    suspend fun getPlans(
+        authToken: String, type: Int, countryId: Int, page: Int, perPage: Int
+    ): ResultWrapper<PlanResponse> {
+        return requestRemoteDataSource {
+            remoteDataSource.getPlans(authToken, type, countryId, page, perPage)
         }
     }
 

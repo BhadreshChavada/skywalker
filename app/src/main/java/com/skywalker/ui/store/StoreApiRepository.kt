@@ -3,12 +3,8 @@ package com.skywalker.ui.store
 import androidx.lifecycle.MutableLiveData
 import com.skywalker.connection.DefaultDataSource
 import com.skywalker.connection.ResultWrapper
-import com.skywalker.model.request.LoginRequest
-import com.skywalker.model.request.SignupRequest
 import com.skywalker.model.respone.CountryData
-import com.skywalker.model.respone.LoginResponse
 import com.skywalker.model.respone.RegionResponse
-import com.skywalker.model.respone.SuccessResponse
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent

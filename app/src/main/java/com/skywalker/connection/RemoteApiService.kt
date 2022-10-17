@@ -2,10 +2,7 @@ package com.skywalker.connection
 
 import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.SignupRequest
-import com.skywalker.model.respone.CountryData
-import com.skywalker.model.respone.LoginResponse
-import com.skywalker.model.respone.RegionResponse
-import com.skywalker.model.respone.SuccessResponse
+import com.skywalker.model.respone.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -34,4 +31,30 @@ interface RemoteApiService {
         @Query("page") page: Int,
         @Query("perPage") perPage: Int
     ): Response<RegionResponse>
+
+    @GET("plans")
+    suspend fun getPlans(
+        @Header("Authorization") authHeader: String,
+        @Query("type") type: Int = 1,
+        @Query("countryId") countryId: Int,
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ): Response<PlanResponse>
+
+    @GET("plans")
+    suspend fun getRegionWisePlans(
+        @Header("Authorization") authHeader: String,
+        @Query("type") type: Int = 1,
+        @Query("regionId") countryId: Int,
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ): Response<PlanResponse>
+
+    @GET("plans")
+    suspend fun getGlobalPlans(
+        @Header("Authorization") authHeader: String,
+        @Query("type") type: Int = 1,
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ): Response<PlanResponse>
 }

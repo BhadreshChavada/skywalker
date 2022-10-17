@@ -25,4 +25,6 @@
     <string name="regional_esims">Regional eSIMs</string>
     <string name="global_esim">Global eSIM</string>
     <string name="popular_countries">Popular Countries</string>
+    <string name="data">Data</string>
+    <string name="validity">Validity</string>
 </resources>
