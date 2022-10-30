@@ -16,6 +16,7 @@ import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentStoreBinding
 import com.skywalker.helper.AdapterItemClickListener
 import com.skywalker.helper.ApiProgressDialog
+import com.skywalker.helper.PaginationListener
 import com.skywalker.model.respone.CountryDataItem
 import com.skywalker.model.respone.RegionDataItem
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,9 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
     lateinit var countryAdapter: CountryAdapter
     lateinit var regionAdapter: RegionAdapter
     lateinit var popularCountryAdapter: PopularCountryAdapter
+    lateinit var globalSimAdapter: GlobalSimAdapter
+    private var _isLoading = false
+    private var _isLastPage = false
 
     companion object {
         const val id = "id"
@@ -54,7 +58,7 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
     private fun setTabListener() {
         binding.tvLocalSim.setOnClickListener { selectedTab(0) }
         binding.tvRegionalSim.setOnClickListener { selectedTab(1) }
-        binding.tvGlobalEsim.setOnClickListener { }
+        binding.tvGlobalEsim.setOnClickListener { selectedTab(2)}
     }
 
     fun selectedTab(position: Int) {
@@ -69,7 +73,9 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 binding.tvGlobalEsim.setBackgroundDrawable(null)
 
                 binding.localESim.visibility = VISIBLE
+                binding.vpBanner.visibility = VISIBLE
                 binding.regionalESim.visibility = GONE
+                binding.globalESim.visibility = GONE
             }
             1 -> {
                 binding.tvLocalSim.setTextColor(resources.getColor(R.color.black_text))
@@ -81,7 +87,9 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 binding.tvGlobalEsim.setBackgroundDrawable(null)
 
                 binding.localESim.visibility = GONE
+                binding.vpBanner.visibility = VISIBLE
                 binding.regionalESim.visibility = VISIBLE
+                binding.globalESim.visibility = GONE
             }
             2 -> {
                 binding.tvLocalSim.setTextColor(resources.getColor(R.color.black_text))
@@ -91,6 +99,11 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 binding.tvGlobalEsim.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_rectangle_rounded_corner_5_green))
                 binding.tvLocalSim.setBackgroundDrawable(null)
                 binding.tvRegionalSim.setBackgroundDrawable(null)
+
+                binding.vpBanner.visibility = GONE
+                binding.localESim.visibility = GONE
+                binding.regionalESim.visibility = GONE
+                binding.globalESim.visibility = VISIBLE
             }
         }
     }
@@ -100,7 +113,6 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
         mProgressDialog.show()
         setRecycleView()
         setObserver()
-        storeViewModel.getCountryData()
         storeViewModel.getUserData()
     }
 
@@ -121,8 +133,27 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                     )
                 }
             })
-        binding.rvCountry.layoutManager = GridLayoutManager(requireActivity(), 4)
+
+        val layoutManager = GridLayoutManager(requireActivity(), 4)
+        binding.rvCountry.layoutManager = layoutManager
         binding.rvCountry.adapter = countryAdapter
+
+        binding.rvCountry.addOnScrollListener(object : PaginationListener(layoutManager) {
+            override fun loadMoreItems() {
+                _isLoading = true
+                storeViewModel.countryCurrentPage += 1
+                storeViewModel.getCountryData()
+            }
+
+            override fun isLastPage(): Boolean {
+                return _isLastPage;
+            }
+
+            override fun isLoading(): Boolean {
+                return _isLoading;
+            }
+
+        })
 
 
         regionAdapter = RegionAdapter(requireActivity(),
@@ -141,6 +172,9 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
         binding.rvRegion.layoutManager = GridLayoutManager(requireActivity(), 4)
         binding.rvRegion.adapter = regionAdapter
 
+        globalSimAdapter = GlobalSimAdapter(requireActivity())
+        binding.rvGlobal.adapter = globalSimAdapter
+
 
     }
 
@@ -151,9 +185,13 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 is ResultWrapper.Success -> if (result.value != null) {
                     // Success code go here
                     mProgressDialog.dismiss()
-
-                    countryAdapter.submitList(result.value.data)
+                    val currentList = countryAdapter.currentList.toMutableList()
+                    currentList.addAll(result.value.data!!)
+                    countryAdapter.submitList(currentList)
                     popularCountryAdapter.submitList(result.value.data)
+
+                    _isLastPage = result.value.meta.currentPage == storeViewModel.countryCurrentPage
+
 
                 }
                 is ResultWrapper.Error -> {
@@ -163,7 +201,10 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                     mProgressDialog.dismiss()
                     // if result value is something else
                 }
+
             }
+            storeViewModel.getRegionData()
+            storeViewModel.getGlobalESimList()
         }
 
         storeViewModel.regionLiveData.observe(viewLifecycleOwner) { result ->
@@ -184,8 +225,28 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
             }
         }
 
+        storeViewModel.planLiveData.observe(viewLifecycleOwner) { result ->
+
+            when (result) {
+                is ResultWrapper.Success -> if (result.value != null) {
+                    // Success code go here
+                    mProgressDialog.dismiss()
+                    globalSimAdapter.submitList(result.value.data)
+                }
+                is ResultWrapper.Error -> {
+                    mProgressDialog.dismiss()
+                }
+                else -> {
+                    mProgressDialog.dismiss()
+                    // if result value is something else
+                }
+            }
+        }
+
         storeViewModel.userLiveData.observe(viewLifecycleOwner) {
             binding.tvTitle.text = it.userName
+            storeViewModel.getCountryData()
+
         }
 
     }

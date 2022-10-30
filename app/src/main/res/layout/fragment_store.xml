@@ -113,7 +113,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    app:constraint_referenced_ids="rvRegion,ivMessage" />
+                    app:constraint_referenced_ids="rvRegion" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/globalESim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="rvGlobal" />
 
 
                 <androidx.viewpager2.widget.ViewPager2
@@ -176,13 +183,28 @@
                     tools:itemCount="10"
                     tools:listitem="@layout/adapter_country" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvGlobal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:nestedScrollingEnabled="false"
+                    android:numColumns="auto_fit"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvPopularCountry"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/adapter_global_sim_card" />
+
+
+               <!-- <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivMessage"
                     android:layout_width="@dimen/_55sdp"
                     android:layout_height="@dimen/_55sdp"
                     android:src="@drawable/ic_message"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

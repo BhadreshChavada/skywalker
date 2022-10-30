@@ -10,4 +10,6 @@
     <color name="green_transparent">#22109D59</color>
     <color name="black_text">#333333</color>
     <color name="red">#FF0000</color>
+    <color name="lovender">#e5e0f9</color>
+    <color name="grey">#e7e7e7</color>
 </resources>

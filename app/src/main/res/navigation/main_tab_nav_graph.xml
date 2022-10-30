@@ -14,9 +14,19 @@
 
         <action
             android:id="@+id/action_homeMainFragment_to_planFragment"
-            app:destination="@id/planFragment">
+            app:destination="@id/planFragment" />
 
-        </action>
+        <action
+            android:id="@+id/action_homeMainFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
+
+        <action
+            android:id="@+id/action_homeMainFragment_to_moreInfoFragment"
+            app:destination="@id/moreInfoFragment" />
+
+        <action
+            android:id="@+id/action_homeMainFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
 
     <fragment
@@ -27,6 +37,35 @@
 
 
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutSkywalkerFragment"
+        android:name="com.skywalker.ui.profile.AboutSkywalkerFragment"
+        android:label="aboutSkywalkerFragment"
+        tools:layout="@layout/fragment_about_skywalker" />
+
+    <fragment
+        android:id="@+id/accountInfoFragment"
+        android:name="com.skywalker.ui.profile.AccountInformationFragment"
+        android:label="accountInfoFragment"
+        tools:layout="@layout/fragment_account_information" />
+
+    <fragment
+        android:id="@+id/moreInfoFragment"
+        android:name="com.skywalker.ui.profile.MoreInfoFragment"
+        android:label="moreInfoFragment"
+        tools:layout="@layout/fragment_more_info">
+
+        <action
+            android:id="@+id/action_moreInfoFragment_to_aboutSkywalkerFragment"
+            app:destination="@id/aboutSkywalkerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.skywalker.ui.profile.OrderHistoryFragment"
+        android:label="orderHistoryFragment"
+        tools:layout="@layout/fragment_order_history" />
 
 
 </navigation>

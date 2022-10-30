@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            style="@style/semiMedium_black_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:layout_marginStart="15dp"
+            android:text="@string/profile"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivProfilePic"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/ic_us_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserName"
+            style="@style/regularText_black_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile"
+            app:layout_constraintEnd_toEndOf="@+id/ivProfilePic"
+            app:layout_constraintStart_toStartOf="@+id/ivProfilePic"
+            app:layout_constraintTop_toBottomOf="@+id/ivProfilePic" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpBanner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/ic_bg_banner"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAccountInformation"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_setting"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/account_information"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vpBanner" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvReferAndEarn"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_refer_earn"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/refer_earn"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAccountInformation" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOrders"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_order"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/orders"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvReferAndEarn" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLanguage"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_language"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/language"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrders" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHelpCenter"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_help_center"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/help_center"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLanguage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvContactUs"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_contact_us"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/contact_us"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHelpCenter" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
