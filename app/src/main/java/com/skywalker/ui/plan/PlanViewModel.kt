@@ -1,24 +1,9 @@
 package com.skywalker.ui.plan
 
-import android.icu.util.ULocale.getCountry
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.skywalker.connection.ResultWrapper
 import com.skywalker.helper.DataStoreManager
-import com.skywalker.helper.SingleLiveEvent
-import com.skywalker.helper.ValidationUtils.isValidConfirmPassword
-import com.skywalker.helper.ValidationUtils.isValidEmail
-import com.skywalker.helper.ValidationUtils.isValidPassword
-import com.skywalker.helper.ValidationUtils.isValidUserName
-import com.skywalker.model.request.LoginRequest
-import com.skywalker.model.request.SignupRequest
-import com.skywalker.model.respone.CountryData
-import com.skywalker.model.respone.LoginResponse
-import com.skywalker.model.respone.SuccessResponse
-import com.skywalker.ui.authentication.AuthenticationApiRepository
-import com.skywalker.ui.store.StoreApiRepository
-import com.skywalker.ui.store.StoreFragment.Companion.type
+import com.skywalker.model.request.PlanPaymentRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,6 +16,8 @@ class PlanViewModel
 ) : ViewModel() {
 
     val planLiveData = planApiRepository.planLiveData
+    val stripLiveData = planApiRepository.stripLiveData
+    val planDetailsLiveData = planApiRepository.planDetailsLiveData
 
 
     fun getPlans(countryInt: Int,type: Int) {
@@ -53,6 +40,40 @@ class PlanViewModel
                 authToken, type,
                 countryInt, 1, 25
             )
+        }
+    }
+
+    fun getPlanPayment(amount:String,planId:String){
+
+        var planPaymentRequest = PlanPaymentRequest(amount = amount,planId =planId)
+        viewModelScope.launch {
+            dataStoreManager.getAuthToken().collect {
+                it?.let {
+                    planApiRepository.getPaymentData(it,planPaymentRequest)
+
+                }
+            }
+
+
+        }
+    }
+
+    fun getPlansDetails(planId: Int) {
+
+        viewModelScope.launch {
+            dataStoreManager.getAuthToken().collect {
+                it?.let {
+                    planApiRepository.getPlansDetails(it,planId)
+
+                }
+            }
+        }
+
+    }
+
+    fun clearPreference() {
+        viewModelScope.launch {
+            dataStoreManager.clearPrefs()
         }
     }
 }

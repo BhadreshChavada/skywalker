@@ -36,6 +36,12 @@
         tools:layout="@layout/fragment_country_wise_sim_provider">
 
 
+        <action
+            android:id="@+id/action_planFragment_to_paymentConfirmationFragment"
+            app:destination="@id/paymentConfirmationFragment" />
+        <action
+            android:id="@+id/action_planFragment_to_planDetailFragment"
+            app:destination="@id/planDetailFragment" />
     </fragment>
 
     <fragment
@@ -66,6 +72,32 @@
         android:name="com.skywalker.ui.profile.OrderHistoryFragment"
         android:label="orderHistoryFragment"
         tools:layout="@layout/fragment_order_history" />
+
+    <fragment
+        android:id="@+id/paymentConfirmationFragment"
+        android:name="com.skywalker.ui.plan.PaymentConfirmationFragment"
+        android:label="paymentConfirmationFragment"
+        tools:layout="@layout/fragment_payment_confirmation" />
+
+
+    <fragment
+        android:id="@+id/planDetailFragment"
+        android:name="com.skywalker.ui.plan.PlanDetailsFragment"
+        android:label="planDetailFragment"
+        tools:layout="@layout/fragment_plan_details">
+        <action
+            android:id="@+id/action_planDetailFragment_to_paymentConfirmationFragment"
+            app:destination="@id/paymentConfirmationFragment" />
+        <action
+            android:id="@+id/action_planDetailFragment_to_planAdditionalInfoFragment"
+            app:destination="@id/planAdditionalInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/planAdditionalInfoFragment"
+        android:name="com.skywalker.ui.plan.PlanAdditionalInfoFragment"
+        android:label="planAdditionalInfoFragment"
+        tools:layout="@layout/fragment_sim_additional_info" />
 
 
 </navigation>

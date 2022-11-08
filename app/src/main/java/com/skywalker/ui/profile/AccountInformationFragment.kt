@@ -8,9 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.skywalker.R
-import com.skywalker.databinding.FragmentAboutSkywalkerBinding
 import com.skywalker.databinding.FragmentAccountInformationBinding
-import com.skywalker.ui.store.StoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +36,7 @@ class AccountInformationFragment : Fragment(R.layout.fragment_account_informatio
     }
 
     private fun setClickListener() {
-        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
     }
 
     private fun setObserver() {

@@ -20,6 +20,12 @@
         <item name="android:textColor">#151515</item>
     </style>
 
+    <style name="regularText_black_16">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#151515</item>
+    </style>
+
     <style name="regularText_black_13">
         <item name="android:textSize">13sp</item>
         <item name="fontFamily">@font/poppins_regular</item>
@@ -32,6 +38,14 @@
         <item name="android:textColor">#333333</item>
     </style>
 
+
+    <style name="semiBoldText_black_16">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+
     <style name="semiBoldText_black_25">
         <item name="android:textSize">25sp</item>
         <item name="fontFamily">@font/poppins_semi_bold</item>
@@ -43,6 +57,12 @@
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="hintTextColor">#5E6676</item>
         <item name="android:textColor">#1A1A1A</item>
+    </style>
+
+    <style name="regular_gray_13">
+        <item name="android:textSize">13sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#5E6676</item>
     </style>
 
     <style name="semiMedium_black_22">

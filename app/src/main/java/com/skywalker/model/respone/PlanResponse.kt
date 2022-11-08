@@ -1,8 +1,11 @@
 package com.skywalker.model.respone
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PlanDataItem(
     @SerializedName("country")
     val country: Country,
@@ -22,15 +25,18 @@ data class PlanDataItem(
     val type: Int = 0,
     @SerializedName("region")
     val region: Region
-)
+) : Parcelable
 
 
 data class PlanResponse(
     @SerializedName("data")
-    val data: List<PlanDataItem>?
+    val data: List<PlanDataItem>?,
+    @SerializedName("meta")
+    val meta: Meta
 )
 
 
+@Parcelize
 data class Country(
     @SerializedName("image")
     val image: String = "",
@@ -42,9 +48,10 @@ data class Country(
     val name: String = "",
     @SerializedName("countryId")
     val countryId: Int = 0
-)
+) : Parcelable
 
 
+@Parcelize
 data class Region(
     @SerializedName("image")
     val image: String = "",
@@ -54,6 +61,6 @@ data class Region(
     val name: String = "",
     @SerializedName("countries")
     val countries: Country
-)
+) : Parcelable
 
 

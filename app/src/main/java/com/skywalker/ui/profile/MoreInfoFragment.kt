@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
 import com.skywalker.databinding.FragmentMoreInfoBinding
-import com.skywalker.databinding.FragmentProfileBinding
 
 class MoreInfoFragment : Fragment(R.layout.fragment_more_info) {
 
@@ -39,6 +37,6 @@ class MoreInfoFragment : Fragment(R.layout.fragment_more_info) {
             )
         }
 
-        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
     }
 }

@@ -1,13 +1,11 @@
 package com.skywalker.ui.store
 
 
-import android.icu.util.ULocale.getCountry
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.skywalker.helper.DataStoreManager
-import com.skywalker.helper.DataStoreManager.PreferencesKeys.authToken
 import com.skywalker.model.respone.UserData
 import com.skywalker.ui.plan.PlanApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,6 +31,7 @@ class StoreViewModel
 
     var countryCurrentPage = 1
     var regionCurrentPage = 1
+    var planCurrentPage = 1
 
 
     fun getUserData() {
@@ -74,7 +73,7 @@ class StoreViewModel
             storeApiRepository.getCountries(
                 authToken,
                 countryCurrentPage,
-                25
+                24
             )
         }
 
@@ -86,7 +85,7 @@ class StoreViewModel
                 authToken,
                 3,
                 0,
-                1,
+                planCurrentPage,
                 25
             )
         }

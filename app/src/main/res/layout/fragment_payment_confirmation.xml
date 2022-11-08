@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.skywalker.model.respone.PlanDataItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginBottom="@dimen/_minus18sdp"
+            app:cardCornerRadius="@dimen/_18sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/layout_toolbar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_190sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/bgCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_190sdp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bg_card_2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvPlanTitle"
+                            style="@style/regularText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="1 GB add-on-data"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="@id/bgCard"
+                            app:layout_constraintStart_toStartOf="@id/bgCard"
+                            app:layout_constraintTop_toBottomOf="@+id/tvPlanTitle" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCallSms"
+                            style="@style/regularText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Calls and SMS"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvPlanTitle"
+                            tools:ignore="HardcodedText" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCallSMS"
+                            style="@style/regularText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Not Included"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvPlanTitle" />
+
+                        <View
+                            android:id="@+id/viewDivider"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="@id/bgCard"
+                            app:layout_constraintStart_toStartOf="@id/bgCard"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCallSMS" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvServiceTaxTitle"
+                            style="@style/regularText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Service tax"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvServiceTax"
+                            style="@style/regularText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:gravity="center"
+                            android:text="Included"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+                        <View
+                            android:id="@+id/viewDividerServiceTax"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="@id/bgCard"
+                            app:layout_constraintStart_toStartOf="@id/bgCard"
+                            app:layout_constraintTop_toBottomOf="@+id/tvServiceTax" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvServiceFeesTitle"
+                            style="@style/regularText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Service fee"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerServiceTax" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvServiceFees"
+                            style="@style/regularText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:gravity="center"
+                            android:text="Free"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerServiceTax" />
+
+                        <View
+                            android:id="@+id/viewDividerServiceFees"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="@id/bgCard"
+                            app:layout_constraintStart_toStartOf="@id/bgCard"
+                            app:layout_constraintTop_toBottomOf="@+id/tvServiceFees" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTotalTitle"
+                            style="@style/semiBoldText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Total :"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerServiceFees" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTotal"
+                            style="@style/semiBoldText_black_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:gravity="center"
+                            android:text="$ 5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerServiceFees" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBuy"
+                    style="@style/button_green_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="Complete Order"
+                    android:textAllCaps="true"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

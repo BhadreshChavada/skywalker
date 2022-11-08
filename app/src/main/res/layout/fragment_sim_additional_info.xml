@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.skywalker.model.respone.PlanDataItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginBottom="@dimen/_minus18sdp"
+            app:cardCornerRadius="@dimen/_18sdp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/layout_toolbar" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDataTitle"
+                            style="@style/regular_gray_13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_25sdp"
+                            android:drawableStart="@drawable/ic_network_drawable"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:gravity="start"
+                            android:maxLines="1"
+                            android:text="@string/network"
+                            app:layout_constraintEnd_toStartOf="@+id/tvData"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvData"
+                            style="@style/regularText_black_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_25sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Jio"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/viewDivider"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvData" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvValidityTitle"
+                            style="@style/regular_gray_13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:drawableStart="@drawable/ic_plan_type_drawable"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:gravity="start"
+                            android:maxLines="1"
+                            android:text="@string/plan_type"
+                            app:layout_constraintEnd_toStartOf="@id/tvValidity"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvValidity"
+                            style="@style/regularText_black_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Data Only"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+
+                        <View
+                            android:id="@+id/viewDividerTwo"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvValidity" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCoverageTitle"
+                            style="@style/regular_gray_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:drawableStart="@drawable/ic_ap_drawable"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:gravity="start"
+                            android:maxLines="1"
+                            android:text="@string/activation_policy"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerTwo" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCoverage"
+                            style="@style/regularText_black_13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:gravity="start"
+                            android:text="The Validity period starts when the eSIM connects to any supported network/s."
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/tvCoverageTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCoverageTitle" />
+
+                        <View
+                            android:id="@+id/viewDividerEKyc"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCoverage" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvEKYCTitle"
+                            style="@style/regular_gray_13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:drawableStart="@drawable/ic_ekyc_drawable"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:gravity="start"
+                            android:maxLines="2"
+                            android:text="eKYC (Identity Varification)"
+                            app:layout_constraintEnd_toStartOf="@id/tvEKYC"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerEKyc" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvEKYC"
+                            style="@style/regularText_black_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Not Required"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerEKyc" />
+
+                        <View
+                            android:id="@+id/viewDividerTopup"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvEKYCTitle" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTopUpTitle"
+                            style="@style/regular_gray_13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:drawableStart="@drawable/ic_topup_drawable"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:gravity="start"
+                            android:maxLines="2"
+                            android:text="Top-up Option"
+                            app:layout_constraintEnd_toStartOf="@id/tvTopUp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerTopup" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTopUp"
+                            style="@style/regularText_black_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Available"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDividerTopup" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </ScrollView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

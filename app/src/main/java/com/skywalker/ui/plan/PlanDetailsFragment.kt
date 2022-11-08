@@ -4,103 +4,78 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
 import com.skywalker.connection.ResultWrapper
-import com.skywalker.databinding.FragmentCountryWiseSimProviderBinding
+import com.skywalker.databinding.FragmentPlanDetailsBinding
 import com.skywalker.helper.ApiProgressDialog
 import com.skywalker.helper.Utils
 import com.skywalker.model.respone.PlanDataItem
-import com.skywalker.ui.store.StoreFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class PlanFragment : Fragment(R.layout.fragment_country_wise_sim_provider) {
+class PlanDetailsFragment : Fragment(R.layout.fragment_plan_details) {
 
-    private lateinit var binding: FragmentCountryWiseSimProviderBinding
+    private lateinit var binding: FragmentPlanDetailsBinding
 
     private val planViewModel: PlanViewModel by viewModels()
     private lateinit var mProgressDialog: ApiProgressDialog
-
-    lateinit var planAdapter: PlansAdapter
-
+    lateinit var planDetail: PlanDataItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_country_wise_sim_provider, container, false
+            inflater, R.layout.fragment_plan_details, container, false
         )
         mProgressDialog = ApiProgressDialog(requireActivity())
-        getBundleData()
-        setListener()
-
         return binding.root
     }
 
     private fun setListener() {
         binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
+        binding.btnBuy.setOnClickListener {
+            mProgressDialog.show()
+            planViewModel.getPlanPayment(planDetail.price, planDetail.planId.toString())
+        }
+        binding.tvShowMore.setOnClickListener {
+
+            var bundle = bundleOf("planDetail" to planDetail)
+            findNavController().navigate(
+                R.id.action_planDetailFragment_to_planAdditionalInfoFragment, bundle
+            )
+        }
     }
 
     private fun getBundleData() {
-        val name = arguments?.getString(StoreFragment.name)
-        val id = arguments?.getInt(StoreFragment.id)
-        val type = arguments?.getInt(StoreFragment.type)
-        if (id != null) {
-            if (type != null) {
-                mProgressDialog.show()
-                planViewModel.getPlans(id, type)
-            }
-        }
-        binding.toolbar.tvTitle.text = name
-
+        val planID = arguments?.getString("planID")
+        mProgressDialog.show()
+        planViewModel.getPlansDetails(planID!!.toInt())
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setRecycleView()
+        getBundleData()
+        setListener()
         setObserver()
-
-    }
-
-    private fun setRecycleView() {
-        planAdapter = PlansAdapter(requireActivity(), object : PlansAdapter.PlanAdapterItemClick {
-            override fun redirectToDetails(planDataItem: PlanDataItem) {
-                val bundle = Bundle()
-                bundle.putString("planID", planDataItem.planId.toString())
-                findNavController().navigate(
-                    R.id.action_planFragment_to_planDetailFragment,
-                    bundle
-                )
-            }
-
-            override fun redirectToPayment(planDataItem: PlanDataItem) {
-                mProgressDialog.show()
-                planViewModel.getPlanPayment(planDataItem.price, planDataItem.planId.toString())
-
-            }
-
-        })
-        binding.rvSimProvider.adapter = planAdapter
-
-
     }
 
     private fun setObserver() {
-
-        planViewModel.planLiveData.observe(viewLifecycleOwner) { result ->
+        planViewModel.planDetailsLiveData.observe(viewLifecycleOwner) { result ->
             mProgressDialog.dismiss()
             when (result) {
                 is ResultWrapper.Success -> if (result.value != null) {
                     // Success code go here
-                    planAdapter.submitList(result.value.data)
-
+                    planDetail = result.value.planDataItem!!
+                    binding.data = planDetail
+                    binding.toolbar.tvTitle.text = planDetail?.title
                 }
                 is ResultWrapper.Error -> {
                     Utils.showSnackBar(
@@ -128,7 +103,7 @@ class PlanFragment : Fragment(R.layout.fragment_country_wise_sim_provider) {
                     bundle.putString("publishableKey", paymentData.publishableKey)
                     bundle.putString("paymentIntent", paymentData.paymentIntent)
                     findNavController().navigate(
-                        R.id.action_planFragment_to_paymentConfirmationFragment,
+                        R.id.action_planDetailFragment_to_paymentConfirmationFragment,
                         bundle
                     )
                 }
@@ -149,6 +124,5 @@ class PlanFragment : Fragment(R.layout.fragment_country_wise_sim_provider) {
         }
 
     }
-
 
 }

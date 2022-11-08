@@ -1,7 +1,5 @@
 package com.skywalker.ui.authentication
 
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -65,9 +63,10 @@ class AuthenticationViewModel
         viewModelScope.launch {
             if (!loginRequest.email.isValidEmail()) {
                 showErrorLiveData.value = "Enter valid email"
-            } else if (loginRequest.password.isEmpty()) {
+            }
+            /*else if (loginRequest.password.isEmpty()) {
                 showErrorLiveData.value = "Enter valid password"
-            } else {
+            }*/ else {
                 loginApiRepository.doLoginWithEmail(loginRequest)
             }
         }

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.skywalker.helper.Utils.BASE_URL
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -33,7 +34,7 @@ object AppModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://darkwolve.xyz/api/v1/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

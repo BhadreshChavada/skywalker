@@ -55,7 +55,7 @@
     <string name="additional_information">Additional Information</string>
     <string name="network">Network</string>
     <string name="activation_policy">Activation policy</string>
-    <string name="plan_type">PLAN TYPE</string>
+    <string name="plan_type">Plan Type</string>
     <string name="show_more">Show More ...</string>
     <string name="full_name">Full name</string>
 </resources>

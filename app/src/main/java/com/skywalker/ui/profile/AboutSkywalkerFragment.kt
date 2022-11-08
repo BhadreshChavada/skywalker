@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.skywalker.R
 import com.skywalker.databinding.FragmentAboutSkywalkerBinding
-import com.skywalker.databinding.FragmentMoreInfoBinding
 
 class AboutSkywalkerFragment : Fragment(R.layout.fragment_about_skywalker) {
 
@@ -32,7 +30,7 @@ class AboutSkywalkerFragment : Fragment(R.layout.fragment_about_skywalker) {
     }
 
     private fun setClickListener() {
-        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
     }
 
 }

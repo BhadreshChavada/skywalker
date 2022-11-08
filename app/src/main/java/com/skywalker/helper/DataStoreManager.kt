@@ -40,5 +40,8 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
         it[PreferencesKeys.userData]
     }
 
+    suspend fun clearPrefs(){
+        dataStore.edit { preference -> preference.clear() }
+    }
 
 }

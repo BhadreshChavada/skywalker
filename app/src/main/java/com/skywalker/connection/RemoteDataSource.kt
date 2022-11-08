@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.model.request.LoginRequest
+import com.skywalker.model.request.PlanPaymentRequest
 import com.skywalker.model.request.SignupRequest
 import com.skywalker.model.respone.*
 import kotlinx.coroutines.MainScope
@@ -72,6 +73,22 @@ class RemoteDataSource @Inject constructor(
     ): ResultWrapper<RegionResponse> {
         return safeApiCall {
             remoteApiService.getRegions(createToken(authToken), page, perPage)
+        }
+    }
+
+    suspend fun getPaymentData(
+        authToken: String, planPaymentRequest: PlanPaymentRequest
+    ): ResultWrapper<StripData> {
+        return safeApiCall {
+            remoteApiService.getPaymentData(createToken(authToken), planPaymentRequest)
+        }
+    }
+
+    suspend fun getPlansDetails(
+        authToken: String, planId: Int
+    ): ResultWrapper<PlanDetailResponse> {
+        return safeApiCall {
+            remoteApiService.getPlansDetails(createToken(authToken), planId)
         }
     }
 

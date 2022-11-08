@@ -16,7 +16,6 @@ import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentStoreBinding
 import com.skywalker.helper.AdapterItemClickListener
 import com.skywalker.helper.ApiProgressDialog
-import com.skywalker.helper.PaginationListener
 import com.skywalker.model.respone.CountryDataItem
 import com.skywalker.model.respone.RegionDataItem
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,8 +33,10 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
     lateinit var regionAdapter: RegionAdapter
     lateinit var popularCountryAdapter: PopularCountryAdapter
     lateinit var globalSimAdapter: GlobalSimAdapter
-    private var _isLoading = false
-    private var _isLastPage = false
+    private var _isCountryLastPage = false
+    private var _isRegionLastPage = false
+    private var _isPlanLastPage = false
+
 
     companion object {
         const val id = "id"
@@ -58,7 +59,7 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
     private fun setTabListener() {
         binding.tvLocalSim.setOnClickListener { selectedTab(0) }
         binding.tvRegionalSim.setOnClickListener { selectedTab(1) }
-        binding.tvGlobalEsim.setOnClickListener { selectedTab(2)}
+        binding.tvGlobalEsim.setOnClickListener { selectedTab(2) }
     }
 
     fun selectedTab(position: Int) {
@@ -113,6 +114,7 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
         mProgressDialog.show()
         setRecycleView()
         setObserver()
+        storeViewModel.countryCurrentPage = 1
         storeViewModel.getUserData()
     }
 
@@ -138,22 +140,24 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
         binding.rvCountry.layoutManager = layoutManager
         binding.rvCountry.adapter = countryAdapter
 
-        binding.rvCountry.addOnScrollListener(object : PaginationListener(layoutManager) {
-            override fun loadMoreItems() {
-                _isLoading = true
-                storeViewModel.countryCurrentPage += 1
-                storeViewModel.getCountryData()
-            }
 
-            override fun isLastPage(): Boolean {
-                return _isLastPage;
-            }
+        binding.nsMainView.viewTreeObserver?.addOnScrollChangedListener {
+            val view = binding.nsMainView.getChildAt(binding.nsMainView.childCount - 1)
+            val diff = view.bottom - (binding.nsMainView.height + binding.nsMainView.scrollY)
 
-            override fun isLoading(): Boolean {
-                return _isLoading;
+            if (diff == 0) {
+                if (!_isCountryLastPage && binding.rvCountry.visibility == VISIBLE) {
+                    storeViewModel.countryCurrentPage += 1
+                    storeViewModel.getCountryData()
+                } else if (!_isPlanLastPage && binding.rvGlobal.visibility == VISIBLE) {
+                    storeViewModel.planCurrentPage += 1
+                    storeViewModel.getGlobalESimList()
+                } else if (!_isRegionLastPage && binding.rvRegion.visibility == VISIBLE) {
+                    storeViewModel.regionCurrentPage += 1
+                    storeViewModel.getRegionData()
+                }
             }
-
-        })
+        }
 
 
         regionAdapter = RegionAdapter(requireActivity(),
@@ -190,8 +194,8 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                     countryAdapter.submitList(currentList)
                     popularCountryAdapter.submitList(result.value.data)
 
-                    _isLastPage = result.value.meta.currentPage == storeViewModel.countryCurrentPage
-
+                    _isCountryLastPage =
+                        result.value.meta.totalPage == storeViewModel.countryCurrentPage
 
                 }
                 is ResultWrapper.Error -> {
@@ -203,8 +207,10 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 }
 
             }
-            storeViewModel.getRegionData()
-            storeViewModel.getGlobalESimList()
+            if (storeViewModel.countryCurrentPage == 1) {
+                storeViewModel.getRegionData()
+                storeViewModel.getGlobalESimList()
+            }
         }
 
         storeViewModel.regionLiveData.observe(viewLifecycleOwner) { result ->
@@ -214,6 +220,8 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                     // Success code go here
                     mProgressDialog.dismiss()
                     regionAdapter.submitList(result.value.data)
+                    _isRegionLastPage =
+                        result.value.meta.totalPage == storeViewModel.regionCurrentPage
                 }
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
@@ -232,6 +240,7 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                     // Success code go here
                     mProgressDialog.dismiss()
                     globalSimAdapter.submitList(result.value.data)
+                    _isPlanLastPage = result.value.meta.totalPage == storeViewModel.planCurrentPage
                 }
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
@@ -250,6 +259,5 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
         }
 
     }
-
 
 }

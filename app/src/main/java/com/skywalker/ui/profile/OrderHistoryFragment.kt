@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.skywalker.R
-import com.skywalker.databinding.FragmentAccountInformationBinding
 import com.skywalker.databinding.FragmentOrderHistoryBinding
 
 class OrderHistoryFragment : Fragment(R.layout.fragment_order_history) {
@@ -31,6 +30,6 @@ class OrderHistoryFragment : Fragment(R.layout.fragment_order_history) {
     }
 
     private fun setClickListener() {
-        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
     }
 }
