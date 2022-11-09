@@ -5,9 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.skywalker.helper.DataStoreManager
-import com.skywalker.model.request.LoginRequest
-import com.skywalker.model.request.PlanPaymentRequest
-import com.skywalker.model.request.SignupRequest
+import com.skywalker.model.request.*
 import com.skywalker.model.respone.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -89,6 +87,31 @@ class RemoteDataSource @Inject constructor(
     ): ResultWrapper<PlanDetailResponse> {
         return safeApiCall {
             remoteApiService.getPlansDetails(createToken(authToken), planId)
+        }
+    }
+
+    suspend fun updatePaymentStatus(
+        authToken: String, paymentStatusRequest: UpdatePaymentStatusRequest
+    ): ResultWrapper<SuccessResponse> {
+        return safeApiCall {
+            remoteApiService.updatePaymentStatus(createToken(authToken), paymentStatusRequest)
+        }
+    }
+
+    suspend fun getUserData(
+        authToken: String
+    ): ResultWrapper<LoginResponse> {
+        return safeApiCall {
+            remoteApiService.getUserDetails(createToken(authToken))
+        }
+    }
+
+    suspend fun updateUserDetails(
+        authToken: String,
+        updateProfileRequest: UpdateProfileRequest
+    ): ResultWrapper<LoginResponse> {
+        return safeApiCall {
+            remoteApiService.updateUserDetails(createToken(authToken),updateProfileRequest)
         }
     }
 

@@ -9,8 +9,8 @@ import com.skywalker.R
 
 object Utils {
 
-//    "https://darkwolve.xyz/api/v1/"
-    val BASE_URL = "http://18.235.75.7:5000/api/v1/"
+//    "http://18.235.75.7:5000/api/v1/"
+    val BASE_URL = "https://darkwolve.xyz/api/v1/"
     val STRIPE_PUBLIC_KEY =
         "pk_test_RIcFVHQ06soRIuzMtrlqYeiy008HScBaHU"
 

@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PlanDataItem(
     @SerializedName("country")
-    val country: Country,
+    val country: Country = Country(),
     @SerializedName("data")
     val data: String = "",
     @SerializedName("price")
@@ -23,8 +23,12 @@ data class PlanDataItem(
     val title: String = "",
     @SerializedName("type")
     val type: Int = 0,
+    @SerializedName("networkProvider")
+    val networkProvider: String = "",
+    @SerializedName("planType")
+    val planType: String = "",
     @SerializedName("region")
-    val region: Region
+    val region: Region = Region()
 ) : Parcelable
 
 
@@ -60,7 +64,7 @@ data class Region(
     @SerializedName("name")
     val name: String = "",
     @SerializedName("countries")
-    val countries: Country
+    val countries: Country = Country()
 ) : Parcelable
 
 

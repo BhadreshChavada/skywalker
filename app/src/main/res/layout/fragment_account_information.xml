@@ -48,7 +48,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_15sdp"
                             android:layout_marginTop="@dimen/_15sdp"
-                            android:text="@string/full_name"
+                            android:text="@string/first_name"
                             android:textColor="#5E6676" />
 
                         <androidx.appcompat.widget.AppCompatEditText
@@ -60,8 +60,8 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:backgroundTint="#F6F8F9"
-                            android:hint="@string/full_name"
-                            android:text="@{data.userName}" />
+                            android:hint="@string/first_name"
+                            android:text="@{data.firstName}" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             style="@style/regularText_black_13"
@@ -70,8 +70,7 @@
                             android:layout_marginStart="@dimen/_15sdp"
                             android:layout_marginTop="@dimen/_12sdp"
                             android:text="@string/last_name"
-                            android:textColor="#5E6676"
-                            android:visibility="gone" />
+                            android:textColor="#5E6676" />
 
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtLastName"
@@ -83,7 +82,28 @@
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:backgroundTint="#F6F8F9"
                             android:hint="@string/last_name"
-                            android:visibility="gone" />
+                            android:text="@{data.lastName}"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/regularText_black_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:text="@string/username"
+                            android:textColor="#5E6676" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/edtUserName"
+                            style="@style/editText_black_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:backgroundTint="#F6F8F9"
+                            android:hint="@string/username"
+                            android:text="@{data.userName}"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             style="@style/regularText_black_13"

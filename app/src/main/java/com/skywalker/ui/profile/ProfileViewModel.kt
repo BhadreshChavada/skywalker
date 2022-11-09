@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.helper.DataStoreManager.PreferencesKeys.authToken
+import com.skywalker.model.request.UpdateProfileRequest
 import com.skywalker.model.respone.UserData
 import com.skywalker.ui.plan.PlanApiRepository
 import com.skywalker.ui.store.StoreApiRepository
@@ -20,21 +21,43 @@ import javax.inject.Inject
 class ProfileViewModel
 @Inject constructor(
     private val dataStoreManager: DataStoreManager,
+    private val settingApiRepository: SettingApiRepository,
 ) : ViewModel() {
 
-    val userLiveData = MutableLiveData<UserData>()
+    val userLiveData = settingApiRepository.userLiveData
     private var authToken = ""
-
 
 
     fun getUserData() {
         viewModelScope.launch(Dispatchers.IO) {
-            dataStoreManager.getUserData().collect {
+            dataStoreManager.getAuthToken().collect {
                 it?.let {
-                    val gson = Gson()
-                    userLiveData.postValue(gson.fromJson(it, UserData::class.java))
+                    authToken = it
+                    getUser()
                 }
             }
+        }
+    }
+
+    private fun getUser() {
+        viewModelScope.launch {
+            settingApiRepository.getUserDetails(
+                authToken
+            )
+        }
+    }
+
+    fun updateProfile(updateProfileRequest: UpdateProfileRequest) {
+        viewModelScope.launch {
+            settingApiRepository.updateUserDetails(
+                authToken,updateProfileRequest
+            )
+        }
+    }
+
+    fun clearPreference() {
+        viewModelScope.launch {
+            dataStoreManager.clearUserDataPrefs()
         }
     }
 

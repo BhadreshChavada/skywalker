@@ -1,8 +1,6 @@
 package com.skywalker.connection
 
-import com.skywalker.model.request.LoginRequest
-import com.skywalker.model.request.PlanPaymentRequest
-import com.skywalker.model.request.SignupRequest
+import com.skywalker.model.request.*
 import com.skywalker.model.respone.*
 import javax.inject.Inject
 
@@ -68,11 +66,37 @@ class DefaultDataSource
             remoteDataSource.getPaymentData(authToken, planPaymentRequest)
         }
     }
+
     suspend fun getPlansDetails(
-        authToken: String, planId:Int
+        authToken: String, planId: Int
     ): ResultWrapper<PlanDetailResponse> {
         return requestRemoteDataSource {
             remoteDataSource.getPlansDetails(authToken, planId)
+        }
+    }
+
+    suspend fun updatePaymentStatus(
+        authToken: String, paymentStatusRequest: UpdatePaymentStatusRequest
+    ): ResultWrapper<SuccessResponse> {
+        return requestRemoteDataSource {
+            remoteDataSource.updatePaymentStatus(authToken, paymentStatusRequest)
+        }
+    }
+
+    suspend fun getUserData(
+        authToken: String
+    ): ResultWrapper<LoginResponse> {
+        return requestRemoteDataSource {
+            remoteDataSource.getUserData(authToken)
+        }
+    }
+
+    suspend fun updateUserDetails(
+        authToken: String,
+        updateProfileRequest: UpdateProfileRequest
+    ): ResultWrapper<LoginResponse> {
+        return requestRemoteDataSource {
+            remoteDataSource.updateUserDetails(authToken,updateProfileRequest)
         }
     }
 

@@ -6,6 +6,7 @@ import com.skywalker.connection.ResultWrapper
 import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.PlanPaymentRequest
 import com.skywalker.model.request.SignupRequest
+import com.skywalker.model.request.UpdatePaymentStatusRequest
 import com.skywalker.model.respone.*
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -25,9 +26,14 @@ class PlanApiRepository @Inject constructor(
     private val _stripLiveData = MutableLiveData<ResultWrapper<StripData>?>()
     val stripLiveData: MutableLiveData<ResultWrapper<StripData>?>
         get() = _stripLiveData
-  private val _planDetailsLiveData = MutableLiveData<ResultWrapper<PlanDetailResponse>?>()
+
+    private val _planDetailsLiveData = MutableLiveData<ResultWrapper<PlanDetailResponse>?>()
     val planDetailsLiveData: MutableLiveData<ResultWrapper<PlanDetailResponse>?>
         get() = _planDetailsLiveData
+
+    private val _paymentStatusLiveData = MutableLiveData<ResultWrapper<SuccessResponse>?>()
+    val paymentStatusLiveData: MutableLiveData<ResultWrapper<SuccessResponse>?>
+        get() = _paymentStatusLiveData
 
 
     suspend fun getPlans(authToken: String, type: Int, countryId: Int, page: Int, perPage: Int) {
@@ -40,8 +46,17 @@ class PlanApiRepository @Inject constructor(
         _stripLiveData.value = null
     }
 
-    suspend fun getPlansDetails(authToken: String, planId:Int) {
+    suspend fun getPlansDetails(authToken: String, planId: Int) {
         _planDetailsLiveData.value = defaultDataSource.getPlansDetails(authToken, planId)
         _planDetailsLiveData.value = null
+    }
+
+    suspend fun updatePaymentStatus(
+        authToken: String,
+        paymentStatusRequest: UpdatePaymentStatusRequest
+    ) {
+        _paymentStatusLiveData.value =
+            defaultDataSource.updatePaymentStatus(authToken, paymentStatusRequest)
+        _paymentStatusLiveData.value = null
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
@@ -23,7 +24,7 @@ class PlanDetailsFragment : Fragment(R.layout.fragment_plan_details) {
 
     private lateinit var binding: FragmentPlanDetailsBinding
 
-    private val planViewModel: PlanViewModel by viewModels()
+    private val planViewModel: PlanViewModel by activityViewModels()
     private lateinit var mProgressDialog: ApiProgressDialog
     lateinit var planDetail: PlanDataItem
 
@@ -42,13 +43,13 @@ class PlanDetailsFragment : Fragment(R.layout.fragment_plan_details) {
         binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.btnBuy.setOnClickListener {
             mProgressDialog.show()
+            planViewModel.selectedPlanDetails = planDetail
             planViewModel.getPlanPayment(planDetail.price, planDetail.planId.toString())
         }
         binding.tvShowMore.setOnClickListener {
-
-            var bundle = bundleOf("planDetail" to planDetail)
+            planViewModel.selectedPlanDetails = planDetail
             findNavController().navigate(
-                R.id.action_planDetailFragment_to_planAdditionalInfoFragment, bundle
+                R.id.action_planDetailFragment_to_planAdditionalInfoFragment
             )
         }
     }

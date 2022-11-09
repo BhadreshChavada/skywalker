@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.model.request.PlanPaymentRequest
+import com.skywalker.model.request.UpdatePaymentStatusRequest
+import com.skywalker.model.respone.PlanDataItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,10 +20,12 @@ class PlanViewModel
     val planLiveData = planApiRepository.planLiveData
     val stripLiveData = planApiRepository.stripLiveData
     val planDetailsLiveData = planApiRepository.planDetailsLiveData
+    val paymentStatusLiveData = planApiRepository.paymentStatusLiveData
+
+    lateinit var selectedPlanDetails: PlanDataItem
 
 
-    fun getPlans(countryInt: Int,type: Int) {
-
+    fun getPlans(countryInt: Int, type: Int) {
         viewModelScope.launch {
             dataStoreManager.getAuthToken().collect {
                 it?.let {
@@ -43,37 +47,38 @@ class PlanViewModel
         }
     }
 
-    fun getPlanPayment(amount:String,planId:String){
-
-        var planPaymentRequest = PlanPaymentRequest(amount = amount,planId =planId)
+    fun getPlanPayment(amount: String, planId: String) {
+        var planPaymentRequest = PlanPaymentRequest(amount = amount, planId = planId)
         viewModelScope.launch {
             dataStoreManager.getAuthToken().collect {
                 it?.let {
-                    planApiRepository.getPaymentData(it,planPaymentRequest)
+                    planApiRepository.getPaymentData(it, planPaymentRequest)
 
                 }
             }
-
-
         }
     }
 
     fun getPlansDetails(planId: Int) {
-
         viewModelScope.launch {
             dataStoreManager.getAuthToken().collect {
                 it?.let {
-                    planApiRepository.getPlansDetails(it,planId)
-
+                    planApiRepository.getPlansDetails(it, planId)
                 }
             }
         }
 
     }
 
-    fun clearPreference() {
+    fun updatePaymentStatus(paymentStatusRequest: UpdatePaymentStatusRequest) {
         viewModelScope.launch {
-            dataStoreManager.clearPrefs()
+            dataStoreManager.getAuthToken().collect {
+                it?.let {
+                    planApiRepository.updatePaymentStatus(it, paymentStatusRequest)
+                }
+            }
         }
+
     }
+
 }

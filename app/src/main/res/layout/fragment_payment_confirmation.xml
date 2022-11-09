@@ -214,7 +214,7 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:gravity="center"
-                            android:text="$ 5"
+                            android:text="@{`$`+data.price.toString()}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/viewDividerServiceFees" />
 

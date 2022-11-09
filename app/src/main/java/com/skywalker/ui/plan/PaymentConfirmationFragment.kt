@@ -1,15 +1,23 @@
 package com.skywalker.ui.plan
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.skywalker.R
+import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentPaymentConfirmationBinding
 import com.skywalker.helper.ApiProgressDialog
+import com.skywalker.helper.Utils
+import com.skywalker.model.request.UpdatePaymentStatusRequest
+import com.skywalker.model.respone.PlanDataItem
+import com.skywalker.ui.homeTab.MainTabActivity
+import com.skywalker.ui.main.MainActivity
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
 import com.stripe.android.paymentsheet.PaymentSheetResult
@@ -21,12 +29,13 @@ class PaymentConfirmationFragment : Fragment(R.layout.fragment_payment_confirmat
 
     private lateinit var binding: FragmentPaymentConfirmationBinding
 
-    private val planViewModel: PlanViewModel by viewModels()
+    private val planViewModel: PlanViewModel by activityViewModels()
     private lateinit var mProgressDialog: ApiProgressDialog
 
     private lateinit var paymentSheet: PaymentSheet
     private lateinit var customerConfig: PaymentSheet.CustomerConfiguration
     lateinit var paymentIntentClientSecret: String
+    lateinit var planDetails: PlanDataItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +44,13 @@ class PaymentConfirmationFragment : Fragment(R.layout.fragment_payment_confirmat
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_payment_confirmation, container, false
         )
+
+        planDetails = planViewModel.selectedPlanDetails
+        binding.data = planDetails
+        binding.toolbar.tvTitle.text = getString(R.string.payment)
         setupPayment()
         setListener()
+        setObserver()
         mProgressDialog = ApiProgressDialog(requireActivity())
 
 
@@ -55,15 +69,46 @@ class PaymentConfirmationFragment : Fragment(R.layout.fragment_payment_confirmat
             this
         ) { paymentSheetResult ->
             when (paymentSheetResult) {
-                is PaymentSheetResult.Canceled -> {
-                    print("Canceled")
-                }
                 is PaymentSheetResult.Failed -> {
                     print("Error: ${paymentSheetResult.error}")
+                    planViewModel.updatePaymentStatus(
+                        UpdatePaymentStatusRequest(
+                            planDetails.planId,
+                            "na",
+                            paymentSheetResult.error.toString()
+                        )
+                    )
+                    Utils.showSnackBar(
+                        binding.root,
+                        getString(R.string.payment_failed),
+                        true,
+                        requireActivity()
+                    )
                 }
                 is PaymentSheetResult.Completed -> {
                     // Display for example, an order confirmation screen
-                    print("Completed")
+                    Utils.showSnackBar(
+                        binding.root,
+                        getString(R.string.payment_received),
+                        false,
+                        requireActivity()
+                    )
+                    planViewModel.updatePaymentStatus(
+                        UpdatePaymentStatusRequest(
+                            planDetails.planId,
+                            "na",
+                            "succeeded"
+                        )
+                    )
+
+                }
+                PaymentSheetResult.Canceled -> {
+                    Utils.showSnackBar(
+                        binding.root,
+                        getString(R.string.payment_canceled),
+                        false,
+                        requireActivity()
+                    )
                 }
             }
         }
@@ -82,6 +127,42 @@ class PaymentConfirmationFragment : Fragment(R.layout.fragment_payment_confirmat
         }
     }
 
+    private fun setObserver() {
+        planViewModel.paymentStatusLiveData.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is ResultWrapper.Success -> if (result.value != null) {
+                    // Success code go here
+                    Utils.showSnackBar(
+                        binding.root,
+                        result.value.message,
+                        false,
+                        requireActivity()
+                    )
+                    redirectToHome()
+
+                }
+                is ResultWrapper.Error -> {
+                    Utils.showSnackBar(
+                        binding.root,
+                        result.errorResponse?.message!!,
+                        true,
+                        requireActivity()
+                    )
+                }
+                else -> {
+
+                    // if result value is something else
+                }
+            }
+        }
+    }
+
+    private fun redirectToHome() {
+        val intent = Intent(requireActivity(), MainTabActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        requireActivity().finish()
+    }
 
     private fun presentPaymentSheet() {
         paymentSheet.presentWithPaymentIntent(
@@ -94,10 +175,6 @@ class PaymentConfirmationFragment : Fragment(R.layout.fragment_payment_confirmat
                 allowsDelayedPaymentMethods = true
             )
         )
-    }
-
-    private fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
-
     }
 
 

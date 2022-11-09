@@ -36,6 +36,7 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
         )
         mProgressDialog = ApiProgressDialog(requireActivity())
         binding.viewModel = authenticationViewModel
+        authenticationViewModel.updateWTStatus()
         return binding.root
     }
 

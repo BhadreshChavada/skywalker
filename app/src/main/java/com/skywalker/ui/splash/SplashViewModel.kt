@@ -20,6 +20,10 @@ class SplashViewModel
     val isUserLoggedIn: MutableLiveData<Boolean>
         get() = _isUserLoggedIn
 
+    private val _isWTSeen = MutableLiveData<Boolean>()
+    val isWTSeen: MutableLiveData<Boolean>
+        get() = _isWTSeen
+
 
     fun getUserData() {
         viewModelScope.launch {
@@ -28,6 +32,18 @@ class SplashViewModel
                     isUserLoggedIn.value = false
                 }else{
                     isUserLoggedIn.value = it.isNotEmpty()
+                }
+            }
+        }
+    }
+
+    fun isWTSeen() {
+        viewModelScope.launch {
+            dataStoreManager.getWTSeen().collect {
+                if(it == null){
+                    _isWTSeen.value = false
+                }else{
+                    _isWTSeen.value = it.toBoolean()
                 }
             }
         }

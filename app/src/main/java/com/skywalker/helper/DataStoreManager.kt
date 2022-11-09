@@ -7,6 +7,8 @@ import javax.inject.Inject
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.google.gson.Gson
+import com.skywalker.helper.DataStoreManager.PreferencesKeys.authToken
+import com.skywalker.helper.DataStoreManager.PreferencesKeys.wtStatus
 import com.skywalker.model.respone.UserData
 import javax.inject.Singleton
 
@@ -16,6 +18,7 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
     object PreferencesKeys {
         val authToken = stringPreferencesKey("auth_token")
         val userData = stringPreferencesKey("user_data")
+        val wtStatus = stringPreferencesKey("wt_status")
     }
 
     suspend fun storeAuthToken(authToken: String) {
@@ -28,11 +31,27 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
         it[PreferencesKeys.authToken]
     }
 
-    suspend fun storeUserData(userData: UserData) {
-        val gson = Gson()
-        val strUser = gson.toJson(userData)
+    suspend fun isWTSeen(seen: Boolean) {
         dataStore.edit { preferences ->
-            preferences[PreferencesKeys.userData] = strUser ?: ""
+            preferences[wtStatus] = (seen ?: false).toString()
+        }
+    }
+
+    fun getWTSeen() = dataStore.data.map {
+        it[wtStatus]
+    }
+
+    suspend fun storeUserData(userData: UserData?) {
+        if (userData != null) {
+            val gson = Gson()
+            val strUser = gson.toJson(userData)
+            dataStore.edit { preferences ->
+                preferences[PreferencesKeys.userData] = strUser ?: ""
+            }
+        } else {
+            dataStore.edit { preferences ->
+                preferences[PreferencesKeys.userData] = ""
+            }
         }
     }
 
@@ -40,8 +59,13 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
         it[PreferencesKeys.userData]
     }
 
-    suspend fun clearPrefs(){
+    suspend fun clearPrefs() {
         dataStore.edit { preference -> preference.clear() }
+    }
+
+    suspend fun clearUserDataPrefs() {
+        storeAuthToken("")
+        storeUserData(null)
     }
 
 }

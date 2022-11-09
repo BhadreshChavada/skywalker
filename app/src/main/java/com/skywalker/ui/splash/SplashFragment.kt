@@ -31,7 +31,7 @@ class SplashFragment : Fragment() {
         Handler().postDelayed(Runnable {
             splashViewModel.getUserData()
             setObserver()
-        },3000)
+        }, 3000)
     }
 
     private fun setObserver() {
@@ -43,6 +43,17 @@ class SplashFragment : Fragment() {
                     startActivity(intent)
                     requireActivity().finish()
                 } else {
+                    splashViewModel.isWTSeen()
+                }
+            }
+        }
+
+        splashViewModel.isWTSeen.observe(viewLifecycleOwner) {
+            it?.let {
+                if (it) {
+                    findNavController().navigate(R.id.action_splashFragment_to_authenticationFragment)
+                } else {
+
                     findNavController().navigate(R.id.action_splashFragment_to_walkthroughFragment)
                 }
             }

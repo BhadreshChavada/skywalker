@@ -1,8 +1,6 @@
 package com.skywalker.connection
 
-import com.skywalker.model.request.LoginRequest
-import com.skywalker.model.request.PlanPaymentRequest
-import com.skywalker.model.request.SignupRequest
+import com.skywalker.model.request.*
 import com.skywalker.model.respone.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -70,4 +68,21 @@ interface RemoteApiService {
         @Header("Authorization") authHeader: String,
         @Path("id") plaId:Int
     ): Response<PlanDetailResponse>
+
+    @GET("users")
+    suspend fun getUserDetails(
+        @Header("Authorization") authHeader: String
+    ): Response<LoginResponse>
+
+    @PUT("users")
+    suspend fun updateUserDetails(
+        @Header("Authorization") authHeader: String,
+        @Body updateProfileRequest: UpdateProfileRequest
+    ): Response<LoginResponse>
+
+    @PUT("orders/verify")
+    suspend fun updatePaymentStatus(
+        @Header("Authorization") authHeader: String,
+        @Body paymentStatusRequest: UpdatePaymentStatusRequest
+    ): Response<SuccessResponse>
 }

@@ -67,7 +67,7 @@
                             android:layout_marginEnd="@dimen/_25sdp"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:text="Jio"
+                            android:text="@{data.networkProvider}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,7 +108,7 @@
                             android:layout_marginEnd="@dimen/_25sdp"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:text="Data Only"
+                            android:text="@{data.planType}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
 

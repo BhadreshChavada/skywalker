@@ -58,4 +58,11 @@
     <string name="plan_type">Plan Type</string>
     <string name="show_more">Show More ...</string>
     <string name="full_name">Full name</string>
+    <string name="payment">Payment</string>
+    <string name="profile_update_successfully">Profile updated successfully</string>
+    <string name="logout">logout</string>
+    <string name="logout_confirmation">Are you sure want to logout?</string>
+    <string name="payment_received">Payment received successfully!</string>
+    <string name="payment_failed">Payment failed, Please try after some time.</string>
+    <string name="payment_canceled">Payment cancel</string>
 </resources>

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.skywalker.R
 import com.skywalker.databinding.FragmentSimAdditionalInfoBinding
 import com.skywalker.model.respone.PlanDataItem
@@ -18,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class PlanAdditionalInfoFragment : Fragment(R.layout.fragment_sim_additional_info) {
 
     private lateinit var binding: FragmentSimAdditionalInfoBinding
-
+    private val planViewModel: PlanViewModel by activityViewModels()
 
     @RequiresApi(33)
     override fun onCreateView(
@@ -29,8 +31,9 @@ class PlanAdditionalInfoFragment : Fragment(R.layout.fragment_sim_additional_inf
             inflater, R.layout.fragment_sim_additional_info, container, false
         )
         setListener()
-        val planDetails = arguments?.getParcelable("planDetail", PlanDataItem::class.java)
-        Log.d("planDetails", planDetails?.data.toString())
+        val planDetails = planViewModel.selectedPlanDetails
+        binding.toolbar.tvTitle.text = getString(R.string.additional_information)
+        binding.data = planDetails
         return binding.root
     }
 

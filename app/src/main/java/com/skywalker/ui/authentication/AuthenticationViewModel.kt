@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.helper.DataStoreManager
+import com.skywalker.helper.DataStoreManager.PreferencesKeys.userData
 import com.skywalker.helper.SingleLiveEvent
 import com.skywalker.helper.ValidationUtils.isValidConfirmPassword
 import com.skywalker.helper.ValidationUtils.isValidEmail
@@ -76,6 +77,12 @@ class AuthenticationViewModel
         viewModelScope.launch {
             dataStoreManager.storeUserData(userData)
             dataStoreManager.storeAuthToken(userData.authentication.accessToken)
+        }
+    }
+
+    fun updateWTStatus() {
+        viewModelScope.launch {
+            dataStoreManager.isWTSeen(true)
         }
     }
 }

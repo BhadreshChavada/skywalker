@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
@@ -23,7 +24,7 @@ class PlanFragment : Fragment(R.layout.fragment_country_wise_sim_provider) {
 
     private lateinit var binding: FragmentCountryWiseSimProviderBinding
 
-    private val planViewModel: PlanViewModel by viewModels()
+    private val planViewModel: PlanViewModel by activityViewModels()
     private lateinit var mProgressDialog: ApiProgressDialog
 
     lateinit var planAdapter: PlansAdapter
@@ -82,6 +83,7 @@ class PlanFragment : Fragment(R.layout.fragment_country_wise_sim_provider) {
 
             override fun redirectToPayment(planDataItem: PlanDataItem) {
                 mProgressDialog.show()
+                planViewModel.selectedPlanDetails = planDataItem
                 planViewModel.getPlanPayment(planDataItem.price, planDataItem.planId.toString())
 
             }
