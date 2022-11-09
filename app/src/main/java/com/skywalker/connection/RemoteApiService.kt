@@ -85,4 +85,12 @@ interface RemoteApiService {
         @Header("Authorization") authHeader: String,
         @Body paymentStatusRequest: UpdatePaymentStatusRequest
     ): Response<SuccessResponse>
+
+    @GET("plans/my")
+    suspend fun getMyPlans(
+        @Header("Authorization") authHeader: String,
+        @Query("type") type: Int = 1,
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ): Response<PlanResponse>
 }

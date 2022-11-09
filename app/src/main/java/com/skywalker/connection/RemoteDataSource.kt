@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.skywalker.helper.DataStoreManager
+import com.skywalker.helper.DataStoreManager.PreferencesKeys.authToken
 import com.skywalker.model.request.*
 import com.skywalker.model.respone.*
 import kotlinx.coroutines.MainScope
@@ -142,6 +143,18 @@ class RemoteDataSource @Inject constructor(
                 )
             }
         }
+
+    }
+
+
+    suspend fun getMyPlans(
+        authToken: String, type: Int, page: Int, perPage: Int
+    ): ResultWrapper<PlanResponse> {
+
+        return safeApiCall {
+            remoteApiService.getMyPlans(createToken(authToken), type, page, perPage)
+        }
+
 
     }
 

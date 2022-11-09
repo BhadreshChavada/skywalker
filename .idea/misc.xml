@@ -34,6 +34,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/activity_main.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_country.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_global_sim_card.xml" value="0.2609375" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_my_sim_card.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_popular_country.xml" value="0.33" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_regio.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_sim_card.xml" value="0.25" />
@@ -45,6 +46,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_country_wise_sim_provider.xml" value="0.2" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_main_tab_pager.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_more_info.xml" value="0.2609375" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_my_sim.xml" value="0.24679802955665026" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_order_history.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_payment_confirmation.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_plan_details.xml" value="0.19074074074074074" />

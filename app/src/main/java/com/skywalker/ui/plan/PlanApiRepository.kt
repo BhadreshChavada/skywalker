@@ -35,6 +35,13 @@ class PlanApiRepository @Inject constructor(
     val paymentStatusLiveData: MutableLiveData<ResultWrapper<SuccessResponse>?>
         get() = _paymentStatusLiveData
 
+    private val _currentSimLiveData = MutableLiveData<ResultWrapper<PlanResponse>?>()
+    val currentSimLiveData: MutableLiveData<ResultWrapper<PlanResponse>?>
+        get() = _currentSimLiveData
+
+    private val _activatedSimLiveData = MutableLiveData<ResultWrapper<PlanResponse>?>()
+    val activatedSimLiveData: MutableLiveData<ResultWrapper<PlanResponse>?>
+        get() = _activatedSimLiveData
 
     suspend fun getPlans(authToken: String, type: Int, countryId: Int, page: Int, perPage: Int) {
         _planLiveData.value = defaultDataSource.getPlans(authToken, type, countryId, page, perPage)
@@ -58,5 +65,16 @@ class PlanApiRepository @Inject constructor(
         _paymentStatusLiveData.value =
             defaultDataSource.updatePaymentStatus(authToken, paymentStatusRequest)
         _paymentStatusLiveData.value = null
+    }
+
+    suspend fun getMyPlans(authToken: String, type: Int, page: Int, perPage: Int) {
+        if (type == 1) {
+            _currentSimLiveData.value = defaultDataSource.getMyPlans(authToken, type, page, perPage)
+            _currentSimLiveData.value = null
+        } else {
+            _activatedSimLiveData.value =
+                defaultDataSource.getMyPlans(authToken, type, page, perPage)
+            _activatedSimLiveData.value = null
+        }
     }
 }

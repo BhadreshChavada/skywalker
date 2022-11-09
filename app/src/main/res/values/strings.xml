@@ -65,4 +65,6 @@
     <string name="payment_received">Payment received successfully!</string>
     <string name="payment_failed">Payment failed, Please try after some time.</string>
     <string name="payment_canceled">Payment cancel</string>
+    <string name="show_more_btn">Show More</string>
+    <string name="connected">Connected</string>
 </resources>

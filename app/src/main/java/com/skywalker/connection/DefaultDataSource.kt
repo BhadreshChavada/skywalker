@@ -58,7 +58,6 @@ class DefaultDataSource
             remoteDataSource.getPlans(authToken, type, countryId, page, perPage)
         }
     }
-
     suspend fun getPaymentData(
         authToken: String, planPaymentRequest: PlanPaymentRequest
     ): ResultWrapper<StripData> {
@@ -100,5 +99,11 @@ class DefaultDataSource
         }
     }
 
-
+    suspend fun getMyPlans(
+        authToken: String, type: Int,  page: Int, perPage: Int
+    ): ResultWrapper<PlanResponse> {
+        return requestRemoteDataSource {
+            remoteDataSource.getMyPlans(authToken, type,  page, perPage)
+        }
+    }
 }

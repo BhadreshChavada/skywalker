@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.skywalker.R
 import com.skywalker.databinding.FragmentMainTabPagerBinding
+import com.skywalker.ui.mySim.MyESimFragment
 import com.skywalker.ui.profile.ProfileFragment
 import com.skywalker.ui.store.StoreFragment
 import dagger.hilt.android.AndroidEntryPoint
