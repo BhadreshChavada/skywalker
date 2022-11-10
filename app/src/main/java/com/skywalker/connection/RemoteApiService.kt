@@ -93,4 +93,11 @@ interface RemoteApiService {
         @Query("page") page: Int,
         @Query("perPage") perPage: Int
     ): Response<PlanResponse>
+
+    @GET("orders/history")
+    suspend fun getOrderHistory(
+        @Header("Authorization") authHeader: String,
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ): Response<PlanResponse>
 }

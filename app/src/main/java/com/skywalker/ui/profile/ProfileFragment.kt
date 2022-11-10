@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
+import com.skywalker.baseClass.BaseFragment
 import com.skywalker.databinding.FragmentProfileBinding
 import com.skywalker.databinding.FragmentStoreBinding
 import com.skywalker.helper.ApiProgressDialog
@@ -20,7 +21,7 @@ import com.skywalker.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     private lateinit var binding: FragmentProfileBinding
     private val profileViewModel: ProfileViewModel by viewModels()
@@ -66,34 +67,23 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     }
 
-    fun logoutConfirmation(){
+    fun logoutConfirmation() {
         val builder = AlertDialog.Builder(requireActivity())
         builder.setTitle(getString(R.string.app_name))
         builder.setMessage(getString(R.string.logout_confirmation))
-//builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            Toast.makeText(requireActivity(),
-                android.R.string.yes, Toast.LENGTH_SHORT).show()
-
+        builder.setPositiveButton(getString(R.string.yes)) { dialog, which ->
+            profileViewModel.clearPreference()
             redirectToLogin()
             dialog.dismiss()
         }
 
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
-            Toast.makeText(requireActivity(),
-                android.R.string.no, Toast.LENGTH_SHORT).show()
+        builder.setNegativeButton(getString(R.string.no)) { dialog, which ->
             dialog.dismiss()
         }
 
         builder.show()
     }
 
-    private fun redirectToLogin(){
-        profileViewModel.clearPreference()
-        val intent = Intent(requireActivity(), MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        requireActivity().finish()
-    }
+
 }

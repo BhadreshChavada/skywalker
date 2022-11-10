@@ -27,6 +27,10 @@ data class PlanDataItem(
     val networkProvider: String = "",
     @SerializedName("planType")
     val planType: String = "",
+    @SerializedName("createdAt")
+    val createdAt: String = "",
+    @SerializedName("status")
+    val status: String = "",
     @SerializedName("region")
     val region: Region = Region()
 ) : Parcelable

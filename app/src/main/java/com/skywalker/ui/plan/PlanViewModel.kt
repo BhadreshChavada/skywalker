@@ -2,6 +2,7 @@ package com.skywalker.ui.plan
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.skywalker.baseClass.BaseViewModel
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.model.request.PlanPaymentRequest
 import com.skywalker.model.request.UpdatePaymentStatusRequest
@@ -15,7 +16,7 @@ class PlanViewModel
 @Inject constructor(
     private val planApiRepository: PlanApiRepository,
     private val dataStoreManager: DataStoreManager
-) : ViewModel() {
+) : BaseViewModel(dataStoreManager) {
 
     val planLiveData = planApiRepository.planLiveData
     val stripLiveData = planApiRepository.stripLiveData

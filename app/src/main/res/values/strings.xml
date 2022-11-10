@@ -67,4 +67,7 @@
     <string name="payment_canceled">Payment cancel</string>
     <string name="show_more_btn">Show More</string>
     <string name="connected">Connected</string>
+    <string name="activated_esims">Activated E SIMs</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

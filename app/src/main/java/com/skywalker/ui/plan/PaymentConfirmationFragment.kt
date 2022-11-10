@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.skywalker.R
+import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentPaymentConfirmationBinding
 import com.skywalker.helper.ApiProgressDialog
@@ -25,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class PaymentConfirmationFragment : Fragment(R.layout.fragment_payment_confirmation) {
+class PaymentConfirmationFragment : BaseFragment(R.layout.fragment_payment_confirmation) {
 
     private lateinit var binding: FragmentPaymentConfirmationBinding
 
@@ -148,6 +149,10 @@ class PaymentConfirmationFragment : Fragment(R.layout.fragment_payment_confirmat
                         true,
                         requireActivity()
                     )
+                }
+                is ResultWrapper.SessionExpired -> {
+                    planViewModel.clearPreference()
+                    redirectToLogin()
                 }
                 else -> {
 

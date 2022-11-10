@@ -24,6 +24,8 @@ class RemoteDataSource @Inject constructor(
             val response: Response<T> = apiCall()
             if (response.isSuccessful) {
                 ResultWrapper.Success(response.body())
+            } else if (response.code() == 401) {
+                ResultWrapper.SessionExpired(response.code())
             } else {
 
                 val gson = Gson()
@@ -112,7 +114,7 @@ class RemoteDataSource @Inject constructor(
         updateProfileRequest: UpdateProfileRequest
     ): ResultWrapper<LoginResponse> {
         return safeApiCall {
-            remoteApiService.updateUserDetails(createToken(authToken),updateProfileRequest)
+            remoteApiService.updateUserDetails(createToken(authToken), updateProfileRequest)
         }
     }
 
@@ -146,16 +148,20 @@ class RemoteDataSource @Inject constructor(
 
     }
 
-
     suspend fun getMyPlans(
         authToken: String, type: Int, page: Int, perPage: Int
     ): ResultWrapper<PlanResponse> {
-
         return safeApiCall {
             remoteApiService.getMyPlans(createToken(authToken), type, page, perPage)
         }
+    }
 
-
+    suspend fun getOrderHistory(
+        authToken: String, page: Int, perPage: Int
+    ): ResultWrapper<PlanResponse> {
+        return safeApiCall {
+            remoteApiService.getOrderHistory(createToken(authToken), page, perPage)
+        }
     }
 
 

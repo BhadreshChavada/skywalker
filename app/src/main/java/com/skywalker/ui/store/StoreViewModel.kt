@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.skywalker.baseClass.BaseViewModel
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.model.respone.UserData
 import com.skywalker.ui.plan.PlanApiRepository
@@ -19,7 +20,7 @@ class StoreViewModel
     private val storeApiRepository: StoreApiRepository,
     private val dataStoreManager: DataStoreManager,
     private val planApiRepository: PlanApiRepository
-) : ViewModel() {
+) : BaseViewModel(dataStoreManager) {
 
 
     val countryLiveData = storeApiRepository.countryLiveData

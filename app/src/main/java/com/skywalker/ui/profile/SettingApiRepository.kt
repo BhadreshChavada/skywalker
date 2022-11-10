@@ -20,16 +20,23 @@ class SettingApiRepository @Inject constructor(
     val userLiveData: MutableLiveData<ResultWrapper<LoginResponse>?>
         get() = _userLiveData
 
+    private val _orderHistoryLiveData = MutableLiveData<ResultWrapper<PlanResponse>?>()
+    val orderHistoryLiveData: MutableLiveData<ResultWrapper<PlanResponse>?>
+        get() = _orderHistoryLiveData
+
 
     suspend fun getUserDetails(authToken: String) {
         _userLiveData.value = defaultDataSource.getUserData(authToken)
         _userLiveData.value = null
     }
 
-    suspend fun updateUserDetails(authToken: String,updateProfileRequest: UpdateProfileRequest) {
-        _userLiveData.value = defaultDataSource.updateUserDetails(authToken,updateProfileRequest)
+    suspend fun updateUserDetails(authToken: String, updateProfileRequest: UpdateProfileRequest) {
+        _userLiveData.value = defaultDataSource.updateUserDetails(authToken, updateProfileRequest)
         _userLiveData.value = null
     }
 
-
+    suspend fun getOrderHistory(authToken: String, page: Int, perPage: Int) {
+        _orderHistoryLiveData.value = defaultDataSource.getOrderHistory(authToken, page, perPage)
+        _orderHistoryLiveData.value = null
+    }
 }

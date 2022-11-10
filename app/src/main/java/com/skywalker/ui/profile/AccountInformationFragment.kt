@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.skywalker.R
+import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentAccountInformationBinding
 import com.skywalker.helper.ApiProgressDialog
@@ -16,7 +17,7 @@ import com.skywalker.model.request.UpdateProfileRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AccountInformationFragment : Fragment(R.layout.fragment_account_information) {
+class AccountInformationFragment : BaseFragment(R.layout.fragment_account_information) {
 
     private lateinit var binding: FragmentAccountInformationBinding
     private val profileViewModel: ProfileViewModel by viewModels()
@@ -84,6 +85,10 @@ class AccountInformationFragment : Fragment(R.layout.fragment_account_informatio
                         true,
                         requireActivity()
                     )
+                }
+                is ResultWrapper.SessionExpired -> {
+                    profileViewModel.clearPreference()
+                    redirectToLogin()
                 }
                 else -> {
 

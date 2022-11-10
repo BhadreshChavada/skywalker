@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skywalker.R
+import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentStoreBinding
 import com.skywalker.helper.AdapterItemClickListener
@@ -22,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class StoreFragment : Fragment(R.layout.fragment_store) {
+class StoreFragment : BaseFragment(R.layout.fragment_store) {
 
     private lateinit var binding: FragmentStoreBinding
 
@@ -201,6 +202,10 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
                 }
+                is ResultWrapper.SessionExpired -> {
+                    storeViewModel.clearPreference()
+                    redirectToLogin()
+                }
                 else -> {
                     mProgressDialog.dismiss()
                     // if result value is something else
@@ -226,6 +231,10 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
                 }
+                is ResultWrapper.SessionExpired -> {
+                    storeViewModel.clearPreference()
+                    redirectToLogin()
+                }
                 else -> {
                     mProgressDialog.dismiss()
                     // if result value is something else
@@ -244,6 +253,10 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
                 }
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
+                }
+                is ResultWrapper.SessionExpired -> {
+                    storeViewModel.clearPreference()
+                    redirectToLogin()
                 }
                 else -> {
                     mProgressDialog.dismiss()

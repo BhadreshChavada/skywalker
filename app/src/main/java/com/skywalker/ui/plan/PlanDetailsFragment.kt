@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
+import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentPlanDetailsBinding
 import com.skywalker.helper.ApiProgressDialog
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class PlanDetailsFragment : Fragment(R.layout.fragment_plan_details) {
+class PlanDetailsFragment : BaseFragment(R.layout.fragment_plan_details) {
 
     private lateinit var binding: FragmentPlanDetailsBinding
 
@@ -85,6 +86,10 @@ class PlanDetailsFragment : Fragment(R.layout.fragment_plan_details) {
                         true,
                         requireActivity()
                     )
+                }
+                is ResultWrapper.SessionExpired -> {
+                    planViewModel.clearPreference()
+                    redirectToLogin()
                 }
                 else -> {
 

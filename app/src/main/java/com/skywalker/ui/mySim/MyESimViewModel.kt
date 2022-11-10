@@ -2,6 +2,7 @@ package com.skywalker.ui.mySim
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.skywalker.baseClass.BaseViewModel
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.model.request.PlanPaymentRequest
 import com.skywalker.model.request.UpdatePaymentStatusRequest
@@ -16,7 +17,7 @@ class MyESimViewModel
 @Inject constructor(
     private val planApiRepository: PlanApiRepository,
     private val dataStoreManager: DataStoreManager
-) : ViewModel() {
+) : BaseViewModel(dataStoreManager) {
 
     val currentSimLiveData = planApiRepository.currentSimLiveData
     val activatedSimLiveData = planApiRepository.activatedSimLiveData

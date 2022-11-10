@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.skywalker.baseClass.BaseViewModel
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.helper.DataStoreManager.PreferencesKeys.authToken
 import com.skywalker.model.request.UpdateProfileRequest
@@ -22,9 +23,10 @@ class ProfileViewModel
 @Inject constructor(
     private val dataStoreManager: DataStoreManager,
     private val settingApiRepository: SettingApiRepository,
-) : ViewModel() {
+) : BaseViewModel(dataStoreManager) {
 
     val userLiveData = settingApiRepository.userLiveData
+    val orderHistoryLiveData = settingApiRepository.orderHistoryLiveData
     private var authToken = ""
 
 
@@ -50,14 +52,22 @@ class ProfileViewModel
     fun updateProfile(updateProfileRequest: UpdateProfileRequest) {
         viewModelScope.launch {
             settingApiRepository.updateUserDetails(
-                authToken,updateProfileRequest
+                authToken, updateProfileRequest
             )
         }
     }
 
-    fun clearPreference() {
+    fun getOrderHistory() {
         viewModelScope.launch {
-            dataStoreManager.clearUserDataPrefs()
+            dataStoreManager.getAuthToken().collect {
+                it?.let {
+                    authToken = it
+                    settingApiRepository.getOrderHistory(
+                        authToken, 1, 25
+                    )
+                }
+            }
+
         }
     }
 

@@ -6,6 +6,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.skywalker.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 object Utils {
 
@@ -51,6 +53,28 @@ object Utils {
             else -> {
                 context.resources.getDrawable(R.drawable.iv_card_3)
             }
+        }
+    }
+
+   /* fun convertLongToTime(time: String): String {
+        val date = Date(time.toLong())
+        val format = SimpleDateFormat("MM/dd/yy HH:mm")
+        return format.format(date)
+    }*/
+
+    fun Long.toTimeDateString(): String {
+        val dateTime = Date(this)
+        val format = SimpleDateFormat("MM/dd/yy HH:mm:ss", Locale.US)
+        return format.format(dateTime)
+    }
+
+    fun Long.getDateTime(): String? {
+        try {
+            val sdf = SimpleDateFormat("MM/dd/yy HH:mm:ss")
+            val netDate = Date(this * 1000)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
         }
     }
 }

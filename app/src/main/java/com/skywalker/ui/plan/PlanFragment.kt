@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
+import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentCountryWiseSimProviderBinding
 import com.skywalker.helper.ApiProgressDialog
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class PlanFragment : Fragment(R.layout.fragment_country_wise_sim_provider) {
+class PlanFragment : BaseFragment(R.layout.fragment_country_wise_sim_provider) {
 
     private lateinit var binding: FragmentCountryWiseSimProviderBinding
 
@@ -111,6 +112,10 @@ class PlanFragment : Fragment(R.layout.fragment_country_wise_sim_provider) {
                         true,
                         requireActivity()
                     )
+                }
+                is ResultWrapper.SessionExpired -> {
+                    planViewModel.clearPreference()
+                    redirectToLogin()
                 }
                 else -> {
 

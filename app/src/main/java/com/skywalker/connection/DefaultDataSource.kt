@@ -58,6 +58,7 @@ class DefaultDataSource
             remoteDataSource.getPlans(authToken, type, countryId, page, perPage)
         }
     }
+
     suspend fun getPaymentData(
         authToken: String, planPaymentRequest: PlanPaymentRequest
     ): ResultWrapper<StripData> {
@@ -95,15 +96,23 @@ class DefaultDataSource
         updateProfileRequest: UpdateProfileRequest
     ): ResultWrapper<LoginResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.updateUserDetails(authToken,updateProfileRequest)
+            remoteDataSource.updateUserDetails(authToken, updateProfileRequest)
         }
     }
 
     suspend fun getMyPlans(
-        authToken: String, type: Int,  page: Int, perPage: Int
+        authToken: String, type: Int, page: Int, perPage: Int
     ): ResultWrapper<PlanResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.getMyPlans(authToken, type,  page, perPage)
+            remoteDataSource.getMyPlans(authToken, type, page, perPage)
+        }
+    }
+
+    suspend fun getOrderHistory(
+        authToken: String, page: Int, perPage: Int
+    ): ResultWrapper<PlanResponse> {
+        return requestRemoteDataSource {
+            remoteDataSource.getOrderHistory(authToken, page, perPage)
         }
     }
 }

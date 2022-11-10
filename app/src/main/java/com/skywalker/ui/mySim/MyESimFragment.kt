@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.skywalker.R
+import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentMySimBinding
 import com.skywalker.helper.ApiProgressDialog
@@ -15,7 +16,7 @@ import com.skywalker.model.respone.PlanDataItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyESimFragment : Fragment(R.layout.fragment_my_sim) {
+class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
 
     private lateinit var binding: FragmentMySimBinding
 
@@ -111,6 +112,10 @@ class MyESimFragment : Fragment(R.layout.fragment_my_sim) {
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
                 }
+                is ResultWrapper.SessionExpired -> {
+                    myESimViewModel.clearPreference()
+                    redirectToLogin()
+                }
                 else -> {
                     mProgressDialog.dismiss()
                 }
@@ -127,6 +132,10 @@ class MyESimFragment : Fragment(R.layout.fragment_my_sim) {
                 }
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()
+                }
+                is ResultWrapper.SessionExpired -> {
+                    myESimViewModel.clearPreference()
+                    redirectToLogin()
                 }
                 else -> {
                     mProgressDialog.dismiss()

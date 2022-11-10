@@ -26,6 +26,7 @@
                     layout="@layout/layout_toolbar" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivNoOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
