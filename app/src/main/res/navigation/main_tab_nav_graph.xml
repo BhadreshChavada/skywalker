@@ -27,6 +27,17 @@
         <action
             android:id="@+id/action_homeMainFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_homeMainFragment_to_referEarnFragment"
+            app:destination="@id/referEarnFragment" />
+
+        <action
+            android:id="@+id/action_homeMainFragment_to_planDetailFragment"
+            app:destination="@id/planDetailFragment" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_paymentConfirmationFragment"
+            app:destination="@id/paymentConfirmationFragment" />
     </fragment>
 
     <fragment
@@ -98,6 +109,12 @@
         android:name="com.skywalker.ui.plan.PlanAdditionalInfoFragment"
         android:label="planAdditionalInfoFragment"
         tools:layout="@layout/fragment_sim_additional_info" />
+
+    <fragment
+        android:id="@+id/referEarnFragment"
+        android:name="com.skywalker.ui.profile.ReferEarnFragment"
+        android:label="referEarnFragment"
+        tools:layout="@layout/fragment_refer_earn" />
 
 
 </navigation>

@@ -28,12 +28,12 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
     }
 
     fun getAuthToken() = dataStore.data.map {
-        it[PreferencesKeys.authToken]
+        it[authToken]
     }
 
     suspend fun isWTSeen(seen: Boolean) {
         dataStore.edit { preferences ->
-            preferences[wtStatus] = (seen ?: false).toString()
+            preferences[wtStatus] = (seen).toString()
         }
     }
 
@@ -64,8 +64,9 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
     }
 
     suspend fun clearUserDataPrefs() {
-        storeAuthToken("")
-        storeUserData(null)
+        dataStore.edit {
+            it.clear()
+        }
     }
 
 }

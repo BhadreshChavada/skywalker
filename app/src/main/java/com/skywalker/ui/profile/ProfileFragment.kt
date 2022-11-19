@@ -3,6 +3,8 @@ package com.skywalker.ui.profile
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,17 +67,30 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             logoutConfirmation()
         }
 
+        binding.tvReferAndEarn.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_homeMainFragment_to_referEarnFragment
+            )
+        }
+
     }
 
-    fun logoutConfirmation() {
+    private fun logoutConfirmation() {
         val builder = AlertDialog.Builder(requireActivity())
         builder.setTitle(getString(R.string.app_name))
         builder.setMessage(getString(R.string.logout_confirmation))
 
         builder.setPositiveButton(getString(R.string.yes)) { dialog, which ->
-            profileViewModel.clearPreference()
-            redirectToLogin()
             dialog.dismiss()
+            profileViewModel.clearPreference()
+//            Handler(Looper.myLooper()!!).postDelayed({
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                requireActivity().finish()
+//            },2000)
+
+
         }
 
         builder.setNegativeButton(getString(R.string.no)) { dialog, which ->

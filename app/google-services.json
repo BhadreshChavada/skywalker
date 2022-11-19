@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "915336205942",
+    "project_id": "skywalker-10827",
+    "storage_bucket": "skywalker-10827.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915336205942:android:da472118a42e663882b157",
+        "android_client_info": {
+          "package_name": "com.skywalker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915336205942-g14tjkodl7lh3ffstrqtkv82u7a6amub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3vQ_I2VWAjOlx4hOrOxVD19MuqWafoqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915336205942-g14tjkodl7lh3ffstrqtkv82u7a6amub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

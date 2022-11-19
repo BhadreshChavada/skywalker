@@ -3,10 +3,13 @@ package com.skywalker.ui.mySim
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.skywalker.R
 import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
@@ -55,6 +58,12 @@ class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
 
                 binding.rvCurrentSim.visibility = View.VISIBLE
                 binding.rvActivatedSim.visibility = View.GONE
+
+                if(currentSimAdapter.itemCount == 0){
+                    binding.viewNoOrder.visibility = VISIBLE
+                }else{
+                    binding.viewNoOrder.visibility = GONE
+                }
             }
             1 -> {
                 binding.tvCurrentSim.setTextColor(resources.getColor(R.color.black_text))
@@ -65,6 +74,12 @@ class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
 
                 binding.rvCurrentSim.visibility = View.GONE
                 binding.rvActivatedSim.visibility = View.VISIBLE
+
+                if(activatedSimAdapter.itemCount == 0){
+                    binding.viewNoOrder.visibility = VISIBLE
+                }else{
+                    binding.viewNoOrder.visibility = GONE
+                }
             }
 
         }
@@ -83,7 +98,12 @@ class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
         activatedSimAdapter = ActivatedSimAdapter(requireActivity(),
             object : ActivatedSimAdapter.PlanAdapterItemClick {
                 override fun redirectToDetails(planDataItem: PlanDataItem) {
-
+                    val bundle = Bundle()
+                    bundle.putString("planID", planDataItem.planId.toString())
+                    findNavController().navigate(
+                        R.id.action_homeMainFragment_to_planDetailFragment,
+                        bundle
+                    )
                 }
 
             })
@@ -92,7 +112,12 @@ class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
         currentSimAdapter = CurrentSimAdapter(requireActivity(),
             object : CurrentSimAdapter.PlanAdapterItemClick {
                 override fun redirectToDetails(planDataItem: PlanDataItem) {
-
+                    val bundle = Bundle()
+                    bundle.putString("planID", planDataItem.planId.toString())
+                    findNavController().navigate(
+                        R.id.action_homeMainFragment_to_planDetailFragment,
+                        bundle
+                    )
                 }
 
             })
@@ -108,6 +133,9 @@ class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
                     // Success code go here
                     mProgressDialog.dismiss()
                     currentSimAdapter.submitList(result.value.data)
+                    if(currentSimAdapter.itemCount == 0){
+                        binding.viewNoOrder.visibility = VISIBLE
+                    }
                 }
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()

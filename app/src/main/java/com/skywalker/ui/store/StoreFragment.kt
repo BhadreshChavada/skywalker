@@ -8,6 +8,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,8 +18,12 @@ import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentStoreBinding
 import com.skywalker.helper.AdapterItemClickListener
 import com.skywalker.helper.ApiProgressDialog
+import com.skywalker.helper.Utils
 import com.skywalker.model.respone.CountryDataItem
+import com.skywalker.model.respone.PlanDataItem
 import com.skywalker.model.respone.RegionDataItem
+import com.skywalker.ui.plan.PlanViewModel
+import com.skywalker.ui.plan.PlansAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -28,12 +33,13 @@ class StoreFragment : BaseFragment(R.layout.fragment_store) {
     private lateinit var binding: FragmentStoreBinding
 
     private val storeViewModel: StoreViewModel by viewModels()
+    private val planViewModel: PlanViewModel by activityViewModels()
     private lateinit var mProgressDialog: ApiProgressDialog
 
     lateinit var countryAdapter: CountryAdapter
     lateinit var regionAdapter: RegionAdapter
     lateinit var popularCountryAdapter: PopularCountryAdapter
-    lateinit var globalSimAdapter: GlobalSimAdapter
+    lateinit var globalSimAdapter: PlansAdapter
     private var _isCountryLastPage = false
     private var _isRegionLastPage = false
     private var _isPlanLastPage = false
@@ -177,7 +183,24 @@ class StoreFragment : BaseFragment(R.layout.fragment_store) {
         binding.rvRegion.layoutManager = GridLayoutManager(requireActivity(), 4)
         binding.rvRegion.adapter = regionAdapter
 
-        globalSimAdapter = GlobalSimAdapter(requireActivity())
+        globalSimAdapter = PlansAdapter(requireActivity(), object : PlansAdapter.PlanAdapterItemClick {
+            override fun redirectToDetails(planDataItem: PlanDataItem) {
+                val bundle = Bundle()
+                bundle.putString("planID", planDataItem.planId.toString())
+                findNavController().navigate(
+                    R.id.action_homeMainFragment_to_planDetailFragment,
+                    bundle
+                )
+            }
+
+            override fun redirectToPayment(planDataItem: PlanDataItem) {
+                mProgressDialog.show()
+                planViewModel.selectedPlanDetails = planDataItem
+                planViewModel.getPlanPayment(planDataItem.price, planDataItem.planId.toString())
+
+            }
+
+        })
         binding.rvGlobal.adapter = globalSimAdapter
 
 
@@ -266,8 +289,42 @@ class StoreFragment : BaseFragment(R.layout.fragment_store) {
         }
 
         storeViewModel.userLiveData.observe(viewLifecycleOwner) {
-            binding.tvTitle.text = it.userName
-            storeViewModel.getCountryData()
+            it?.let {
+                binding.tvTitle.text = it.userName
+                storeViewModel.getCountryData()
+            }
+
+        }
+
+        planViewModel.stripLiveData.observe(viewLifecycleOwner) { result ->
+            mProgressDialog.dismiss()
+            when (result) {
+                is ResultWrapper.Success -> if (result.value != null) {
+                    // Success code go here
+                    val bundle = Bundle()
+                    val paymentData = result.value.data
+                    bundle.putString("ephemeralKey", paymentData.ephemeralKey)
+                    bundle.putString("customer", paymentData.customer)
+                    bundle.putString("publishableKey", paymentData.publishableKey)
+                    bundle.putString("paymentIntent", paymentData.paymentIntent)
+                    findNavController().navigate(
+                        R.id.action_mainFragment_to_paymentConfirmationFragment,
+                        bundle
+                    )
+                }
+                is ResultWrapper.Error -> {
+                    Utils.showSnackBar(
+                        binding.root,
+                        result.errorResponse?.message!!,
+                        true,
+                        requireActivity()
+                    )
+                }
+                else -> {
+
+                    // if result value is something else
+                }
+            }
 
         }
 

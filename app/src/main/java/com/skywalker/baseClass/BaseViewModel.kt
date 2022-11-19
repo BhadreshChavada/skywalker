@@ -17,6 +17,7 @@ open class BaseViewModel
     fun clearPreference() {
         viewModelScope.launch {
             dataStoreManager.clearUserDataPrefs()
+            dataStoreManager.isWTSeen(true)
         }
     }
 }

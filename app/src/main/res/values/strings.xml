@@ -68,6 +68,9 @@
     <string name="show_more_btn">Show More</string>
     <string name="connected">Connected</string>
     <string name="activated_esims">Activated E SIMs</string>
+    <string name="current_e_sim">Current E SIMs</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="refer_and_earn"><![CDATA[Refer & Earn]]></string>
+    <string name="you_don_t_have_any_purchase_sim_yet">You haven’t purchased any sim</string>
 </resources>

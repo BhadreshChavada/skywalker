@@ -1,13 +1,18 @@
 package com.skywalker.connection
 
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.skywalker.model.request.*
 import com.skywalker.model.respone.*
+import retrofit2.HttpException
+import retrofit2.Response
 import javax.inject.Inject
 
 class DefaultDataSource
 @Inject constructor(
-    private val remoteDataSource: RemoteDataSource,
-    private val connectivityStatusProvider: ConnectivityStatusProvider
+    private val connectivityStatusProvider: ConnectivityStatusProvider,
+    private val remoteApiService: RemoteApiService,
 ) {
 
     private suspend fun <T> requestRemoteDataSource(
@@ -19,11 +24,42 @@ class DefaultDataSource
             remoteRequest.invoke()
     }
 
+    private suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): ResultWrapper<T> =
+        try {
+            val response: Response<T> = apiCall()
+            if (response.isSuccessful) {
+                ResultWrapper.Success(response.body())
+            } else if (response.code() == 401) {
+                ResultWrapper.SessionExpired(response.code())
+            } else {
+
+                val gson = Gson()
+                val type = object : TypeToken<ErrorResponse>() {}.type
+                val errorResponse: ErrorResponse? =
+                    gson.fromJson(response.errorBody()!!.charStream(), type)
+                Log.d("errorResponse", errorResponse?.message!!)
+                ResultWrapper.Error(
+                    exception = HttpException(response),
+                    errorResponse = errorResponse
+                )
+            }
+        } catch (httpException: HttpException) {
+            ResultWrapper.Error(exception = httpException)
+        } catch (e: Exception) {
+            ResultWrapper.Error(exception = e)
+        }
+
+    private fun createToken(token: String): String {
+        return "Bearer $token"
+    }
+
     suspend fun doRegisterWithEmail(
         requestModel: SignupRequest
     ): ResultWrapper<SuccessResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.doRegisterWithEmail(requestModel)
+            safeApiCall {
+                remoteApiService.doRegisterWithEmail(requestModel)
+            }
         }
     }
 
@@ -31,7 +67,9 @@ class DefaultDataSource
         requestModel: LoginRequest
     ): ResultWrapper<LoginResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.doLoginWithEmail(requestModel)
+            safeApiCall {
+                remoteApiService.doLoginWithEmail(requestModel)
+            }
         }
     }
 
@@ -39,7 +77,9 @@ class DefaultDataSource
         authToken: String, page: Int, perPage: Int
     ): ResultWrapper<CountryData> {
         return requestRemoteDataSource {
-            remoteDataSource.getCountries(authToken, page, perPage)
+            safeApiCall {
+                remoteApiService.getCountries(createToken(authToken), page, perPage)
+            }
         }
     }
 
@@ -47,7 +87,9 @@ class DefaultDataSource
         authToken: String, page: Int, perPage: Int
     ): ResultWrapper<RegionResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.getRegions(authToken, page, perPage)
+            safeApiCall {
+                remoteApiService.getRegions(createToken(authToken), page, perPage)
+            }
         }
     }
 
@@ -55,7 +97,41 @@ class DefaultDataSource
         authToken: String, type: Int, countryId: Int, page: Int, perPage: Int
     ): ResultWrapper<PlanResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.getPlans(authToken, type, countryId, page, perPage)
+            when (type) {
+                1 -> {
+                    safeApiCall {
+                        remoteApiService.getPlans(
+                            createToken(authToken),
+                            type,
+                            countryId,
+                            page,
+                            perPage
+                        )
+                    }
+                }
+                2 -> {
+                    safeApiCall {
+                        remoteApiService.getRegionWisePlans(
+                            createToken(authToken),
+                            type,
+                            countryId,
+                            page,
+                            perPage
+                        )
+                    }
+                }
+                else -> {
+                    safeApiCall {
+                        remoteApiService.getGlobalPlans(
+                            createToken(authToken),
+                            type,
+                            page,
+                            perPage
+                        )
+                    }
+                }
+            }
+
         }
     }
 
@@ -63,7 +139,9 @@ class DefaultDataSource
         authToken: String, planPaymentRequest: PlanPaymentRequest
     ): ResultWrapper<StripData> {
         return requestRemoteDataSource {
-            remoteDataSource.getPaymentData(authToken, planPaymentRequest)
+            safeApiCall {
+                remoteApiService.getPaymentData(createToken(authToken), planPaymentRequest)
+            }
         }
     }
 
@@ -71,7 +149,9 @@ class DefaultDataSource
         authToken: String, planId: Int
     ): ResultWrapper<PlanDetailResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.getPlansDetails(authToken, planId)
+            safeApiCall {
+                remoteApiService.getPlansDetails(createToken(authToken), planId)
+            }
         }
     }
 
@@ -79,7 +159,9 @@ class DefaultDataSource
         authToken: String, paymentStatusRequest: UpdatePaymentStatusRequest
     ): ResultWrapper<SuccessResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.updatePaymentStatus(authToken, paymentStatusRequest)
+            safeApiCall {
+                remoteApiService.updatePaymentStatus(createToken(authToken), paymentStatusRequest)
+            }
         }
     }
 
@@ -87,7 +169,9 @@ class DefaultDataSource
         authToken: String
     ): ResultWrapper<LoginResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.getUserData(authToken)
+            safeApiCall {
+                remoteApiService.getUserDetails(createToken(authToken))
+            }
         }
     }
 
@@ -96,7 +180,9 @@ class DefaultDataSource
         updateProfileRequest: UpdateProfileRequest
     ): ResultWrapper<LoginResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.updateUserDetails(authToken, updateProfileRequest)
+            safeApiCall {
+                remoteApiService.updateUserDetails(createToken(authToken), updateProfileRequest)
+            }
         }
     }
 
@@ -104,7 +190,9 @@ class DefaultDataSource
         authToken: String, type: Int, page: Int, perPage: Int
     ): ResultWrapper<PlanResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.getMyPlans(authToken, type, page, perPage)
+            safeApiCall {
+                remoteApiService.getMyPlans(createToken(authToken), type, page, perPage)
+            }
         }
     }
 
@@ -112,7 +200,10 @@ class DefaultDataSource
         authToken: String, page: Int, perPage: Int
     ): ResultWrapper<PlanResponse> {
         return requestRemoteDataSource {
-            remoteDataSource.getOrderHistory(authToken, page, perPage)
+            safeApiCall {
+                remoteApiService.getOrderHistory(createToken(authToken), page, perPage)
+            }
         }
     }
+
 }

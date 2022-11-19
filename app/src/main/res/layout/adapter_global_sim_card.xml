@@ -78,7 +78,7 @@
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="@string/calls_and_sms"
+                    android:text="@{data.planType}"
                     android:textAllCaps="true"
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintBottom_toBottomOf="parent"

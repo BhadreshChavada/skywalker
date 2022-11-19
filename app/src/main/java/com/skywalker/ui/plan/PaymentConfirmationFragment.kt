@@ -2,6 +2,8 @@ package com.skywalker.ui.plan
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -163,10 +165,13 @@ class PaymentConfirmationFragment : BaseFragment(R.layout.fragment_payment_confi
     }
 
     private fun redirectToHome() {
-        val intent = Intent(requireActivity(), MainTabActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        requireActivity().finish()
+        Handler(Looper.myLooper()!!).postDelayed({
+            val intent = Intent(requireActivity(), MainTabActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish()
+        },2000)
+
     }
 
     private fun presentPaymentSheet() {

@@ -3,6 +3,7 @@ package com.skywalker.ui.plan
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
@@ -77,7 +78,10 @@ class PlanDetailsFragment : BaseFragment(R.layout.fragment_plan_details) {
                     // Success code go here
                     planDetail = result.value.planDataItem!!
                     binding.data = planDetail
-                    binding.toolbar.tvTitle.text = planDetail?.title
+                    binding.toolbar.tvTitle.text = planDetail.title
+                    if(planDetail.status == "sold"){
+                        binding.btnBuy.visibility = GONE
+                    }
                 }
                 is ResultWrapper.Error -> {
                     Utils.showSnackBar(

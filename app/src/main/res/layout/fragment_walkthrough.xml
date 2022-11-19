@@ -44,7 +44,9 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/sideBg"
                     android:layout_width="@dimen/_45sdp"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/_550sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_wt_right_side"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -62,7 +64,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginEnd="@dimen/_7sdp"
-                    android:layout_marginBottom="@dimen/_160sdp"
+                    android:layout_marginBottom="@dimen/_158sdp"
                     android:src="@drawable/ic_wt_next"
                     app:layout_constraintBottom_toBottomOf="@+id/sideBg"
                     app:layout_constraintEnd_toEndOf="parent" />
