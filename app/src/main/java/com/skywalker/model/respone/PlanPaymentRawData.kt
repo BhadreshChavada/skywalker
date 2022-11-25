@@ -17,7 +17,11 @@ data class Data(
     @SerializedName("paymentIntent")
     val paymentIntent: String = "",
     @SerializedName("customer")
-    val customer: String = ""
+    val customer: String = "",
+    @SerializedName("orderId")
+    val orderId: String = "",
+    @SerializedName("paymentId")
+    val paymentId: String = ""
 ) : Serializable
 
 

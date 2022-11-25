@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class UpdatePaymentStatusRequest(
     @SerializedName("orderId")
-    val orderId: Int = 0,
+    val orderId: String = "",
     @SerializedName("paymentId")
-    val paymentId: String = "1",
+    val paymentId: String = "",
     @SerializedName("status")
     val status: String = ""
 )

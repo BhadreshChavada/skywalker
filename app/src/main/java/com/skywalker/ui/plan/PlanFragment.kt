@@ -128,16 +128,9 @@ class PlanFragment : BaseFragment(R.layout.fragment_country_wise_sim_provider) {
             when (result) {
                 is ResultWrapper.Success -> if (result.value != null) {
                     // Success code go here
-                    val bundle = Bundle()
-                    val paymentData = result.value.data
-                    bundle.putString("ephemeralKey", paymentData.ephemeralKey)
-                    bundle.putString("customer", paymentData.customer)
-                    bundle.putString("publishableKey", paymentData.publishableKey)
-                    bundle.putString("paymentIntent", paymentData.paymentIntent)
+                    planViewModel.paymentRawDetails = result.value
                     findNavController().navigate(
-                        R.id.action_planFragment_to_paymentConfirmationFragment,
-                        bundle
-                    )
+                        R.id.action_planFragment_to_paymentConfirmationFragment)
                 }
                 is ResultWrapper.Error -> {
                     Utils.showSnackBar(
