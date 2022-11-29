@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.android.installreferrer.api.InstallReferrerClient
+import com.android.installreferrer.api.InstallReferrerStateListener
+import com.android.installreferrer.api.ReferrerDetails
 import com.skywalker.R
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentAuthenticationBinding
@@ -23,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
 
     private lateinit var binding: FragmentAuthenticationBinding
+    private lateinit var referrerClient: InstallReferrerClient
 
     private val authenticationViewModel: AuthenticationViewModel by viewModels()
     private lateinit var mProgressDialog: ApiProgressDialog
@@ -37,6 +41,7 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
         mProgressDialog = ApiProgressDialog(requireActivity())
         binding.viewModel = authenticationViewModel
         authenticationViewModel.updateWTStatus()
+        authenticationViewModel.isFreshInstalled()
         return binding.root
     }
 
@@ -51,6 +56,12 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
             if (it != null) {
                 Utils.showSnackBar(binding.root, it, true, requireActivity())
                 mProgressDialog.dismiss()
+            }
+        }
+
+        authenticationViewModel.isFreshInstalled.observe(viewLifecycleOwner) {
+            if (it) {
+                initReferral()
             }
         }
 
@@ -143,6 +154,37 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
             mProgressDialog.show()
             authenticationViewModel.doSignUp()
         }
+    }
+
+    private fun initReferral() {
+        referrerClient = InstallReferrerClient.newBuilder(requireActivity()).build()
+        referrerClient.startConnection(object : InstallReferrerStateListener {
+
+            override fun onInstallReferrerSetupFinished(responseCode: Int) {
+                when (responseCode) {
+                    InstallReferrerClient.InstallReferrerResponse.OK -> {
+                        // Connection established.
+                        val response: ReferrerDetails = referrerClient.installReferrer
+                        val referrerUrl: String = response.installReferrer
+                        val referrerClickTime: Long = response.referrerClickTimestampSeconds
+                        val appInstallTime: Long = response.installBeginTimestampSeconds
+                        val instantExperienceLaunched: Boolean = response.googlePlayInstantParam
+                        referrerClient.endConnection()
+                    }
+                    InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> {
+                        // API not available on the current Play Store app.
+                    }
+                    InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE -> {
+                        // Connection couldn't be established.
+                    }
+                }
+            }
+
+            override fun onInstallReferrerServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+            }
+        })
     }
 
 }

@@ -73,6 +73,10 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             )
         }
 
+        binding.tvSkyMoneyAmount.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMainFragment_to_walletFragment)
+        }
+
     }
 
     private fun logoutConfirmation() {

@@ -16,6 +16,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/default_square.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_green_logo.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_my_e_sim_selected.xml" value="0.1575" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_next_bottom.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_share_icon.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_splash_logo.xml" value="0.161" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_tab_home.xml" value="0.1575" />
@@ -54,7 +55,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_order_history.xml" value="0.16" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_payment_confirmation.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_plan_details.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_refer_earn.xml" value="0.22" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_signup.xml" value="0.24722222222222223" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_sim_additional_info.xml" value="0.25" />
@@ -62,6 +63,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_splash.xml" value="0.22" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_store.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_walkthrough.xml" value="0.14305555555555555" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_wallet.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/layout_home_tab_icon.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/layout_toolbar.xml" value="0.2546875" />
       </map>

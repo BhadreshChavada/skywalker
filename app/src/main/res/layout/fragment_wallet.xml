@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginBottom="@dimen/_minus18sdp"
+            app:cardCornerRadius="@dimen/_18sdp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/layout_toolbar" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/ic_bg_banner"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_165sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/bgCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_220sdp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bg_card_1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTitle"
+                            style="@style/regularText_white_19"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Skywalker Wallet"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/bgCard"
+                            tools:text="Skywalker Wallet" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCashBack"
+                            style="@style/regularText_white_13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="5% Cashback"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCurrency"
+                            style="@style/regularText_white_19"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_45sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="US$"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCashBack"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCurrencyValue"
+                            style="@style/regularText_white_19"
+                            android:textSize="@dimen/_50sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:maxLines="1"
+                            android:text="0.00"
+                            app:layout_constraintStart_toEndOf="@+id/tvCurrency"
+                            app:layout_constraintTop_toTopOf="@+id/tvCurrency"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvCurrency"
+                            />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvWalletTitle"
+                            style="@style/regularText_white_19"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Skymoney Balance"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCurrency"
+                            tools:text="Skywalker Wallet" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLogout"
+                    style="@style/regularText_black_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_next_bottom"
+                    android:drawablePadding="@dimen/_15sdp"
+                    android:text="Skymoney Transaction History"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bg_rectangle_rounded_corner_white"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -36,6 +36,7 @@ class AuthenticationViewModel
         loginApiRepository.signUpLiveData
 
     val showErrorLiveData = SingleLiveEvent<String>()
+    val isFreshInstalled = SingleLiveEvent<Boolean>()
 
 
     fun doSignUp() {
@@ -75,6 +76,7 @@ class AuthenticationViewModel
 
     fun saveUserData(userData: UserData) {
         viewModelScope.launch {
+            dataStoreManager.isFreshInstalled(false)
             dataStoreManager.storeUserData(userData)
             dataStoreManager.storeAuthToken(userData.authentication.accessToken)
         }
@@ -83,6 +85,18 @@ class AuthenticationViewModel
     fun updateWTStatus() {
         viewModelScope.launch {
             dataStoreManager.isWTSeen(true)
+        }
+    }
+
+    fun isFreshInstalled() {
+        viewModelScope.launch {
+            dataStoreManager.getFreshInstalled().collect {
+                if(it == null){
+                    isFreshInstalled.value = true
+                }else{
+                    isFreshInstalled.value = it.toBoolean()
+                }
+            }
         }
     }
 }

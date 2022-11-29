@@ -12,4 +12,6 @@ data class SignupRequest(
     @Transient
     @SerializedName("confirmPassword")
     var confirmPassword: String = "",
+    @SerializedName("referralCode")
+    var referralCode: String = "",
 )

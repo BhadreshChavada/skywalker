@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.google.gson.Gson
 import com.skywalker.helper.DataStoreManager.PreferencesKeys.authToken
+import com.skywalker.helper.DataStoreManager.PreferencesKeys.freshInstalled
 import com.skywalker.helper.DataStoreManager.PreferencesKeys.wtStatus
 import com.skywalker.model.respone.UserData
 import javax.inject.Singleton
@@ -19,6 +20,7 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
         val authToken = stringPreferencesKey("auth_token")
         val userData = stringPreferencesKey("user_data")
         val wtStatus = stringPreferencesKey("wt_status")
+        val freshInstalled = stringPreferencesKey("fresh_installed")
     }
 
     suspend fun storeAuthToken(authToken: String) {
@@ -39,6 +41,16 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
 
     fun getWTSeen() = dataStore.data.map {
         it[wtStatus]
+    }
+
+    suspend fun isFreshInstalled(status: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[freshInstalled] = (status).toString()
+        }
+    }
+
+    fun getFreshInstalled() = dataStore.data.map {
+        it[freshInstalled]
     }
 
     suspend fun storeUserData(userData: UserData?) {

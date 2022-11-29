@@ -27,6 +27,10 @@
         <action
             android:id="@+id/action_homeMainFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+
+        <action
+            android:id="@+id/action_homeMainFragment_to_walletFragment"
+            app:destination="@id/walletFragment" />
         <action
             android:id="@+id/action_homeMainFragment_to_referEarnFragment"
             app:destination="@id/referEarnFragment" />
@@ -83,6 +87,12 @@
         android:name="com.skywalker.ui.profile.OrderHistoryFragment"
         android:label="orderHistoryFragment"
         tools:layout="@layout/fragment_order_history" />
+
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.skywalker.ui.transaction.WalletFragment"
+        android:label="walletFragment"
+        tools:layout="@layout/fragment_wallet" />
 
     <fragment
         android:id="@+id/paymentConfirmationFragment"

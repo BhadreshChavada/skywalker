@@ -7,6 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -121,8 +122,15 @@ class StoreFragment : BaseFragment(R.layout.fragment_store) {
         mProgressDialog.show()
         setRecycleView()
         setObserver()
+        setClickListener()
         storeViewModel.countryCurrentPage = 1
         storeViewModel.getUserData()
+    }
+
+    private fun setClickListener(){
+        binding.tvSkyMoneyAmount.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMainFragment_to_walletFragment)
+        }
     }
 
     private fun setRecycleView() {
