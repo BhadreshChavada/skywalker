@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_divider_gradiant.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_amount.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_5_green.xml" value="0.1575" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_green.xml" value="0.1565" />
@@ -15,6 +16,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/default_square.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_green_logo.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_my_e_sim_selected.xml" value="0.1575" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_share_icon.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_splash_logo.xml" value="0.161" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_tab_home.xml" value="0.1575" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_tab_home_selected.xml" value="0.1575" />
@@ -30,7 +32,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/selected_dot.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/selected_square.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/tab_selector.xml" value="0.1565" />
-        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/activity_home_main.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/activity_home_main.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/activity_main.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_country.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_global_sim_card.xml" value="0.15" />
@@ -58,7 +60,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_sim_additional_info.xml" value="0.25" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_sim_details.xml" value="0.2" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_splash.xml" value="0.22" />
-        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_store.xml" value="0.14201183431952663" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_store.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_walkthrough.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/layout_home_tab_icon.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/layout_toolbar.xml" value="0.2546875" />
