@@ -63,10 +63,10 @@ class PaymentConfirmationFragment : BaseFragment(R.layout.fragment_payment_confi
 
     private fun setupPayment() {
 
-        val ephemeralKey = arguments?.getString("ephemeralKey", "")
-        val customer = arguments?.getString("customer", "")
-        val publishableKey = arguments?.getString("publishableKey", "")
-        paymentIntentClientSecret = arguments?.getString("paymentIntent", "")!!
+        val ephemeralKey = planViewModel.paymentRawDetails.data.ephemeralKey
+        val customer = planViewModel.paymentRawDetails.data.customer
+        val publishableKey = planViewModel.paymentRawDetails.data.publishableKey
+        paymentIntentClientSecret = planViewModel.paymentRawDetails.data.paymentIntent
 
         paymentSheet = PaymentSheet(
             this
@@ -76,8 +76,8 @@ class PaymentConfirmationFragment : BaseFragment(R.layout.fragment_payment_confi
                     print("Error: ${paymentSheetResult.error}")
                     planViewModel.updatePaymentStatus(
                         UpdatePaymentStatusRequest(
-                            planDetails.planId,
-                            "na",
+                            planViewModel.paymentRawDetails.data.orderId,
+                            planViewModel.paymentRawDetails.data.paymentId,
                             paymentSheetResult.error.toString()
                         )
                     )
@@ -98,8 +98,8 @@ class PaymentConfirmationFragment : BaseFragment(R.layout.fragment_payment_confi
                     )
                     planViewModel.updatePaymentStatus(
                         UpdatePaymentStatusRequest(
-                            planDetails.planId,
-                            "na",
+                            planViewModel.paymentRawDetails.data.orderId,
+                            planViewModel.paymentRawDetails.data.paymentId,
                             "succeeded"
                         )
                     )

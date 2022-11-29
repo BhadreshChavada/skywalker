@@ -7,6 +7,7 @@ import com.skywalker.helper.DataStoreManager
 import com.skywalker.model.request.PlanPaymentRequest
 import com.skywalker.model.request.UpdatePaymentStatusRequest
 import com.skywalker.model.respone.PlanDataItem
+import com.skywalker.model.respone.StripData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,6 +25,7 @@ class PlanViewModel
     val paymentStatusLiveData = planApiRepository.paymentStatusLiveData
 
     lateinit var selectedPlanDetails: PlanDataItem
+    lateinit var paymentRawDetails: StripData
 
 
     fun getPlans(countryInt: Int, type: Int) {
