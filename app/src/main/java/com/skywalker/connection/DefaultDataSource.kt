@@ -58,7 +58,17 @@ class DefaultDataSource
     ): ResultWrapper<SuccessResponse> {
         return requestRemoteDataSource {
             safeApiCall {
-                remoteApiService.doRegisterWithEmail(requestModel)
+                if (requestModel.referralCode.isEmpty()) {
+                    val req = SignupRequestWithoutReferal(
+                        requestModel.password,
+                        requestModel.userName,
+                        requestModel.email
+                    )
+                    remoteApiService.doRegisterWithEmail(req)
+                } else {
+                    remoteApiService.doRegisterWithEmail(requestModel)
+                }
+
             }
         }
     }
@@ -69,6 +79,16 @@ class DefaultDataSource
         return requestRemoteDataSource {
             safeApiCall {
                 remoteApiService.doLoginWithEmail(requestModel)
+            }
+        }
+    }
+
+    suspend fun doSocialSignUp(
+        requestModel: SocialLoginRequest
+    ): ResultWrapper<LoginResponse> {
+        return requestRemoteDataSource {
+            safeApiCall {
+                remoteApiService.doSocialSignUp(requestModel)
             }
         }
     }

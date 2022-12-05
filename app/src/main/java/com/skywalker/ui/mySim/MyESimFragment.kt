@@ -100,6 +100,7 @@ class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
                 override fun redirectToDetails(planDataItem: PlanDataItem) {
                     val bundle = Bundle()
                     bundle.putString("planID", planDataItem.planId.toString())
+                    bundle.putBoolean("isPurchasedSim", true)
                     findNavController().navigate(
                         R.id.action_homeMainFragment_to_planDetailFragment,
                         bundle
@@ -114,6 +115,7 @@ class MyESimFragment : BaseFragment(R.layout.fragment_my_sim) {
                 override fun redirectToDetails(planDataItem: PlanDataItem) {
                     val bundle = Bundle()
                     bundle.putString("planID", planDataItem.planId.toString())
+                    bundle.putBoolean("isPurchasedSim", true)
                     findNavController().navigate(
                         R.id.action_homeMainFragment_to_planDetailFragment,
                         bundle

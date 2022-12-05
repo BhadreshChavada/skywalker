@@ -12,9 +12,19 @@ interface RemoteApiService {
         @Body signupRequest: SignupRequest
     ): Response<SuccessResponse>
 
+    @POST("auth/register")
+    suspend fun doRegisterWithEmail(
+        @Body signupRequest: SignupRequestWithoutReferal
+    ): Response<SuccessResponse>
+
     @POST("auth/login")
     suspend fun doLoginWithEmail(
         @Body loginWithEmailRequest: LoginRequest
+    ): Response<LoginResponse>
+
+    @POST("auth/social/login")
+    suspend fun doSocialSignUp(
+        @Body request: SocialLoginRequest
     ): Response<LoginResponse>
 
     @GET("plans/countries")

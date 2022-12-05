@@ -197,6 +197,7 @@
                                     android:layout_marginTop="@dimen/_20sdp"
                                     android:layout_marginEnd="@dimen/_18sdp"
                                     android:background="#898989"
+                                    android:visibility="gone"
                                     app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -207,6 +208,7 @@
                                     android:paddingStart="@dimen/_18sdp"
                                     android:paddingEnd="@dimen/_18sdp"
                                     android:text="@string/or_signup_with"
+                                    android:visibility="gone"
                                     app:layout_constraintBottom_toBottomOf="@+id/viewDivider"
                                     app:layout_constraintEnd_toEndOf="@+id/viewDivider"
                                     app:layout_constraintStart_toStartOf="@+id/viewDivider"
@@ -219,6 +221,7 @@
                                     android:layout_marginStart="@dimen/_45sdp"
                                     android:layout_marginTop="@dimen/_18sdp"
                                     android:src="@drawable/ic_fb_icon"
+                                    android:visibility="gone"
                                     app:layout_constraintEnd_toStartOf="@+id/btnGoogleSignUp"
                                     app:layout_constraintStart_toStartOf="@id/btn_register"
                                     app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
@@ -337,6 +340,7 @@
                                         android:layout_marginTop="@dimen/_22sdp"
                                         android:layout_marginEnd="@dimen/_18sdp"
                                         android:background="#898989"
+                                        android:visibility="gone"
                                         app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
 
                                     <androidx.appcompat.widget.AppCompatTextView
@@ -347,6 +351,7 @@
                                         android:paddingStart="@dimen/_18sdp"
                                         android:paddingEnd="@dimen/_18sdp"
                                         android:text="@string/or_signin_with"
+                                        android:visibility="gone"
                                         app:layout_constraintBottom_toBottomOf="@+id/viewDividerSignIn"
                                         app:layout_constraintEnd_toEndOf="@+id/viewDividerSignIn"
                                         app:layout_constraintStart_toStartOf="@+id/viewDividerSignIn"
@@ -359,6 +364,7 @@
                                         android:layout_marginStart="@dimen/_45sdp"
                                         android:layout_marginTop="@dimen/_18sdp"
                                         android:src="@drawable/ic_fb_icon"
+                                        android:visibility="gone"
                                         app:layout_constraintEnd_toStartOf="@+id/btnGoogleSignin"
                                         app:layout_constraintStart_toStartOf="@id/btn_signIn"
                                         app:layout_constraintTop_toBottomOf="@+id/viewDividerSignIn" />
@@ -370,6 +376,7 @@
                                         android:layout_marginTop="@dimen/_18sdp"
                                         android:layout_marginEnd="@dimen/_45sdp"
                                         android:src="@drawable/ic_google_icon"
+                                        android:visibility="gone"
                                         app:layout_constraintEnd_toEndOf="@id/btn_signIn"
                                         app:layout_constraintStart_toEndOf="@+id/btnFbSignin"
                                         app:layout_constraintTop_toBottomOf="@+id/viewDividerSignIn" />

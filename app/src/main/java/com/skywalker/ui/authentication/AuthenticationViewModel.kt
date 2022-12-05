@@ -13,6 +13,7 @@ import com.skywalker.helper.ValidationUtils.isValidPassword
 import com.skywalker.helper.ValidationUtils.isValidUserName
 import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.SignupRequest
+import com.skywalker.model.request.SocialLoginRequest
 import com.skywalker.model.respone.LoginResponse
 import com.skywalker.model.respone.SuccessResponse
 import com.skywalker.model.respone.UserData
@@ -29,6 +30,7 @@ class AuthenticationViewModel
 
     var loginRequest = LoginRequest()
     var signupRequest = SignupRequest()
+    var socialSignupRequest = SocialLoginRequest()
     val mLoginData: MutableLiveData<ResultWrapper<LoginResponse>?> =
         loginApiRepository.loginLiveData
 
@@ -58,6 +60,12 @@ class AuthenticationViewModel
                 loginApiRepository.doRegisterWithEmail(signupRequest)
             }
 
+        }
+    }
+
+    fun doSocialSignUp() {
+        viewModelScope.launch {
+            loginApiRepository.doSocialSignUp(socialSignupRequest)
         }
     }
 

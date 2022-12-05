@@ -125,6 +125,7 @@
             android:drawableEnd="@drawable/ic_next_right"
             android:drawablePadding="@dimen/_15sdp"
             android:text="@string/language"
+            android:visibility="gone"
             android:textColor="#5E6676"
             android:textSize="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"

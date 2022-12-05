@@ -42,6 +42,10 @@
         <action
             android:id="@+id/action_mainFragment_to_paymentConfirmationFragment"
             app:destination="@id/paymentConfirmationFragment" />
+
+        <action
+            android:id="@+id/action_mainFragmentt_to_planDetailFragment"
+            app:destination="@id/planDetailFragment" />
     </fragment>
 
     <fragment
@@ -57,6 +61,7 @@
         <action
             android:id="@+id/action_planFragment_to_planDetailFragment"
             app:destination="@id/planDetailFragment" />
+
     </fragment>
 
     <fragment
@@ -86,7 +91,13 @@
         android:id="@+id/orderHistoryFragment"
         android:name="com.skywalker.ui.profile.OrderHistoryFragment"
         android:label="orderHistoryFragment"
-        tools:layout="@layout/fragment_order_history" />
+        tools:layout="@layout/fragment_order_history" >
+
+        <action
+            android:id="@+id/action_orderFragment_to_planDetailFragment"
+            app:destination="@id/planDetailFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/walletFragment"

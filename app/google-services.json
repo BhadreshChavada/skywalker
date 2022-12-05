@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "915336205942",
-    "project_id": "skywalker-10827",
-    "storage_bucket": "skywalker-10827.appspot.com"
+    "project_number": "296909499862",
+    "project_id": "skywalker-364815",
+    "storage_bucket": "skywalker-364815.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:915336205942:android:da472118a42e663882b157",
+        "mobilesdk_app_id": "1:296909499862:android:3b94a1c425cda6ff328877",
         "android_client_info": {
           "package_name": "com.skywalker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "915336205942-g14tjkodl7lh3ffstrqtkv82u7a6amub.apps.googleusercontent.com",
+          "client_id": "296909499862-p08qeehlrv9s7kkj3pr23na35dru62tf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skywalker",
+            "certificate_hash": "3cfe546a064d98b7d18716ccffc623965edc0b06"
+          }
+        },
+        {
+          "client_id": "296909499862-hq58ssrmriqeua55bnhlotbd4r9vkeko.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA3vQ_I2VWAjOlx4hOrOxVD19MuqWafoqI"
+          "current_key": "AIzaSyBCoz20Q7WXrzuLk0Q26s4UKVF4NF67Pts"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "915336205942-g14tjkodl7lh3ffstrqtkv82u7a6amub.apps.googleusercontent.com",
+              "client_id": "296909499862-hq58ssrmriqeua55bnhlotbd4r9vkeko.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

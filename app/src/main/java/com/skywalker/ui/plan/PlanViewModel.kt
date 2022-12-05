@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skywalker.baseClass.BaseViewModel
 import com.skywalker.helper.DataStoreManager
+import com.skywalker.helper.Utils
 import com.skywalker.model.request.PlanPaymentRequest
 import com.skywalker.model.request.UpdatePaymentStatusRequest
 import com.skywalker.model.respone.PlanDataItem
@@ -45,7 +46,7 @@ class PlanViewModel
         viewModelScope.launch {
             planApiRepository.getPlans(
                 authToken, type,
-                countryInt, 1, 25
+                countryInt, 1, Utils.PAGE_PER_ITEM
             )
         }
     }

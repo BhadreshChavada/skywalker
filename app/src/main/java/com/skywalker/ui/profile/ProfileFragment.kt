@@ -1,24 +1,20 @@
 package com.skywalker.ui.profile
 
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.skywalker.R
 import com.skywalker.baseClass.BaseFragment
 import com.skywalker.databinding.FragmentProfileBinding
-import com.skywalker.databinding.FragmentStoreBinding
-import com.skywalker.helper.ApiProgressDialog
+import com.skywalker.helper.Utils
 import com.skywalker.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -77,6 +73,22 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             findNavController().navigate(R.id.action_homeMainFragment_to_walletFragment)
         }
 
+        binding.tvContactUs.setOnClickListener {
+            openEmail()
+        }
+
+    }
+
+    private fun openEmail() {
+        try {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            intent.data = Uri.parse("mailto:") // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(Utils.contactUsEmail))
+            intent.putExtra(Intent.EXTRA_SUBJECT, Utils.contactUsSubject)
+            startActivity(intent)
+        } catch (ex: ActivityNotFoundException) {
+
+        }
     }
 
     private fun logoutConfirmation() {

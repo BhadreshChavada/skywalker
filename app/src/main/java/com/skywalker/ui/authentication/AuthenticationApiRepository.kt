@@ -5,6 +5,7 @@ import com.skywalker.connection.DefaultDataSource
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.model.request.LoginRequest
 import com.skywalker.model.request.SignupRequest
+import com.skywalker.model.request.SocialLoginRequest
 import com.skywalker.model.respone.LoginResponse
 import com.skywalker.model.respone.SuccessResponse
 import dagger.Module
@@ -33,6 +34,11 @@ class AuthenticationApiRepository @Inject constructor(
 
     suspend fun doLoginWithEmail(request: LoginRequest){
         _loginLiveData.value = defaultDataSource.doLoginWithEmail(request)
+        _loginLiveData.value = null
+    }
+
+    suspend fun doSocialSignUp(request: SocialLoginRequest){
+        _loginLiveData.value = defaultDataSource.doSocialSignUp(request)
         _loginLiveData.value = null
     }
 }

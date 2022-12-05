@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skywalker.baseClass.BaseViewModel
 import com.skywalker.helper.DataStoreManager
+import com.skywalker.helper.Utils
 import com.skywalker.model.request.PlanPaymentRequest
 import com.skywalker.model.request.UpdatePaymentStatusRequest
 import com.skywalker.model.respone.PlanDataItem
@@ -45,12 +46,12 @@ class MyESimViewModel
             if(type==1){
                 planApiRepository.getMyPlans(
                     authToken, type,
-                    currentSimCurrentPage, 25
+                    currentSimCurrentPage, Utils.PAGE_PER_ITEM
                 )
             }else{
                 planApiRepository.getMyPlans(
                     authToken, type,
-                    activatedSimCurrentPage, 25
+                    activatedSimCurrentPage, Utils.PAGE_PER_ITEM
                 )
             }
 

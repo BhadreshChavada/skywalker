@@ -11,7 +11,11 @@ import java.util.*
 
 object Utils {
 
-//    "http://18.235.75.7:5000/api/v1/"
+    const val contactUsEmail = ""
+    const val contactUsSubject = ""
+    const val PAGE_PER_ITEM: Int = 50
+
+    //    "http://18.235.75.7:5000/api/v1/"
     val BASE_URL = "https://darkwolve.xyz/api/v1/"
     val STRIPE_PUBLIC_KEY =
         "pk_test_RIcFVHQ06soRIuzMtrlqYeiy008HScBaHU"
@@ -56,11 +60,6 @@ object Utils {
         }
     }
 
-   /* fun convertLongToTime(time: String): String {
-        val date = Date(time.toLong())
-        val format = SimpleDateFormat("MM/dd/yy HH:mm")
-        return format.format(date)
-    }*/
 
     fun Long.toTimeDateString(): String {
         val dateTime = Date(this)

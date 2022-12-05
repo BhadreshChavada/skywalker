@@ -7,17 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.skywalker.R
-import com.skywalker.databinding.AdapterMySimCardBinding
 import com.skywalker.databinding.AdapterOrderHistoryBinding
-import com.skywalker.databinding.AdapterSimCardBinding
-import com.skywalker.helper.Utils
 import com.skywalker.helper.Utils.getCardThemeBackground
-import com.skywalker.helper.Utils.getCardThemeImage
 import com.skywalker.helper.Utils.getDateTime
-import com.skywalker.helper.Utils.toTimeDateString
 import com.skywalker.model.respone.PlanDataItem
 
-class OrderHistoryAdapter(val context: Context) :
+class OrderHistoryAdapter(val context: Context, private val orderAdapterItemClick: ItemClick) :
     ListAdapter<PlanDataItem, OrderHistoryAdapter.OptionsViewHolder>(OPTIONS_DIFF_UTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OptionsViewHolder {
@@ -25,7 +20,7 @@ class OrderHistoryAdapter(val context: Context) :
     }
 
     override fun onBindViewHolder(holder: OptionsViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
+        holder.bindTo(getItem(position),orderAdapterItemClick)
     }
 
 
@@ -39,14 +34,19 @@ class OrderHistoryAdapter(val context: Context) :
         private val binding = AdapterOrderHistoryBinding.bind(itemView)
 
 
-        fun bindTo(item: PlanDataItem) {
+        fun bindTo(item: PlanDataItem, orderAdapterItemClick: ItemClick) {
             binding.apply {
                 data = item
                 tvDate.text = item.createdAt.toLong().getDateTime()
             }
 
+            binding.root.setOnClickListener {
+                orderAdapterItemClick.redirectToDetails(item)
+            }
+
             binding.bgCard.setImageDrawable(getCardThemeBackground(item.theme, context))
         }
+
 
 
     }
@@ -67,6 +67,10 @@ class OrderHistoryAdapter(val context: Context) :
                 return oldItem == newItem
             }
         }
+    }
+
+    interface ItemClick {
+        fun redirectToDetails(planDataItem: PlanDataItem)
     }
 
 }

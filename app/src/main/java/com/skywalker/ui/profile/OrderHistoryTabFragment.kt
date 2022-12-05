@@ -7,6 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,15 +15,16 @@ import com.skywalker.R
 import com.skywalker.baseClass.BaseFragment
 import com.skywalker.connection.ResultWrapper
 import com.skywalker.databinding.FragmentOrderHistoryBinding
+import com.skywalker.databinding.FragmentOrderMainTabHistoryBinding
 import com.skywalker.helper.ApiProgressDialog
 import com.skywalker.helper.Utils
 import com.skywalker.model.respone.PlanDataItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OrderHistoryFragment : BaseFragment(R.layout.fragment_order_history) {
+class OrderHistoryTabFragment : BaseFragment(R.layout.fragment_order_main_tab_history) {
 
-    private lateinit var binding: FragmentOrderHistoryBinding
+    private lateinit var binding: FragmentOrderMainTabHistoryBinding
     private val mViewModel: ProfileViewModel by viewModels()
     lateinit var orderHistoryAdapter: OrderHistoryAdapter
     private lateinit var mProgressDialog: ApiProgressDialog
@@ -33,15 +35,13 @@ class OrderHistoryFragment : BaseFragment(R.layout.fragment_order_history) {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_order_history, container, false
+            inflater, R.layout.fragment_order_main_tab_history, container, false
         )
-        binding.toolbar.tvTitle.text = getString(R.string.orders)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setClickListener()
         setObserver()
         setRecycleview()
         mProgressDialog = ApiProgressDialog(requireActivity())
@@ -49,17 +49,15 @@ class OrderHistoryFragment : BaseFragment(R.layout.fragment_order_history) {
         mViewModel.getOrderHistory()
     }
 
-    private fun setClickListener() {
-        binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
-    }
 
     private fun setRecycleview() {
         orderHistoryAdapter = OrderHistoryAdapter(requireActivity(),object : OrderHistoryAdapter.ItemClick{
             override fun redirectToDetails(planDataItem: PlanDataItem) {
                 val bundle = Bundle()
                 bundle.putString("planID", planDataItem.planId.toString())
+                bundle.putBoolean("isPurchasedSim", true)
                 findNavController().navigate(
-                    R.id.action_orderFragment_to_planDetailFragment,
+                    R.id.action_mainFragmentt_to_planDetailFragment,
                     bundle
                 )
             }

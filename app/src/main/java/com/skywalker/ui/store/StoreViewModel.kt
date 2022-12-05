@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.skywalker.baseClass.BaseViewModel
 import com.skywalker.helper.DataStoreManager
+import com.skywalker.helper.Utils
 import com.skywalker.model.respone.UserData
 import com.skywalker.ui.plan.PlanApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -63,7 +64,7 @@ class StoreViewModel
             storeApiRepository.getRegions(
                 authToken,
                 regionCurrentPage,
-                25
+                Utils.PAGE_PER_ITEM
             )
         }
     }
@@ -73,7 +74,7 @@ class StoreViewModel
             storeApiRepository.getCountries(
                 authToken,
                 countryCurrentPage,
-                24
+                Utils.PAGE_PER_ITEM
             )
         }
 
@@ -86,7 +87,7 @@ class StoreViewModel
                 3,
                 0,
                 planCurrentPage,
-                25
+                Utils.PAGE_PER_ITEM
             )
         }
 

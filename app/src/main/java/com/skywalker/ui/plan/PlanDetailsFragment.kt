@@ -58,8 +58,12 @@ class PlanDetailsFragment : BaseFragment(R.layout.fragment_plan_details) {
 
     private fun getBundleData() {
         val planID = arguments?.getString("planID")
+        val purchaseSim = arguments?.getBoolean("isPurchasedSim")
         mProgressDialog.show()
         planViewModel.getPlansDetails(planID!!.toInt())
+        if (purchaseSim == true) {
+            binding.btnBuy.visibility = GONE
+        }
     }
 
 
@@ -79,9 +83,7 @@ class PlanDetailsFragment : BaseFragment(R.layout.fragment_plan_details) {
                     planDetail = result.value.planDataItem!!
                     binding.data = planDetail
                     binding.toolbar.tvTitle.text = planDetail.title
-                    if(planDetail.status == "sold"){
-                        binding.btnBuy.visibility = GONE
-                    }
+
                 }
                 is ResultWrapper.Error -> {
                     Utils.showSnackBar(
@@ -108,7 +110,8 @@ class PlanDetailsFragment : BaseFragment(R.layout.fragment_plan_details) {
                     // Success code go here
                     planViewModel.paymentRawDetails = result.value
                     findNavController().navigate(
-                        R.id.action_planDetailFragment_to_paymentConfirmationFragment)
+                        R.id.action_planDetailFragment_to_paymentConfirmationFragment
+                    )
                 }
                 is ResultWrapper.Error -> {
                     Utils.showSnackBar(

@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.google.gson.Gson
+import com.skywalker.helper.Utils
 
 @HiltViewModel
 class ProfileViewModel
@@ -70,7 +71,7 @@ class ProfileViewModel
                 it?.let {
                     authToken = it
                     settingApiRepository.getOrderHistory(
-                        authToken, 1, 25
+                        authToken, 1, Utils.PAGE_PER_ITEM
                     )
                 }
             }

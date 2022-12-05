@@ -9,14 +9,19 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.skywalker.R
 import com.skywalker.databinding.FragmentMainTabPagerBinding
 import com.skywalker.ui.mySim.MyESimFragment
 import com.skywalker.ui.profile.ProfileFragment
 import com.skywalker.ui.store.StoreFragment
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainTabPagerFragment : Fragment(R.layout.fragment_main_tab_pager) {
@@ -44,25 +49,33 @@ class MainTabPagerFragment : Fragment(R.layout.fragment_main_tab_pager) {
             )
         binding.pager.adapter = tabsPagerAdapter
         binding.pager.isUserInputEnabled = true
-        setupTabMediator()
+        retrieveRemoteConfig()
     }
 
-    private fun setupTabMediator() {
-        val storeFragment = StoreFragment()
+    private fun retrieveRemoteConfig(){
+        val mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(3600)
+            .build()
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+
+        mFirebaseRemoteConfig.fetchAndActivate()
+            .addOnCompleteListener(requireActivity(), object : OnCompleteListener<Boolean?> {
+                override fun onComplete(task: Task<Boolean?>) {
+                    if (task.isSuccessful()) {
+                        setupTabMediator(mFirebaseRemoteConfig.getBoolean("isESimEnable"),
+                            mFirebaseRemoteConfig.getBoolean("isHotspotEnable"))
+                    }
+                }
+            })
+    }
+
+    private fun setupTabMediator(isSimEnable: Boolean, isHotspotEnable: Boolean) {
+
         val myESimFragment = MyESimFragment()
         val profileFragment = ProfileFragment()
 
-
         val tabs: MutableList<Drawable> = mutableListOf()
-        tabs.add(0, ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_home_selector)!!)
-        tabs.add(
-            1,
-            ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_my_esim_selector)!!
-        )
-        tabs.add(
-            2,
-            ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_profile_selector)!!
-        )
 
         TabLayoutMediator(
             binding.tabLayout,
@@ -74,9 +87,35 @@ class MainTabPagerFragment : Fragment(R.layout.fragment_main_tab_pager) {
             tab.customView = view
         }.attach()
 
-        tabsPagerAdapter.addFragment(0, storeFragment)
-        tabsPagerAdapter.addFragment(1, myESimFragment)
-        tabsPagerAdapter.addFragment(2, profileFragment)
+        var pageIndex = 0
+
+        if(isSimEnable){
+            val storeFragment = StoreFragment()
+            tabs.add(pageIndex, ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_home_selector)!!)
+            tabsPagerAdapter.addFragment(pageIndex, storeFragment)
+            pageIndex += 1
+        }
+
+        if(isHotspotEnable){
+            val storeFragment = StoreFragment()
+            tabs.add(pageIndex, ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_home_selector)!!)
+            tabsPagerAdapter.addFragment(pageIndex, storeFragment)
+            pageIndex += 1
+        }
+
+        tabs.add(
+            pageIndex,
+            ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_my_esim_selector)!!
+        )
+        tabsPagerAdapter.addFragment(pageIndex, myESimFragment)
+        pageIndex += 1
+
+        tabs.add(
+            pageIndex,
+            ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_profile_selector)!!
+        )
+        tabsPagerAdapter.addFragment(pageIndex, profileFragment)
+
         tabsPagerAdapter.notifyDataSetChanged()
     }
 }
