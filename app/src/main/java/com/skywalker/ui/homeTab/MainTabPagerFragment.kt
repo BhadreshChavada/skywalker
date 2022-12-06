@@ -17,6 +17,8 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.skywalker.R
 import com.skywalker.databinding.FragmentMainTabPagerBinding
+import com.skywalker.ui.hotspot.HotspotHomeFragment
+import com.skywalker.ui.hotspot.ManageHotspotFragment
 import com.skywalker.ui.mySim.MyESimFragment
 import com.skywalker.ui.profile.ProfileFragment
 import com.skywalker.ui.store.StoreFragment
@@ -52,7 +54,7 @@ class MainTabPagerFragment : Fragment(R.layout.fragment_main_tab_pager) {
         retrieveRemoteConfig()
     }
 
-    private fun retrieveRemoteConfig(){
+    private fun retrieveRemoteConfig() {
         val mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
             .setMinimumFetchIntervalInSeconds(3600)
@@ -63,18 +65,16 @@ class MainTabPagerFragment : Fragment(R.layout.fragment_main_tab_pager) {
             .addOnCompleteListener(requireActivity(), object : OnCompleteListener<Boolean?> {
                 override fun onComplete(task: Task<Boolean?>) {
                     if (task.isSuccessful()) {
-                        setupTabMediator(mFirebaseRemoteConfig.getBoolean("isESimEnable"),
-                            mFirebaseRemoteConfig.getBoolean("isHotspotEnable"))
+                        setupTabMediator(
+                            mFirebaseRemoteConfig.getBoolean("isESimEnable"),
+                            mFirebaseRemoteConfig.getBoolean("isHotspotEnable")
+                        )
                     }
                 }
             })
     }
 
     private fun setupTabMediator(isSimEnable: Boolean, isHotspotEnable: Boolean) {
-
-        val myESimFragment = MyESimFragment()
-        val profileFragment = ProfileFragment()
-
         val tabs: MutableList<Drawable> = mutableListOf()
 
         TabLayoutMediator(
@@ -89,27 +89,47 @@ class MainTabPagerFragment : Fragment(R.layout.fragment_main_tab_pager) {
 
         var pageIndex = 0
 
-        if(isSimEnable){
+        if (isSimEnable) {
             val storeFragment = StoreFragment()
-            tabs.add(pageIndex, ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_home_selector)!!)
+            tabs.add(
+                pageIndex,
+                ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_home_selector)!!
+            )
             tabsPagerAdapter.addFragment(pageIndex, storeFragment)
             pageIndex += 1
         }
 
-        if(isHotspotEnable){
-            val storeFragment = StoreFragment()
-            tabs.add(pageIndex, ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_home_selector)!!)
+        if (isHotspotEnable) {
+            val storeFragment = HotspotHomeFragment()
+            tabs.add(
+                pageIndex,
+                ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_home_selector)!!
+            )
             tabsPagerAdapter.addFragment(pageIndex, storeFragment)
             pageIndex += 1
         }
 
-        tabs.add(
-            pageIndex,
-            ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_my_esim_selector)!!
-        )
-        tabsPagerAdapter.addFragment(pageIndex, myESimFragment)
-        pageIndex += 1
+        if (isSimEnable) {
+            val myESimFragment = MyESimFragment()
+            tabs.add(
+                pageIndex,
+                ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_my_esim_selector)!!
+            )
+            tabsPagerAdapter.addFragment(pageIndex, myESimFragment)
+            pageIndex += 1
+        }
 
+        if (isHotspotEnable) {
+            val manageHotspotFragment = ManageHotspotFragment()
+            tabs.add(
+                pageIndex,
+                ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_my_esim_selector)!!
+            )
+            tabsPagerAdapter.addFragment(pageIndex, manageHotspotFragment)
+            pageIndex += 1
+        }
+
+        val profileFragment = ProfileFragment()
         tabs.add(
             pageIndex,
             ContextCompat.getDrawable(requireActivity(), R.drawable.ic_tab_profile_selector)!!

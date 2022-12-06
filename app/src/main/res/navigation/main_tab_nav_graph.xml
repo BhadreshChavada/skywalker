@@ -46,6 +46,14 @@
         <action
             android:id="@+id/action_mainFragmentt_to_planDetailFragment"
             app:destination="@id/planDetailFragment" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_fragmentHotspotDetails"
+            app:destination="@id/fragmentHotspotDetails" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_cardActivationFirstStepFragment"
+            app:destination="@id/CardActivationFirstStepFragment" />
     </fragment>
 
     <fragment
@@ -136,6 +144,42 @@
         android:name="com.skywalker.ui.profile.ReferEarnFragment"
         android:label="referEarnFragment"
         tools:layout="@layout/fragment_refer_earn" />
+
+    <fragment
+        android:id="@+id/fragmentHotspotDetails"
+        android:name="com.skywalker.ui.hotspot.HotspotDetailsFragment"
+        android:label="fragmentHotspotDetails"
+        tools:layout="@layout/fragment_hotspot_detail" >
+        <action
+            android:id="@+id/action_fragmentHotspotDetails_to_CardActivationFirstStepFragment"
+            app:destination="@id/CardActivationFirstStepFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CardActivationFirstStepFragment"
+        android:name="com.skywalker.ui.hotspot.CardActivationFirstStepFragment"
+        android:label="CardActivationFirstStepFragment"
+        tools:layout="@layout/fragment_activate_device_step_one" >
+        <action
+            android:id="@+id/action_CardActivationFirstStepFragment_to_CardActivationSecondStepFragment"
+            app:destination="@id/CardActivationSecondStepFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CardActivationSecondStepFragment"
+        android:name="com.skywalker.ui.hotspot.CardActivationSecondStepFragment"
+        android:label="CardActivationSecondStepFragment"
+        tools:layout="@layout/fragment_activate_device_step_two" >
+        <action
+            android:id="@+id/action_CardActivationSecondStepFragment_to_CardActivationConfirmationFragment"
+            app:destination="@id/CardActivationConfirmationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CardActivationConfirmationFragment"
+        android:name="com.skywalker.ui.hotspot.CardActivationConfirmationFragment"
+        android:label="CardActivationConfirmationFragment"
+        tools:layout="@layout/fragment_hotspot_activation_confirmation" />
 
 
 </navigation>

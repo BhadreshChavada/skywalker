@@ -5,6 +5,7 @@ import com.skywalker.model.respone.*
 import retrofit2.Response
 import retrofit2.http.*
 
+
 interface RemoteApiService {
 
     @POST("auth/register")

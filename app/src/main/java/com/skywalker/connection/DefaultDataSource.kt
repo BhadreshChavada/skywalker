@@ -13,6 +13,7 @@ class DefaultDataSource
 @Inject constructor(
     private val connectivityStatusProvider: ConnectivityStatusProvider,
     private val remoteApiService: RemoteApiService,
+    private val hotspotApiService: HotspotApiService,
 ) {
 
     private suspend fun <T> requestRemoteDataSource(
@@ -222,6 +223,14 @@ class DefaultDataSource
         return requestRemoteDataSource {
             safeApiCall {
                 remoteApiService.getOrderHistory(createToken(authToken), page, perPage)
+            }
+        }
+    }
+
+    suspend fun getHotSpotData(): ResultWrapper<List<HotspotDetails>> {
+        return requestRemoteDataSource {
+            safeApiCall {
+                hotspotApiService.getHotSpotData()
             }
         }
     }

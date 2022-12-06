@@ -17,6 +17,7 @@ object Utils {
 
     //    "http://18.235.75.7:5000/api/v1/"
     val BASE_URL = "https://darkwolve.xyz/api/v1/"
+    val HOTSPOT_BASE_URL = "https://nomadhotspotappv1.s3.us-west-1.amazonaws.com/apis/"
     val STRIPE_PUBLIC_KEY =
         "pk_test_RIcFVHQ06soRIuzMtrlqYeiy008HScBaHU"
 
@@ -60,6 +61,25 @@ object Utils {
         }
     }
 
+    fun getHotSpotThemeBackground(theme: String, context: Context): Drawable? {
+        return when (theme) {
+            "green" -> {
+                context.resources.getDrawable(R.drawable.ic_hotspot_bg_one)
+            }
+            "orange" -> {
+                context.resources.getDrawable(R.drawable.ic_hotspot_bg_two)
+            }
+            "red" -> {
+                context.resources.getDrawable(R.drawable.ic_hotspot_bg_three)
+            }
+            "blue" -> {
+                context.resources.getDrawable(R.drawable.ic_hotspot_bg_four)
+            }
+            else -> {
+                context.resources.getDrawable(R.drawable.ic_hotspot_bg_four)
+            }
+        }
+    }
 
     fun Long.toTimeDateString(): String {
         val dateTime = Date(this)
