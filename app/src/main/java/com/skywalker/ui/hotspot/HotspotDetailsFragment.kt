@@ -89,7 +89,19 @@ class HotspotDetailsFragment : BaseFragment(R.layout.fragment_hotspot_detail) {
     }
 
     private fun subscription() {
+       /* val skuDetails = SkuDetails()
+        val cbProduct = CBProduct("1","Modem","199",skuDetails,false)
 
+        CBPurchase.purchaseProduct(product=cbProduct, customerID="customerID", object : CBCallback.PurchaseCallback<PurchaseModel>{
+            override fun onSuccess(subscriptionID: String, status:Boolean) {
+                Log.i(TAG, "${status}")
+                Log.i(TAG, "${subscriptionID}")
+            }
+            override fun onError(error: CBException) {
+                Log.e(TAG, "Error:  ${error.message}")
+                // Handle error here
+            }
+        })*/
     }
 
 

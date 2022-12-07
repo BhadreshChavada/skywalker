@@ -58,7 +58,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/vpBanner"
                             app:layout_constraintStart_toStartOf="@+id/vpBanner"
                             app:layout_constraintEnd_toEndOf="@+id/vpBanner"
-                            app:tabBackground="@drawable/tab_selector"
+                            app:tabBackground="@drawable/tab_selector_image"
                             app:tabGravity="center"
                             app:tabIndicatorHeight="0dp" />
 

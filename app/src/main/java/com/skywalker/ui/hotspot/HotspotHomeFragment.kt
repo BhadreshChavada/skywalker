@@ -85,15 +85,17 @@ class HotspotHomeFragment : BaseFragment(R.layout.fragment_hotspot_home) {
         binding.vpBanner.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_cardActivationFirstStepFragment)
         }
+        binding.btnActivateHotspot.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_cardActivationFirstStepFragment)
+        }
     }
 
     private fun setObserver() {
         mViewModel.hotspotList.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is ResultWrapper.Success -> if (result.value != null) {
-                    // Success code go here
-                    mProgressDialog.dismiss()
                     hotspotAdapter.submitList(result.value)
+                    mProgressDialog.dismiss()
                 }
                 is ResultWrapper.Error -> {
                     mProgressDialog.dismiss()

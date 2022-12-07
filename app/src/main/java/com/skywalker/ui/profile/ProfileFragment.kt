@@ -59,6 +59,18 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             )
         }
 
+        binding.tvMoreInfo.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_homeMainFragment_to_moreInfoFragment
+            )
+        }
+
+        binding.tvActivatePlan.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_mainFragment_to_cardActivationFirstStepFragment
+            )
+        }
+
         binding.tvLogout.setOnClickListener {
             logoutConfirmation()
         }

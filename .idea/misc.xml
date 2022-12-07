@@ -9,14 +9,23 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_5_green.xml" value="0.1575" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_green.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_light_green.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_rectangle_rounded_corner_white.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_signup.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/bg_signup_two.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/default_dot.xml" value="0.25" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/default_dot_image.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/default_square.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_copy.xml" value="0.126" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_copy_green.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_green_logo.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_hotspot_bg_four.xml" value="0.126" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_hotspot_bg_one.xml" value="0.126" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_hotspot_bg_three.xml" value="0.126" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_hotspot_bg_two.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_my_e_sim_selected.xml" value="0.1575" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_next_bottom.xml" value="0.126" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_next_right.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_share_icon.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_splash_logo.xml" value="0.161" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_tab_home.xml" value="0.1575" />
@@ -31,12 +40,17 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_wt_next.xml" value="0.16" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/ic_wt_right_side.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/selected_dot.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/selected_dot_image.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/selected_square.xml" value="0.1565" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/tab_selector.xml" value="0.1565" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/drawable/tab_selector_image.xml" value="0.126" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/activity_home_main.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/activity_main.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_country.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_global_sim_card.xml" value="0.15" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_hotspot.xml" value="0.17" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_hotspot_active_plan.xml" value="0.14305555555555555" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_imageView.xml" value="0.195703125" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_my_sim_card.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_order_history.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_popular_country.xml" value="0.33" />
@@ -47,15 +61,23 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/dialog_api_progress.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_about_skywalker.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_account_information.xml" value="0.25" />
-        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_authentication.xml" value="0.22" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_activate_device_step_one.xml" value="0.14305555555555555" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_activate_device_step_two.xml" value="0.17" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_authentication.xml" value="0.16" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_country_wise_sim_provider.xml" value="0.2" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_hotspot_activation_confirmation.xml" value="0.14305555555555555" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_hotspot_detail.xml" value="0.14305555555555555" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_hotspot_device_info.xml" value="0.14305555555555555" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_hotspot_home.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_main_tab_pager.xml" value="0.2552083333333333" />
-        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_more_info.xml" value="0.2609375" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_more_info.xml" value="0.18" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_my_hotspot.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_my_sim.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_order_history.xml" value="0.16" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_order_main_tab_history.xml" value="0.195703125" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_payment_confirmation.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_plan_details.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_profile.xml" value="0.16" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_refer_earn.xml" value="0.22" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_signup.xml" value="0.24722222222222223" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_sim_additional_info.xml" value="0.25" />

@@ -22,24 +22,26 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:text="Skymoney"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/_10sdp"
+            android:text="Skymoney"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvSkyMoneyAmount"
+            style="@style/regularText_black_13"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginStart="15dp"
-            android:text="US$ 0.00"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/bg_rectangle_amount"
             android:gravity="center"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            style="@style/regularText_black_13"
-            android:background="@drawable/bg_rectangle_amount"
+            android:text="US$ 0.00"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintTop_toBottomOf="@+id/tvSkyMoney" />
 
 
@@ -97,6 +99,7 @@
             android:text="@string/refer_earn"
             android:textColor="#5E6676"
             android:textSize="@dimen/_15sdp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccountInformation" />
 
@@ -112,8 +115,41 @@
             android:text="@string/orders"
             android:textColor="#5E6676"
             android:textSize="@dimen/_15sdp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvReferAndEarn" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvManagePlan"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_order"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/manage_plan"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrders" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvActivatePlan"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_activate_plan_icon"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/activate_plan"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvManagePlan" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLanguage"
@@ -125,11 +161,11 @@
             android:drawableEnd="@drawable/ic_next_right"
             android:drawablePadding="@dimen/_15sdp"
             android:text="@string/language"
-            android:visibility="gone"
             android:textColor="#5E6676"
             android:textSize="@dimen/_15sdp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOrders" />
+            app:layout_constraintTop_toBottomOf="@+id/tvActivatePlan" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvHelpCenter"
@@ -143,8 +179,24 @@
             android:text="@string/help_center"
             android:textColor="#5E6676"
             android:textSize="@dimen/_15sdp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvLanguage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMoreInfo"
+            style="@style/regularText_black_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_help_center"
+            android:drawableEnd="@drawable/ic_next_right"
+            android:drawablePadding="@dimen/_15sdp"
+            android:text="@string/more_info"
+            android:textColor="#5E6676"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHelpCenter" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvContactUs"
@@ -159,7 +211,7 @@
             android:textColor="#5E6676"
             android:textSize="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHelpCenter" />
+            app:layout_constraintTop_toBottomOf="@+id/tvMoreInfo" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLogout"

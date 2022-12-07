@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.skywalker.R
 import com.skywalker.databinding.AdapterHotspotBinding
 import com.skywalker.helper.Utils.getHotSpotThemeBackground
@@ -40,7 +41,7 @@ class HotspotAdapter(
         fun bindTo(item: HotspotDetails) {
             binding.apply {
                 data = item
-
+                Glide.with(context).load(item.cover).into(ivModem)
                 root.setOnClickListener {
                     itemClick.redirectToDetails(item)
                 }

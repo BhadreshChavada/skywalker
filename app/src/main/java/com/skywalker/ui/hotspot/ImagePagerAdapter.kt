@@ -31,7 +31,7 @@ class ImagePagerAdapter(
 
         val imageView = itemView.findViewById<View>(R.id.ivWtImage) as ImageView
 
-        Glide.with(context).load(images[position]).into(imageView);
+        Glide.with(context).load(images[position]).into(imageView)
 
 
         Objects.requireNonNull(container).addView(itemView)

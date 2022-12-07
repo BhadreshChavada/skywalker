@@ -53,12 +53,11 @@ class WalkthroughFragment : Fragment(R.layout.fragment_walkthrough) {
         val imageArray = intArrayOf(
             R.drawable.ic_wt_one,
             R.drawable.ic_wt_two,
-            R.drawable.ic_wt_three,
-            R.drawable.ic_wt_four
+            R.drawable.ic_wt_three
         )
         val stringArray = arrayOf(
             getString(R.string.wt_one), getString(R.string.wt_two),
-            getString(R.string.wt_three), getString(R.string.wt_four)
+            getString(R.string.wt_three)
         )
 
 

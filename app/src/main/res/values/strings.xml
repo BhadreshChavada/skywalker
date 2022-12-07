@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Skywalker</string>
-    <string name="wt_one">The eSIM helps you go where you want to go, do what you want to do.</string>
-    <string name="wt_two">The convenience of the eSIM opens up a world of possibilities to travelers.</string>
-    <string name="wt_three">The cost-savings from the eSIM is valuable to both the business traveler and well as the tourist.</string>
+    <string name="app_name">nomad internet</string>
+    <string name="wt_one">Internet You Can Pause For Free </string>
+    <string name="wt_two">World’s Fastest 5G Modem </string>
+    <string name="wt_three">Over the Top Connectivity</string>
     <string name="wt_four">Technology making your life better is what we bring you - this is easy to use</string>
     <string name="skywalker">Skywalker</string>
     <string name="skip">Skip</string>
@@ -73,5 +73,8 @@
     <string name="no">No</string>
     <string name="refer_and_earn"><![CDATA[Refer & Earn]]></string>
     <string name="you_don_t_have_any_purchase_sim_yet">You haven’t purchased any sim</string>
+    <string name="you_don_t_have_any_purchase_hotspot">You haven’t purchased any hotspot</string>
     <string name="skymoney">Skymoney</string>
+    <string name="manage_plan">Manage Plan</string>
+    <string name="activate_plan">Activate Plan</string>
 </resources>

@@ -19,14 +19,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/tvTitle"
                     style="@style/semiBoldText_black_25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40sp"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
                     android:layout_marginTop="22dp"
-                    android:text="@string/skywalker"
+                    android:src="@drawable/ic_green_logo"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
