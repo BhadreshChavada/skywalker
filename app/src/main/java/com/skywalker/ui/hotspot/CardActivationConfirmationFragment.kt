@@ -35,6 +35,7 @@ import com.skywalker.model.respone.PlanDataItem
 import com.skywalker.model.respone.RegionDataItem
 import com.skywalker.ui.plan.PlanViewModel
 import com.skywalker.ui.plan.PlansAdapter
+import com.skywalker.ui.profile.WebViewFragment
 import com.skywalker.ui.store.CountryAdapter
 import com.skywalker.ui.store.PopularCountryAdapter
 import com.skywalker.ui.store.RegionAdapter
@@ -50,7 +51,6 @@ class CardActivationConfirmationFragment :
 
     private lateinit var binding: FragmentHotspotActivationConfirmationBinding
 
-    private val storeViewModel: StoreViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,8 +66,21 @@ class CardActivationConfirmationFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setClickListener()
+        init()
+    }
+
+    private fun init() {
+        binding.btnBuy.setOnClickListener {
+            val simId = arguments?.getString("simId")
+            WebViewFragment.loadWebView(
+                "https://np.nomadinternet.com/np-activation.php?iccid=$simId",
+                "Paynow", this,
+                R.id.action_cardActivation_to_webViewFragment
+            )
+        }
+
+
     }
 
     private fun setClickListener() {

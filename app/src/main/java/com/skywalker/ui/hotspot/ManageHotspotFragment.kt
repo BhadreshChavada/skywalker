@@ -49,8 +49,6 @@ class ManageHotspotFragment : BaseFragment(R.layout.fragment_my_hotspot) {
 
     private lateinit var binding: FragmentMyHotspotBinding
 
-    private val storeViewModel: StoreViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

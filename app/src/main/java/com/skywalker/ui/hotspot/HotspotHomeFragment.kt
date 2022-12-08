@@ -46,6 +46,12 @@ class HotspotHomeFragment : BaseFragment(R.layout.fragment_hotspot_home) {
     private lateinit var mProgressDialog: ApiProgressDialog
     private lateinit var hotspotAdapter: HotspotAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mProgressDialog = ApiProgressDialog(requireActivity())
+        mProgressDialog.show()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,9 +59,7 @@ class HotspotHomeFragment : BaseFragment(R.layout.fragment_hotspot_home) {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_hotspot_home, container, false
         )
-        mProgressDialog = ApiProgressDialog(requireActivity())
-        mProgressDialog.show()
-        mViewModel.getHotspotData()
+
         return binding.root
     }
 
@@ -91,7 +95,7 @@ class HotspotHomeFragment : BaseFragment(R.layout.fragment_hotspot_home) {
     }
 
     private fun setObserver() {
-        mViewModel.hotspotList.observe(viewLifecycleOwner) { result ->
+        mViewModel.hotSpotData.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is ResultWrapper.Success -> if (result.value != null) {
                     hotspotAdapter.submitList(result.value)

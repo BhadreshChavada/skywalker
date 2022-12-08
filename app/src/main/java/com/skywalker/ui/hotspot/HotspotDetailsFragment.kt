@@ -34,6 +34,7 @@ import com.skywalker.model.respone.PlanDataItem
 import com.skywalker.model.respone.RegionDataItem
 import com.skywalker.ui.plan.PlanViewModel
 import com.skywalker.ui.plan.PlansAdapter
+import com.skywalker.ui.profile.WebViewFragment
 import com.skywalker.ui.store.CountryAdapter
 import com.skywalker.ui.store.PopularCountryAdapter
 import com.skywalker.ui.store.RegionAdapter
@@ -80,7 +81,11 @@ class HotspotDetailsFragment : BaseFragment(R.layout.fragment_hotspot_detail) {
 
     private fun setClickListener() {
         binding.btnBuy.setOnClickListener {
-            subscription()
+            WebViewFragment.loadWebView(
+                "https://nomadinternet.com/",
+                getString(R.string.app_name), this,
+                R.id.action_fragmentHotspotDetail_to_webViewFragment
+            )
         }
 
         binding.toolbar.ivBack.setOnClickListener {

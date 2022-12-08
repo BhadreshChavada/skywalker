@@ -57,7 +57,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_regio.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_region.xml" value="0.195703125" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_sim_card.xml" value="0.25" />
-        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_walkthrough.xml" value="0.25625" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/adapter_walkthrough.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/dialog_api_progress.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_about_skywalker.xml" value="0.2609375" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_account_information.xml" value="0.25" />
@@ -86,6 +86,7 @@
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_store.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_walkthrough.xml" value="0.14305555555555555" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_wallet.xml" value="0.14305555555555555" />
+        <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/fragment_webview.xml" value="0.195703125" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/layout_home_tab_icon.xml" value="0.25625" />
         <entry key="..\:/Users/bhadr/AndroidStudioProjects/Skywalker/app/src/main/res/layout/layout_toolbar.xml" value="0.2546875" />
       </map>

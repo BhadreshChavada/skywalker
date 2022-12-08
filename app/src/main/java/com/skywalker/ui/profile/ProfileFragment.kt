@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.skywalker.databinding.FragmentProfileBinding
 import com.skywalker.helper.Utils
 import com.skywalker.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
@@ -97,10 +99,22 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             intent.data = Uri.parse("mailto:") // only email apps should handle this
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(Utils.contactUsEmail))
             intent.putExtra(Intent.EXTRA_SUBJECT, Utils.contactUsSubject)
+            intent.putExtra(Intent.EXTRA_TEXT, getDeviceInfo())
             startActivity(intent)
         } catch (ex: ActivityNotFoundException) {
 
         }
+    }
+
+    private fun getDeviceInfo(): String? {
+        val manufacturer = Build.MANUFACTURER
+        val model = Build.MODEL
+        val version = Build.VERSION.SDK_INT
+        val versionRelease = Build.VERSION.RELEASE
+        return "manufacturer " + manufacturer
+            .toString() + " \n model " + model
+            .toString() + " \n version " + version
+            .toString() + " \n versionRelease " + versionRelease
     }
 
     private fun logoutConfirmation() {
@@ -111,14 +125,10 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         builder.setPositiveButton(getString(R.string.yes)) { dialog, which ->
             dialog.dismiss()
             profileViewModel.clearPreference()
-//            Handler(Looper.myLooper()!!).postDelayed({
                 val intent = Intent(requireActivity(), MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 requireActivity().finish()
-//            },2000)
-
-
         }
 
         builder.setNegativeButton(getString(R.string.no)) { dialog, which ->

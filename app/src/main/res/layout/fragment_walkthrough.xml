@@ -45,19 +45,35 @@
                     android:id="@+id/sideBg"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="@dimen/_550sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_wt_right_side"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/wtPager"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginBottom="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tab_layout"
                     app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/wtPager"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btnNextWt"
@@ -68,18 +84,6 @@
                     android:src="@drawable/ic_wt_next"
                     app:layout_constraintBottom_toBottomOf="@+id/sideBg"
                     app:layout_constraintEnd_toEndOf="parent" />
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="40dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/wtPager"
-                    app:layout_constraintStart_toStartOf="@+id/wtPager"
-                    app:tabBackground="@drawable/tab_selector"
-                    app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

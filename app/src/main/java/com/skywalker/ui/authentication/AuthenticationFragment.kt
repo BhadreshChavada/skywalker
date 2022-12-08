@@ -48,6 +48,7 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
 
     private fun configGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.server_client_id))
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
@@ -252,6 +253,7 @@ class AuthenticationFragment : Fragment(R.layout.fragment_authentication) {
             authenticationViewModel.socialSignupRequest.providerToken = account.idToken.toString()
             authenticationViewModel.socialSignupRequest.providerType = "google"
             authenticationViewModel.doSocialSignUp()
+            mProgressDialog.show()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

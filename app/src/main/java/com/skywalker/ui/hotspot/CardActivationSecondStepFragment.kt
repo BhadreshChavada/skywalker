@@ -35,6 +35,7 @@ import com.skywalker.model.respone.PlanDataItem
 import com.skywalker.model.respone.RegionDataItem
 import com.skywalker.ui.plan.PlanViewModel
 import com.skywalker.ui.plan.PlansAdapter
+import com.skywalker.ui.profile.WebViewFragment
 import com.skywalker.ui.store.CountryAdapter
 import com.skywalker.ui.store.PopularCountryAdapter
 import com.skywalker.ui.store.RegionAdapter
@@ -49,8 +50,6 @@ class CardActivationSecondStepFragment : BaseFragment(R.layout.fragment_activate
 
     private lateinit var binding: FragmentActivateDeviceStepTwoBinding
 
-    private val storeViewModel: StoreViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,23 +62,41 @@ class CardActivationSecondStepFragment : BaseFragment(R.layout.fragment_activate
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setClickListener()
     }
 
-    private fun setClickListener(){
+    private fun setClickListener() {
         binding.toolbar.ivBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
         binding.btnYes.setOnClickListener {
-            findNavController().navigate(R.id.action_CardActivationSecondStepFragment_to_CardActivationConfirmationFragment)
+            if (binding.edtSimId.text.toString().length == 20) {
+                /*val bundle = Bundle()
+                bundle.putString("simId", binding.edtSimId.text.toString())
+                findNavController().navigate(
+                    R.id.action_CardActivationSecondStepFragment_to_CardActivationConfirmationFragment,
+                    bundle
+                )*/
+
+                val simId = binding.edtSimId.text.toString()
+                WebViewFragment.loadWebView(
+                    "https://np.nomadinternet.com/np-activation.php?iccid=$simId",
+                    "Paynow", this,
+                    R.id.action_cardActivationSecondStepFragment_to_webViewFragment
+                )
+            } else
+                Utils.showSnackBar(
+                    binding.root,
+                    "Please enter valid sim id",
+                    true,
+                    requireActivity()
+                )
         }
     }
-
 
 
 }

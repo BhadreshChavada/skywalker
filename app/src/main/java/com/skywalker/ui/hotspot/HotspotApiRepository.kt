@@ -17,13 +17,9 @@ class HotspotApiRepository @Inject constructor(
     private val defaultDataSource: DefaultDataSource,
 ) {
 
-    private val _hotSpotData = MutableLiveData<ResultWrapper<List<HotspotDetails>>?>()
-    val hotSpotData: MutableLiveData<ResultWrapper<List<HotspotDetails>>?>
-        get() = _hotSpotData
+    suspend fun getHotspotData(): ResultWrapper<List<HotspotDetails>> {
+        return defaultDataSource.getHotSpotData()
 
-    suspend fun getHotspotData() {
-        _hotSpotData.value = defaultDataSource.getHotSpotData()
-        _hotSpotData.value = null
     }
 
 }

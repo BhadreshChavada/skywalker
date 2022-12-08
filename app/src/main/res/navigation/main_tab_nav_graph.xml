@@ -93,13 +93,16 @@
         <action
             android:id="@+id/action_moreInfoFragment_to_aboutSkywalkerFragment"
             app:destination="@id/aboutSkywalkerFragment" />
+        <action
+            android:id="@+id/action_moreInfoFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/orderHistoryFragment"
         android:name="com.skywalker.ui.profile.OrderHistoryFragment"
         android:label="orderHistoryFragment"
-        tools:layout="@layout/fragment_order_history" >
+        tools:layout="@layout/fragment_order_history">
 
         <action
             android:id="@+id/action_orderFragment_to_planDetailFragment"
@@ -149,17 +152,21 @@
         android:id="@+id/fragmentHotspotDetails"
         android:name="com.skywalker.ui.hotspot.HotspotDetailsFragment"
         android:label="fragmentHotspotDetails"
-        tools:layout="@layout/fragment_hotspot_detail" >
+        tools:layout="@layout/fragment_hotspot_detail">
         <action
             android:id="@+id/action_fragmentHotspotDetails_to_CardActivationFirstStepFragment"
             app:destination="@id/CardActivationFirstStepFragment" />
+
+        <action
+            android:id="@+id/action_fragmentHotspotDetail_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/CardActivationFirstStepFragment"
         android:name="com.skywalker.ui.hotspot.CardActivationFirstStepFragment"
         android:label="CardActivationFirstStepFragment"
-        tools:layout="@layout/fragment_activate_device_step_one" >
+        tools:layout="@layout/fragment_activate_device_step_one">
         <action
             android:id="@+id/action_CardActivationFirstStepFragment_to_CardActivationSecondStepFragment"
             app:destination="@id/CardActivationSecondStepFragment" />
@@ -169,7 +176,10 @@
         android:id="@+id/CardActivationSecondStepFragment"
         android:name="com.skywalker.ui.hotspot.CardActivationSecondStepFragment"
         android:label="CardActivationSecondStepFragment"
-        tools:layout="@layout/fragment_activate_device_step_two" >
+        tools:layout="@layout/fragment_activate_device_step_two">
+        <action
+            android:id="@+id/action_cardActivationSecondStepFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
         <action
             android:id="@+id/action_CardActivationSecondStepFragment_to_CardActivationConfirmationFragment"
             app:destination="@id/CardActivationConfirmationFragment" />
@@ -179,7 +189,16 @@
         android:id="@+id/CardActivationConfirmationFragment"
         android:name="com.skywalker.ui.hotspot.CardActivationConfirmationFragment"
         android:label="CardActivationConfirmationFragment"
-        tools:layout="@layout/fragment_hotspot_activation_confirmation" />
+        tools:layout="@layout/fragment_hotspot_activation_confirmation" >
+        <action
+            android:id="@+id/action_cardActivation_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.skywalker.ui.profile.WebViewFragment"
+        android:label="webViewFragment"
+        tools:layout="@layout/fragment_webview" />
 
 
 </navigation>

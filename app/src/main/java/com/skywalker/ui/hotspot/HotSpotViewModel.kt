@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.skywalker.baseClass.BaseViewModel
+import com.skywalker.connection.ResultWrapper
 import com.skywalker.helper.DataStoreManager
 import com.skywalker.helper.DataStoreManager.PreferencesKeys.authToken
 import com.skywalker.helper.Utils
@@ -23,12 +24,19 @@ class HotSpotViewModel
     private val dataStoreManager: DataStoreManager
 ) : BaseViewModel(dataStoreManager) {
 
-    val hotspotList = hotspotApiRepository.hotSpotData
+    private val _hotSpotData = MutableLiveData<ResultWrapper<List<HotspotDetails>>?>()
+    val hotSpotData: MutableLiveData<ResultWrapper<List<HotspotDetails>>?>
+        get() = _hotSpotData
+
     lateinit var selectedHotspotList : HotspotDetails
 
-    fun getHotspotData() {
-        viewModelScope.launch {
-            hotspotApiRepository.getHotspotData()
+    init {
+        getHotspotData()
+    }
+
+    private fun getHotspotData() {
+        viewModelScope.launch(Dispatchers.Main) {
+            _hotSpotData.value = hotspotApiRepository.getHotspotData()
         }
     }
 

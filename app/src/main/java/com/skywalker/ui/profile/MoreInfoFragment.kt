@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.skywalker.R
 import com.skywalker.databinding.FragmentMoreInfoBinding
 
@@ -32,9 +31,26 @@ class MoreInfoFragment : Fragment(R.layout.fragment_more_info) {
 
     private fun setClickListener() {
         binding.tvAboutSkywalker.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_moreInfoFragment_to_aboutSkywalkerFragment
-            )
+          WebViewFragment.loadWebView("https://nomadinternet.com/blogs/countrynomad",
+              "About us",this,
+              R.id.action_moreInfoFragment_to_webViewFragment)
+        }
+
+
+        binding.tvPrivacyPolicy.setOnClickListener {
+
+                WebViewFragment.loadWebView("https://nomadinternet.com/pages/privacy-policy",
+                    "Privacy Policy",this,
+                    R.id.action_moreInfoFragment_to_webViewFragment)
+
+        }
+
+        binding.tvTermsCondition.setOnClickListener {
+
+                WebViewFragment.loadWebView("https://nomadinternet.com/policies/terms-of-service",
+                    "Terms and Condition",this,
+                    R.id.action_moreInfoFragment_to_webViewFragment)
+
         }
 
         binding.toolbar.ivBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }

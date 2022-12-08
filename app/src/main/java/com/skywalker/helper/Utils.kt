@@ -11,15 +11,14 @@ import java.util.*
 
 object Utils {
 
-    const val contactUsEmail = ""
-    const val contactUsSubject = ""
+    const val contactUsEmail = "info@hxo.com"
+    const val contactUsSubject = "Nomad hotspot mobile app"
     const val PAGE_PER_ITEM: Int = 50
 
     //    "http://18.235.75.7:5000/api/v1/"
     val BASE_URL = "https://darkwolve.xyz/api/v1/"
     val HOTSPOT_BASE_URL = "https://nomadhotspotappv1.s3.us-west-1.amazonaws.com/apis/"
-    val STRIPE_PUBLIC_KEY =
-        "pk_test_RIcFVHQ06soRIuzMtrlqYeiy008HScBaHU"
+    val STRIPE_PUBLIC_KEY = "pk_test_RIcFVHQ06soRIuzMtrlqYeiy008HScBaHU"
 
     fun showSnackBar(view: View, message: String, isError: Boolean = false, context: Context) {
 

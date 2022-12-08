@@ -72,6 +72,7 @@
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:background="#F6F8F9"
                             android:gravity="center"
+                            android:maxLength="20"
                             android:hint="For ex - 89148000003561176947"
                             app:layout_constraintTop_toBottomOf="@+id/tvHotspotName" />
 
