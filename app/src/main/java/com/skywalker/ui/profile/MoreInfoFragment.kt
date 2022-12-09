@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.skywalker.R
 import com.skywalker.databinding.FragmentMoreInfoBinding
+import com.skywalker.helper.Utils
 
 class MoreInfoFragment : Fragment(R.layout.fragment_more_info) {
 
@@ -31,7 +32,7 @@ class MoreInfoFragment : Fragment(R.layout.fragment_more_info) {
 
     private fun setClickListener() {
         binding.tvAboutSkywalker.setOnClickListener {
-          WebViewFragment.loadWebView("https://nomadinternet.com/blogs/countrynomad",
+          WebViewFragment.loadWebView(Utils.ABOUT_US,
               "About us",this,
               R.id.action_moreInfoFragment_to_webViewFragment)
         }
@@ -39,7 +40,7 @@ class MoreInfoFragment : Fragment(R.layout.fragment_more_info) {
 
         binding.tvPrivacyPolicy.setOnClickListener {
 
-                WebViewFragment.loadWebView("https://nomadinternet.com/pages/privacy-policy",
+                WebViewFragment.loadWebView(Utils.PRIVACY_POLICY,
                     "Privacy Policy",this,
                     R.id.action_moreInfoFragment_to_webViewFragment)
 
@@ -47,7 +48,7 @@ class MoreInfoFragment : Fragment(R.layout.fragment_more_info) {
 
         binding.tvTermsCondition.setOnClickListener {
 
-                WebViewFragment.loadWebView("https://nomadinternet.com/policies/terms-of-service",
+                WebViewFragment.loadWebView(Utils.TERMS_CONDITION,
                     "Terms and Condition",this,
                     R.id.action_moreInfoFragment_to_webViewFragment)
 

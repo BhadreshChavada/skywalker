@@ -1,6 +1,5 @@
 package com.skywalker.ui.splash
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,12 +8,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.skywalker.BuildConfig
 import com.skywalker.R
+import com.skywalker.helper.Utils
 import com.skywalker.ui.homeTab.MainTabActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,6 +26,41 @@ import dagger.hilt.android.AndroidEntryPoint
 class SplashFragment : Fragment() {
 
     private val splashViewModel: SplashViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retrieveRemoteConfig()
+    }
+
+    private fun retrieveRemoteConfig() {
+        val mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(3600)
+            .build()
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+
+        if (!BuildConfig.DEBUG) {
+            mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(requireActivity(), object : OnCompleteListener<Boolean?> {
+                    override fun onComplete(task: Task<Boolean?>) {
+                        if (task.isSuccessful()) {
+                            Utils.BASE_URL = mFirebaseRemoteConfig.getString("SIM_APP_BASE_URL")
+                            Utils.HOTSPOT_BASE_URL =
+                                mFirebaseRemoteConfig.getString("HOTSPOT_APP_BASE_URL")
+                            Utils.SUBSCRIPTION_URL =
+                                mFirebaseRemoteConfig.getString("SUBSCRIPTION_URL")
+                            Utils.TERMS_CONDITION =
+                                mFirebaseRemoteConfig.getString("TERMS_CONDITION")
+                            Utils.WEB_SITE = mFirebaseRemoteConfig.getString("WEB_SITE")
+                            Utils.PRIVACY_POLICY = mFirebaseRemoteConfig.getString("PRIVACY_POLICY")
+                            Utils.ABOUT_US = mFirebaseRemoteConfig.getString("ABOUT_US")
+
+                        }
+                    }
+                })
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

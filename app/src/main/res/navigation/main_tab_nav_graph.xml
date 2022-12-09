@@ -198,7 +198,13 @@
         android:id="@+id/webViewFragment"
         android:name="com.skywalker.ui.profile.WebViewFragment"
         android:label="webViewFragment"
-        tools:layout="@layout/fragment_webview" />
+        tools:layout="@layout/fragment_webview" >
+        <action
+            android:id="@+id/action_webViewFragment_to_homeMainFragment"
+            app:destination="@id/homeMainFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/homeMainFragment"/>
+    </fragment>
 
 
 </navigation>

@@ -11,13 +11,18 @@ import java.util.*
 
 object Utils {
 
+    var SUBSCRIPTION_URL ="https://np.nomadinternet.com/np-activation.php?iccid="
+    var TERMS_CONDITION ="https://nomadinternet.com/policies/terms-of-service"
+    var WEB_SITE ="https://nomadinternet.com/"
+    var PRIVACY_POLICY ="https://nomadinternet.com/pages/privacy-policy"
+    var ABOUT_US ="https://nomadinternet.com/blogs/countrynomad"
     const val contactUsEmail = "info@hxo.com"
     const val contactUsSubject = "Nomad hotspot mobile app"
     const val PAGE_PER_ITEM: Int = 50
 
     //    "http://18.235.75.7:5000/api/v1/"
-    val BASE_URL = "https://darkwolve.xyz/api/v1/"
-    val HOTSPOT_BASE_URL = "https://nomadhotspotappv1.s3.us-west-1.amazonaws.com/apis/"
+    var BASE_URL = "https://darkwolve.xyz/api/v1/"
+    var HOTSPOT_BASE_URL = "https://nomadhotspotappv1.s3.us-west-1.amazonaws.com/apis/"
     val STRIPE_PUBLIC_KEY = "pk_test_RIcFVHQ06soRIuzMtrlqYeiy008HScBaHU"
 
     fun showSnackBar(view: View, message: String, isError: Boolean = false, context: Context) {

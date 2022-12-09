@@ -133,6 +133,7 @@
                             android:layout_marginStart="@dimen/_15sdp"
                             android:layout_marginTop="@dimen/_12sdp"
                             android:text="@string/_password"
+                            android:visibility="gone"
                             android:textColor="#5E6676" />
 
                         <androidx.appcompat.widget.AppCompatEditText
@@ -145,6 +146,7 @@
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:backgroundTint="#F6F8F9"
                             android:hint="@string/_password"
+                            android:visibility="gone"
                             android:inputType="textPassword" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </ScrollView>

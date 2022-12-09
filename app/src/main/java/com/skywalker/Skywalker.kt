@@ -23,13 +23,7 @@ class Skywalker : Application() {
             applicationContext,
             STRIPE_PUBLIC_KEY
         )
-        setupChargebee()
+
     }
 
-    private fun setupChargebee() {
-       /* Chargebee.configure(site= "nomadisp",
-            publishableApiKey= "live_Jj4mqSPoJVa5ivwiZtVHyfTcuqscuChw2b",
-            sdkKey= "sdk_key",packageName = "com.skywalker")*/
-        Chargebee.configure(site = "nomadisp", publishableApiKey = "live_Jj4mqSPoJVa5ivwiZtVHyfTcuqscuChw2b")
-    }
 }

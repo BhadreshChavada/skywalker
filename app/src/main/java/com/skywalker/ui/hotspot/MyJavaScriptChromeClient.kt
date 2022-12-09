@@ -1,7 +1,6 @@
 package com.skywalker.ui.hotspot
 
 import android.content.Context
-import android.util.Log
 import android.webkit.JavascriptInterface
 
 open class MyJavaScriptChromeClient(val context: Context,val webViewEvents: WebViewEvents) {
@@ -26,6 +25,12 @@ open class MyJavaScriptChromeClient(val context: Context,val webViewEvents: WebV
 
     @JavascriptInterface
     fun test_connection() {
+        webViewEvents.closeWebview("TEST")
+
+    }
+
+    @JavascriptInterface
+    fun test_connection(key:String) {
         webViewEvents.closeWebview("TEST")
 
     }

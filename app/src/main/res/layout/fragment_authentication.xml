@@ -325,6 +325,7 @@
                                         android:background="#F8F8F8"
                                         android:paddingStart="@dimen/_18sdp"
                                         android:text="@string/forgot_password"
+                                        android:visibility="invisible"
                                         app:layout_constraintEnd_toEndOf="@+id/viewDividerSignIn"
                                         app:layout_constraintTop_toBottomOf="@+id/btn_signIn" />
 

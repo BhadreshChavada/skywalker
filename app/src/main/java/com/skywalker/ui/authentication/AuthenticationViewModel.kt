@@ -85,8 +85,9 @@ class AuthenticationViewModel
     fun saveUserData(userData: UserData) {
         viewModelScope.launch {
             dataStoreManager.isFreshInstalled(false)
-            dataStoreManager.storeUserData(userData)
             dataStoreManager.storeAuthToken(userData.authentication.accessToken)
+            dataStoreManager.storeUserData(userData)
+
         }
     }
 

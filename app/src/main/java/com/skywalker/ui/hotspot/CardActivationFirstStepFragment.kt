@@ -77,6 +77,10 @@ class CardActivationFirstStepFragment : BaseFragment(R.layout.fragment_activate_
         binding.btnYes.setOnClickListener {
             findNavController().navigate(R.id.action_CardActivationFirstStepFragment_to_CardActivationSecondStepFragment)
         }
+
+        binding.btnno.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
 
 

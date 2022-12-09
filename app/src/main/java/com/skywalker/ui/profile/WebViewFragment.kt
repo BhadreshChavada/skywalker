@@ -9,13 +9,11 @@ import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import com.google.firebase.installations.Utils
 import com.skywalker.R
 import com.skywalker.baseClass.BaseFragment
 import com.skywalker.databinding.FragmentWebviewBinding
 import com.skywalker.ui.hotspot.MyJavaScriptChromeClient
 import com.skywalker.ui.hotspot.WebViewEvents
-import game.number.webviewdemo.WebClientClass
 
 class WebViewFragment : BaseFragment(R.layout.fragment_webview) {
 
@@ -60,41 +58,53 @@ class WebViewFragment : BaseFragment(R.layout.fragment_webview) {
         binding.webview.setClickable(true)
         val wSettings = binding.webview.getSettings()
         wSettings.setJavaScriptEnabled(true)
-        val webViewClient = WebClientClass(requireActivity())
-        binding.webview.setWebViewClient(webViewClient)
+//        val webViewClient = WebClientClass(requireActivity())
+//        binding.webview.setWebViewClient(webViewClient)
         binding.webview.settings.setSupportZoom(true)
+        webURL?.let { binding.webview.loadUrl(it) }
         if (title.equals("Paynow")) {
+
             binding.webview.addJavascriptInterface(
-                MyJavaScriptChromeClient(requireActivity(),object : WebViewEvents{
+                MyJavaScriptChromeClient(requireActivity(), object : WebViewEvents {
                     override fun closeWebview(status: String) {
-                        when(status){
-                            "FAIL" ->{
-                                com.skywalker.helper.Utils.showSnackBar(binding.root,
-                                "Payment fail",true,requireActivity())
-                                requireActivity().onBackPressedDispatcher.onBackPressed()
+                        when (status) {
+                            "FAIL" -> {
+                                com.skywalker.helper.Utils.showSnackBar(
+                                    binding.root,
+                                    "Payment fail", true, requireActivity()
+                                )
+                                redirectToHome()
                             }
-                            "DONE" ->{
-                                com.skywalker.helper.Utils.showSnackBar(binding.root,
-                                    "Payment Success",false,requireActivity())
-                                requireActivity().onBackPressedDispatcher.onBackPressed()
+                            "DONE" -> {
+                                com.skywalker.helper.Utils.showSnackBar(
+                                    binding.root,
+                                    "Payment Success", false, requireActivity()
+                                )
+                                redirectToHome()
                             }
-                            "TEST" ->{
-                                com.skywalker.helper.Utils.showSnackBar(binding.root,
-                                    "Test Payment",false,requireActivity())
-                                requireActivity().onBackPressedDispatcher.onBackPressed()
+                            "TEST" -> {
+                                com.skywalker.helper.Utils.showSnackBar(
+                                    binding.root,
+                                    "Test Payment", false, requireActivity()
+                                )
+                                redirectToHome()
                             }
-                            "CLOSE" ->{
-                                requireActivity().onBackPressedDispatcher.onBackPressed()
+                            "CLOSE" -> {
+                                redirectToHome()
                             }
                         }
                     }
 
                 }),
-                "androidApp"
+                "AndroidBridge"
             )
         }
-        webURL?.let { binding.webview.loadUrl(it) }
 
+
+    }
+
+    private fun redirectToHome() {
+        findNavController(this).navigate(R.id.action_webViewFragment_to_homeMainFragment)
     }
 
     private fun setClickListener() {
