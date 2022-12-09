@@ -71,25 +71,15 @@ class WebViewFragment : BaseFragment(R.layout.fragment_webview) {
                             "FAIL" -> {
                                 com.skywalker.helper.Utils.showSnackBar(
                                     binding.root,
-                                    "Payment fail", true, requireActivity()
+                                    "Payment failed!", true, requireActivity()
                                 )
                                 redirectToHome()
                             }
                             "DONE" -> {
                                 com.skywalker.helper.Utils.showSnackBar(
                                     binding.root,
-                                    "Payment Success", false, requireActivity()
+                                    "Payment Successfully!", false, requireActivity()
                                 )
-                                redirectToHome()
-                            }
-                            "TEST" -> {
-                                com.skywalker.helper.Utils.showSnackBar(
-                                    binding.root,
-                                    "Test Payment", false, requireActivity()
-                                )
-                                redirectToHome()
-                            }
-                            "CLOSE" -> {
                                 redirectToHome()
                             }
                         }
